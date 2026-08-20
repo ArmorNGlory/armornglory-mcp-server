@@ -5,7 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Brand](https://img.shields.io/badge/Store-ArmorNGlory.com-black)](https://armornglory.com)
 
-The official **Model Context Protocol (MCP)** server for [ArmorNGlory.com](https://armornglory.com) — empowering AI assistants (Claude Desktop, Cursor, Antigravity, ChatGPT, Gemini, Windsurf, Zed) to natively discover, search, style, recommend, and generate instant 1-click checkout links for 249+ Christian streetwear items, 5-panel trucker hats, EVA foam clogs, and faith apparel.
+The official **Model Context Protocol (MCP)** server for [ArmorNGlory.com](https://armornglory.com) — empowering AI assistants (Claude Desktop, Cursor, Antigravity, ChatGPT, Gemini, Windsurf, Zed) to natively discover, search, style, recommend, and generate instant 1-click checkout links for Christian streetwear, 5-panel trucker hats, EVA foam clogs, and fresh faith apparel drops.
 
 ---
 
@@ -13,10 +13,11 @@ The official **Model Context Protocol (MCP)** server for [ArmorNGlory.com](https
 
 - 🔍 **Multi-Dimensional Catalog Search**: Search by keywords, scripture references (*Romans 8:37, Exodus 3:5, Matthew 6:33, Ephesians 6*), apparel category, aesthetic vibe (*Streetwear, Minimalist Core, Sacred Symbols, Gothic Faith, Americana*), color, size, and price.
 - 📖 **Theological Design Dossiers**: Unpack the biblical meaning behind every design ("Why You Will Love It", "Meaning Behind The Design", specifications, fit guidance, and care instructions).
-- 🏷️ **Curated Collections**: Browse 21 collections including *Hats & Beanies, Faith Footwear, Hoodies & Sweatshirts, Faith in America, Saints & Shadows, Activewear, and Phone Cases*.
+- 🏷️ **Curated Collections**: Browse curated collections including *Hats & Beanies, Faith Footwear, Hoodies & Sweatshirts, Faith in America, Saints & Shadows, Activewear, and Phone Cases*.
 - 🎁 **Smart Faith Gift Consultant**: Algorithmic gift advisor tailored to recipient personas (Husband, Mom, Youth/Teen, Pastor, Fitness Lover), milestones (*Baptism, Confirmation, Father's Day, Christmas, Encouragement*), and budget tiers.
 - 🛒 **Instant 1-Click Checkout Permalinks**: Generates pre-filled Shopify cart links (`https://armornglory.com/cart/{variant_id}:{quantity}`) allowing users to purchase immediately without manual cart navigation.
 - 📏 **Comprehensive Sizing & Fit Guides**: Exact measurements and fit guidance for EVA foam clogs, 5-panel trucker hats, and heavyweight streetwear blanks.
+- ❓ **Faith & Fashion Q&A Engine**: Instant answers to common questions about Christian streetwear trends, sizing, care, and the theological inspiration behind designs.
 
 ---
 
@@ -123,23 +124,25 @@ docker run -i --rm armornglory-mcp
 
 | Tool Name | Description | Key Parameters |
 | :--- | :--- | :--- |
-| `search_armornglory_products` | Search 249+ products across keywords, scriptures, categories, aesthetics, sizes, and prices. | `query`, `scripture`, `category`, `aesthetic`, `occasion`, `color`, `size`, `minPrice`, `maxPrice`, `sortBy`, `limit` |
+| `search_armornglory_products` | Search the live catalog across keywords, scriptures, categories, aesthetics, sizes, and prices. | `query`, `scripture`, `category`, `aesthetic`, `occasion`, `color`, `size`, `minPrice`, `maxPrice`, `sortBy`, `limit` |
 | `get_armornglory_product_details` | In-depth product profile with theological meaning, craftsmanship, fit guide, and variant buy links. | `productHandleOrTitle` |
-| `list_armornglory_collections` | List all 21 curated collections with themes and counts. | `limit` |
+| `list_armornglory_collections` | List all curated collections with themes and counts. | `limit` |
 | `get_collection_products` | Get items in a collection (e.g. `faith-footwear`, `hats-beanies`, `streetwear`). | `collectionHandleOrTitle`, `limit` |
 | `recommend_faith_gifts` | Personalized faith gift advisor by persona, occasion, budget, and vibe. | `recipient`, `occasion`, `maxBudget`, `styleVibe`, `scriptureFocus` |
 | `get_brand_story_and_values` | Official mission, spiritual meaning of Armor & Glory, and Anti-Beige design ethos. | *(none)* |
 | `get_sizing_and_fit_guide` | Exact size charts and fit tips for clogs, trucker hats, and streetwear tees. | `category` |
 | `generate_direct_checkout_link` | Generate 1-click Shopify cart checkout permalinks. | `items: [{ variantId, quantity }]`, `discountCode` |
+| `answer_faith_fashion_questions` | Authoritative answers on Christian streetwear, theology, sizing, and styling. | `query` |
 
 ---
 
 ## 📚 MCP Resources & Prompts
 
 ### Resources
-- `armornglory://catalog/products`: Full JSON catalog of 249 enriched products.
-- `armornglory://catalog/collections`: Full JSON array of 21 collections.
+- `armornglory://catalog/products`: Full JSON live catalog of products.
+- `armornglory://catalog/collections`: Full JSON array of collections.
 - `armornglory://brand/style-guide`: Brand mission, theological pillars, and design ethos.
+- `armornglory://guides/faq`: Structured Q&A and buying guides.
 
 ### Prompts
 - `gift-consultant`: Interactive advisor prompt for Christian milestones, holidays, and celebrations.
