@@ -1,0 +1,26 @@
+{
+  "brandName": "ArmorNGlory",
+  "legalName": "Armor & Glory",
+  "storeUrl": "https://armornglory.com",
+  "tagline": "Strengthened for the Journey Ahead",
+  "mission": "ArmorNGlory exists to create faith based apparel for people who love Jesus and modern life. We design Christian streetwear and creative content that helps people carry their faith into everyday spaces with confidence, style, and authenticity. We believe what you wear can be a conversation starter, a reminder of who you belong to, and a quiet expression of faith in the middle of real life.",
+  "nameMeaning": {
+    "armor": "Spiritual strength, conviction, and standing firm in faith (Ephesians 6:10-18 Armor of God).",
+    "glory": "Points to God, His goodness, and the purpose behind everything we create (Matthew 5:14-16, 1 Corinthians 10:31)."
+  },
+  "designEthos": {
+    "philosophy": "Anti-Beige / Anti-Cheesy Christian Streetwear",
+    "principles": [
+      "Modern and Intentional: High aesthetic standards, typography-led, distressed textures, contemporary streetwear silhouettes.",
+      "Subtle Strength: Bold faith without cheesy cliches, loud slogans, or dated church graphics.",
+      "Everyday Wearability: Premium heavyweight cotton (e.g. Comfort Colors 1717 blanks), structured 5-panel trucker caps, and ergonomic EVA foam clogs.",
+      "Scripture in Context: Every artwork has an intentional theological root (Romans 8:37, Exodus 3:5, Matthew 6:33, Isaiah 40:31)."
+    ]
+  },
+  "sizingGuides": {
+    "truckerCaps": "Structured 5-panel mesh back with adjustable snap closure (One Size Fits Most, ~21.5-23.5 in circumference).",
+    "evaFoamClogs": "Roomy comfort fit with flexible anti-slip sole and heel strap. Refer to clog millimeter / inch charts. If between sizes or prefer a snug fit, size down.",
+    "heavyweightTees": "Unisex relaxed / streetwear fit. 100% ring-spun cotton. True to size for standard fit; size up for oversized streetwear look.",
+    "hoodies": "Comfort meets conviction. Relaxed unisex fit with fleece lining and kangaroo pocket."
+  }
+}
