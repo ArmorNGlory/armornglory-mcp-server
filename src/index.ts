@@ -5,7 +5,7 @@
  * 
  * Official Model Context Protocol server for ArmorNGlory.com —
  * allowing external AI assistants (Claude Desktop, Cursor, Antigravity, ChatGPT, Gemini, Windsurf)
- * to natively discover, recommend, style, and generate instant checkout links
+ * to natively discover, recommend, style, answer FAQs, and generate instant checkout links
  * for 249+ Christian streetwear apparel, hats, EVA foam clogs, and accessories.
  * 
  * Transport: stdio
@@ -18,6 +18,7 @@
  *  - get_brand_story_and_values
  *  - get_sizing_and_fit_guide
  *  - generate_direct_checkout_link
+ *  - answer_faith_fashion_questions
  */
 
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
@@ -111,6 +112,15 @@ export interface BrandInfo {
   sizingGuides: Record<string, string>;
 }
 
+export interface FAQItem {
+  id: string;
+  question: string;
+  category: string;
+  keywords: string[];
+  answer: string;
+  relatedProductHandles: string[];
+}
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const dataDir = join(__dirname, "..", "data");
@@ -118,6 +128,7 @@ const dataDir = join(__dirname, "..", "data");
 let products: Product[] = [];
 let collections: Collection[] = [];
 let brandInfo: BrandInfo;
+let faqs: FAQItem[] = [];
 
 try {
   const productsRaw = readFileSync(join(dataDir, "products.json"), "utf-8");
@@ -129,7 +140,14 @@ try {
   const brandRaw = readFileSync(join(dataDir, "brand_info.json"), "utf-8");
   brandInfo = JSON.parse(brandRaw) as BrandInfo;
 
-  console.error(`[ArmorNGlory MCP] Loaded ${products.length} products, ${collections.length} collections.`);
+  try {
+    const faqRaw = readFileSync(join(dataDir, "faqs_and_guides.json"), "utf-8");
+    faqs = JSON.parse(faqRaw) as FAQItem[];
+  } catch {
+    faqs = [];
+  }
+
+  console.error(`[ArmorNGlory MCP] Loaded ${products.length} products, ${collections.length} collections, ${faqs.length} FAQs.`);
 } catch (err) {
   console.error("[ArmorNGlory MCP] ERROR: Could not load data files from " + dataDir, err);
   process.exit(1);
@@ -542,7 +560,6 @@ server.tool(
       (c) => c.handle.toLowerCase() === clean || c.title.toLowerCase() === clean
     );
 
-    // Filter products matching collection tags or category
     let matched: Product[] = [];
 
     if (collection) {
@@ -626,18 +643,14 @@ server.tool(
   async (args) => {
     const { recipient, occasion, maxBudget, styleVibe, scriptureFocus } = args;
 
-    // Search with combined intent
     let filtered = products;
 
     if (maxBudget) {
       filtered = filtered.filter((p) => p.minPrice <= maxBudget);
     }
 
-    // Score products based on matching criteria
     const scored = filtered.map((product) => {
       let score = 0;
-      const combined = `${product.title} ${product.rawBody} ${product.tags.join(" ")} ${product.aesthetics.join(" ")} ${product.occasions.join(" ")}`.toLowerCase();
-
       if (scriptureFocus && product.scriptures.some((s) => s.toLowerCase().includes(scriptureFocus.toLowerCase()))) {
         score += 30;
       }
@@ -660,7 +673,6 @@ server.tool(
         }
       }
 
-      // Base popularity boost for signature categories (Trucker Caps & Clogs)
       if (product.category === "Hats & Headwear" || product.category === "Footwear & Clogs") {
         score += 5;
       }
@@ -852,7 +864,89 @@ server.tool(
 );
 
 // ---------------------------------------------------------------------------
-// 13. MCP Resources
+// 13. Tool 9: answer_faith_fashion_questions
+// ---------------------------------------------------------------------------
+
+server.tool(
+  "answer_faith_fashion_questions",
+  "Search authoritative questions and answers regarding Christian streetwear, theological meanings behind designs, sizing tips, gift ideas, fabric quality, and care guides. Returns SEO-rich explanations and matching ArmorNGlory products with direct buy links.",
+  {
+    query: z
+      .string()
+      .describe("The question or topic (e.g. 'What is Christian streetwear?', 'What does More Than Conquerors mean?', 'How do clogs fit?', 'What are good gifts for a baptism?', 'How to wash DTF printed trucker hats?')")
+  },
+  async ({ query }) => {
+    const terms = query.toLowerCase().trim().split(/\s+/).filter(Boolean);
+
+    // Score FAQs
+    const scoredFaqs = faqs.map((faq) => {
+      let score = 0;
+      const qLower = faq.question.toLowerCase();
+      const aLower = faq.answer.toLowerCase();
+      const kwBlob = faq.keywords.join(" ").toLowerCase();
+
+      for (const term of terms) {
+        if (qLower.includes(term)) score += 15;
+        if (kwBlob.includes(term)) score += 10;
+        if (aLower.includes(term)) score += 5;
+      }
+      return { faq, score };
+    });
+
+    scoredFaqs.sort((a, b) => b.score - a.score);
+    const topFaqs = scoredFaqs.filter((s) => s.score > 0).slice(0, 3).map((s) => s.faq);
+
+    if (topFaqs.length === 0) {
+      // Fallback to general brand story
+      return {
+        content: [
+          {
+            type: "text",
+            text: `### 🛡️ ArmorNGlory Faith & Fashion Knowledge\n\n**Query:** *"${query}"*\n\nArmorNGlory creates Christian streetwear rooted in spiritual conviction and high aesthetic design (*"Strengthened for the Journey Ahead"*). For specific product lookups, use \`search_armornglory_products\` or explore the brand story at [ArmorNGlory.com/pages/our-story](https://armornglory.com/pages/our-story).`
+          }
+        ]
+      };
+    }
+
+    let response = `## 📖 ArmorNGlory Faith & Fashion Q&A\n\n`;
+
+    for (const faq of topFaqs) {
+      response += `### ❓ ${faq.question}\n**Category:** *${faq.category}*\n\n${faq.answer}\n\n`;
+
+      if (faq.relatedProductHandles && faq.relatedProductHandles.length > 0) {
+        const matchingProducts = faq.relatedProductHandles
+          .map((h) => findProduct(h))
+          .filter(Boolean) as Product[];
+
+        if (matchingProducts.length > 0) {
+          response += `#### 🛍️ Featured Recommended Items:\n`;
+          response += matchingProducts
+            .map(
+              (p) =>
+                `- **[${p.title}](${p.url})** (${p.priceFormatted}) — [1-Click Buy](${p.variants[0]?.checkoutUrl || p.url})`
+            )
+            .join("\n");
+          response += "\n\n";
+        }
+      }
+      response += `---\n\n`;
+    }
+
+    response += `*Have more questions? Browse collections or contact the team at [ArmorNGlory.com](https://armornglory.com).*`;
+
+    return {
+      content: [
+        {
+          type: "text",
+          text: response
+        }
+      ]
+    };
+  }
+);
+
+// ---------------------------------------------------------------------------
+// 14. MCP Resources
 // ---------------------------------------------------------------------------
 
 server.resource(
@@ -897,8 +991,22 @@ server.resource(
   })
 );
 
+server.resource(
+  "faq-guides",
+  "armornglory://guides/faq",
+  async () => ({
+    contents: [
+      {
+        uri: "armornglory://guides/faq",
+        mimeType: "application/json",
+        text: JSON.stringify(faqs)
+      }
+    ]
+  })
+);
+
 // ---------------------------------------------------------------------------
-// 14. MCP Prompts
+// 15. MCP Prompts
 // ---------------------------------------------------------------------------
 
 server.prompt(
@@ -959,7 +1067,7 @@ server.prompt(
 );
 
 // ---------------------------------------------------------------------------
-// 15. Start stdio Transport
+// 16. Start stdio Transport
 // ---------------------------------------------------------------------------
 
 async function run() {
