@@ -12,7 +12,7 @@ Use this comprehensive launch kit to submit, index, and promote the ArmorNGlory 
 Under the **E-Commerce & Shopping** or **Lifestyle & Search** category in `README.md`:
 
 ```markdown
-- [ArmorNGlory](https://github.com/ArmorNGlory/armornglory-mcp-server) 🛍️ - Discover, search, style, and generate 1-click Shopify checkout links for 249+ Christian streetwear items, 5-panel trucker hats, EVA foam clogs, and faith apparel.
+- [ArmorNGlory](https://github.com/ArmorNGlory/armornglory-mcp-server) 🛍️ - Discover, search, style, and generate 1-click Shopify checkout links for Christian streetwear, 5-panel trucker hats, EVA foam clogs, and faith apparel.
 ```
 
 ### PR Title & Description:
@@ -20,7 +20,7 @@ Under the **E-Commerce & Shopping** or **Lifestyle & Search** category in `READM
 * **Description:**
   ```markdown
   ### Description
-  Adds the official ArmorNGlory MCP server, allowing LLMs (Claude, Cursor, ChatGPT, Gemini, Windsurf) to natively discover, search, style, and generate instant 1-click checkout permalinks for 249+ Christian streetwear products, trucker caps, EVA foam clogs, and faith apparel.
+  Adds the official ArmorNGlory MCP server, allowing LLMs (Claude, Cursor, ChatGPT, Gemini, Windsurf) to natively discover, search, style, and generate instant 1-click checkout permalinks for Christian streetwear products, trucker caps, EVA foam clogs, and faith apparel.
 
   - **Repo:** https://github.com/ArmorNGlory/armornglory-mcp-server
   - **npm:** https://www.npmjs.com/package/armornglory-mcp-server
@@ -36,7 +36,7 @@ Under the **E-Commerce & Shopping** or **Lifestyle & Search** category in `READM
 
 * **Repository URL:** `https://github.com/ArmorNGlory/armornglory-mcp-server`
 * **Package Name:** `armornglory-mcp-server`
-* **Short Description:** Discover, style, and shop 249+ Christian streetwear apparel, trucker hats, and EVA foam clogs with 1-click Shopify checkout permalinks.
+* **Short Description:** Discover, style, and shop Christian streetwear apparel, trucker hats, and EVA foam clogs with 1-click Shopify checkout permalinks.
 * **Tags:** `ecommerce`, `shopping`, `streetwear`, `faith`, `apparel`, `fashion`, `shopify`, `christianity`
 
 ---
@@ -88,7 +88,7 @@ Hey everyone!
 I wanted to share an open-source Model Context Protocol (MCP) server we built for our Christian streetwear store: **`armornglory-mcp-server`**.
 
 ### What It Does:
-It allows Claude Desktop, Cursor, Antigravity, and any MCP client to natively search, recommend, and style items from our 249+ product catalog (5-panel trucker caps, heavyweight graphic tees, EVA foam clogs, fleece hoodies, and phone cases).
+It allows Claude Desktop, Cursor, Antigravity, and any MCP client to natively search, recommend, and style items from our live catalog (5-panel trucker caps, heavyweight graphic tees, EVA foam clogs, fleece hoodies, and phone cases).
 
 Instead of just hallucinating products, your AI assistant can:
 1. Search by specific Bible verse (e.g. *"Find a hat with Romans 8:37 More Than Conquerors"* or *"Show me Holy Ground Exodus 3:5 gear"*).
