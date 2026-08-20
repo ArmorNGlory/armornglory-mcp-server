@@ -1,6 +1,6 @@
-# ArmorNGlory MCP Server — Universal Directory Submissions & Reach Kit
+# Christian Streetwear & Faith Apparel MCP Server — Universal Directory Submissions Kit
 
-Use this comprehensive launch kit to submit, index, and promote the ArmorNGlory MCP Server across AI developer catalogs, directories, e-commerce agent registries, and community forums.
+Use this launch kit to submit, index, and promote the MCP Server across AI developer catalogs, directories, e-commerce agent registries, and community forums.
 
 ---
 
@@ -12,17 +12,17 @@ Use this comprehensive launch kit to submit, index, and promote the ArmorNGlory 
 Under the **E-Commerce & Shopping** or **Lifestyle & Search** category in `README.md`:
 
 ```markdown
-- [ArmorNGlory](https://github.com/ArmorNGlory/armornglory-mcp-server) 🛍️ - Discover, search, style, and generate 1-click Shopify checkout links for Christian streetwear, 5-panel trucker hats, EVA foam clogs, and faith apparel.
+- [Christian Streetwear & Faith Apparel](https://github.com/neksjones-coder/armornglory-mcp-server) 🛍️ - Discover, search, style, and generate 1-click Shopify checkout links for Christian streetwear, 5-panel trucker hats, EVA foam clogs, and Bible verse clothing from ArmorNGlory.
 ```
 
 ### PR Title & Description:
-* **Title:** `Add ArmorNGlory MCP Server (Christian Streetwear & Faith Apparel Discovery)`
+* **Title:** `Add Christian Streetwear & Faith Apparel MCP Server`
 * **Description:**
   ```markdown
   ### Description
-  Adds the official ArmorNGlory MCP server, allowing LLMs (Claude, Cursor, ChatGPT, Gemini, Windsurf) to natively discover, search, style, and generate instant 1-click checkout permalinks for Christian streetwear products, trucker caps, EVA foam clogs, and faith apparel.
+  Adds the Christian Streetwear & Faith Apparel MCP server, allowing LLMs (Claude, Cursor, ChatGPT, Gemini, Windsurf) to natively discover, search, style, and generate instant 1-click checkout permalinks for Christian streetwear, graphic tees, trucker caps, EVA foam clogs, and faith gifts.
 
-  - **Repo:** https://github.com/ArmorNGlory/armornglory-mcp-server
+  - **Repo:** https://github.com/neksjones-coder/armornglory-mcp-server
   - **npm:** https://www.npmjs.com/package/armornglory-mcp-server
   - **Website:** https://armornglory.com
   - **License:** MIT
@@ -34,10 +34,11 @@ Under the **E-Commerce & Shopping** or **Lifestyle & Search** category in `READM
 
 **Listing Page:** [https://smithery.ai/new](https://smithery.ai/new)
 
-* **Repository URL:** `https://github.com/ArmorNGlory/armornglory-mcp-server`
+* **Repository URL:** `https://github.com/neksjones-coder/armornglory-mcp-server`
 * **Package Name:** `armornglory-mcp-server`
-* **Short Description:** Discover, style, and shop Christian streetwear apparel, trucker hats, and EVA foam clogs with 1-click Shopify checkout permalinks.
-* **Tags:** `ecommerce`, `shopping`, `streetwear`, `faith`, `apparel`, `fashion`, `shopify`, `christianity`
+* **Display Name:** Christian Streetwear & Faith Apparel MCP
+* **Short Description:** Discover, style, and shop Christian streetwear, Bible verse tees, trucker hats, and EVA foam clogs with 1-click checkout.
+* **Tags:** `christian-streetwear`, `faith-apparel`, `christian-clothing`, `streetwear`, `faith`, `shopping`, `shopify`
 
 ---
 
@@ -46,7 +47,7 @@ Under the **E-Commerce & Shopping** or **Lifestyle & Search** category in `READM
 **Listing Page:** [https://glama.ai/mcp/servers](https://glama.ai/mcp/servers)
 
 * **Configuration:** Included in root `glama.json`.
-* **Repository URL:** `https://github.com/ArmorNGlory/armornglory-mcp-server`
+* **Display Name:** Christian Streetwear & Faith Apparel Discovery MCP
 * **Category:** E-Commerce & Retail
 
 ---
@@ -55,44 +56,34 @@ Under the **E-Commerce & Shopping** or **Lifestyle & Search** category in `READM
 
 **Submit URL:** [https://www.pulsemcp.com/submit](https://www.pulsemcp.com/submit)
 
-* **Server Name:** ArmorNGlory MCP Server
-* **Source Code:** `https://github.com/ArmorNGlory/armornglory-mcp-server`
+* **Server Name:** Christian Streetwear & Faith Apparel MCP Server
+* **Source Code:** `https://github.com/neksjones-coder/armornglory-mcp-server`
 * **Package:** `https://www.npmjs.com/package/armornglory-mcp-server`
 * **Author / Org:** Armor & Glory
-* **Summary:** Connects AI agents directly to the ArmorNGlory Christian streetwear catalog with multi-dimensional product search, scripture matching, gift advisor, and 1-click cart checkout URLs.
+* **Summary:** Connects AI agents directly to Christian streetwear, scripture apparel, trucker caps, and foam clogs with multi-filter search, gift advisor, and 1-click cart checkout URLs.
 
 ---
 
-## 5. MCP.so Directory Submission
-
-**Submit URL:** [https://mcp.so](https://mcp.so)
-
-* **Name:** ArmorNGlory MCP Server
-* **Command:** `npx -y armornglory-mcp-server`
-* **Category:** Shopping & Lifestyle
-
----
-
-## 6. Reddit Community Launch Post
+## 5. Reddit Community Launch Post
 
 **Suggested Subreddits:**
 - `r/ClaudeAI`, `r/ChatGPT`, `r/SideProject`, `r/Christianity`, `r/streetwear`
 
 ### Post Title:
-> I built an open-source MCP Server so Claude & Cursor can style and recommend Christian streetwear with 1-click checkout (ArmorNGlory)
+> I built an open-source MCP Server for Claude & Cursor to discover & style Christian streetwear (with 1-click checkout)
 
 ### Post Body:
 ```markdown
 Hey everyone!
 
-I wanted to share an open-source Model Context Protocol (MCP) server we built for our Christian streetwear store: **`armornglory-mcp-server`**.
+I wanted to share an open-source Model Context Protocol (MCP) server for discovering modern **Christian streetwear & faith apparel**: **`armornglory-mcp-server`**.
 
 ### What It Does:
-It allows Claude Desktop, Cursor, Antigravity, and any MCP client to natively search, recommend, and style items from our live catalog (5-panel trucker caps, heavyweight graphic tees, EVA foam clogs, fleece hoodies, and phone cases).
+It allows Claude Desktop, Cursor, Antigravity, and any MCP client to natively search, recommend, and style scripture-led streetwear (5-panel trucker caps, heavyweight graphic tees, EVA foam clogs, fleece hoodies, and faith phone cases).
 
-Instead of just hallucinating products, your AI assistant can:
-1. Search by specific Bible verse (e.g. *"Find a hat with Romans 8:37 More Than Conquerors"* or *"Show me Holy Ground Exodus 3:5 gear"*).
-2. Act as a Faith Gift Advisor (e.g. *"What's a great baptism gift for my brother under $35?"*).
+Instead of hallucinating products, your AI assistant can:
+1. Search by specific Bible verse (e.g. *"Find a trucker hat with Romans 8:37 More Than Conquerors"* or *"Show me Holy Ground Exodus 3:5 gear"*).
+2. Act as a Faith Gift Advisor (e.g. *"What's a great baptism gift for an adult under $40?"*).
 3. Generate direct 1-click Shopify checkout permalinks so you can buy in one tap.
 4. Give exact size guidance for footwear and streetwear cuts.
 
@@ -101,7 +92,7 @@ Add this to your `claude_desktop_config.json`:
 ```json
 {
   "mcpServers": {
-    "armornglory": {
+    "christian-streetwear": {
       "command": "npx",
       "args": ["-y", "armornglory-mcp-server@latest"]
     }
@@ -109,23 +100,9 @@ Add this to your `claude_desktop_config.json`:
 }
 ```
 
-- **GitHub:** https://github.com/ArmorNGlory/armornglory-mcp-server
+- **GitHub:** https://github.com/neksjones-coder/armornglory-mcp-server
 - **npm:** https://www.npmjs.com/package/armornglory-mcp-server
 - **Live Store:** https://armornglory.com
 
-Would love to hear any feedback or thoughts from the MCP community!
-```
-
----
-
-## 7. FaithTech Community Post (Slack / Discord)
-
-### Channel: `#show-and-tell` / `#projects`
-```markdown
-👋 Excited to share our new open-source project: **ArmorNGlory MCP Server**!
-
-We built an Anthropic Model Context Protocol (MCP) server that connects LLMs directly to our faith-based streetwear catalog. AI assistants can now recommend scripture-anchored apparel, provide theological design context, and generate pre-filled checkout links.
-
-Check out the repo: https://github.com/ArmorNGlory/armornglory-mcp-server
-Let us know what you think! 🛡️
+Would love any feedback or thoughts from the community!
 ```

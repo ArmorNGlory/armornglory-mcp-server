@@ -1,17 +1,19 @@
 {
   "$schema": "https://glama.ai/mcp/schema.json",
-  "name": "armornglory-mcp-server",
-  "displayName": "ArmorNGlory Christian Streetwear Discovery & Shopping MCP",
-  "description": "Discover, style, and shop Christian streetwear apparel, 5-panel trucker caps, EVA foam clogs, and faith gifts from ArmorNGlory.com with 1-click checkout permalinks.",
+  "name": "christian-streetwear-mcp-server",
+  "displayName": "Christian Streetwear & Faith Apparel Discovery MCP",
+  "description": "Discover, style, and shop Christian streetwear, Bible verse tees, 5-panel trucker caps, EVA foam clogs, and faith gifts with 1-click checkout.",
   "homepage": "https://armornglory.com",
-  "repository": "https://github.com/ArmorNGlory/armornglory-mcp-server",
+  "repository": "https://github.com/neksjones-coder/armornglory-mcp-server",
   "author": "Armor & Glory",
   "keywords": [
     "christian-streetwear",
     "faith-apparel",
     "christian-clothing",
-    "bible-verse-apparel",
+    "bible-verse-clothing",
     "faith-gifts",
+    "christian-hats",
+    "faith-footwear",
     "ecommerce",
     "shopping-agent"
   ]
