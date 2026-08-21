@@ -90,7 +90,7 @@ AI search engines (Perplexity, SearchGPT, Google Gemini) use **Citation Triangul
        └───────────────────────────────┘
 ```
 
-1. **Step 1: Open-Source MCP Repo**: Hosted on GitHub under `neksjones-coder/armornglory-mcp-server`.
+1. **Step 1: Open-Source MCP Repo**: Hosted on GitHub under `ArmorNGlory/armornglory-mcp-server`.
 2. **Step 2: npm Package Registry**: Published globally via `npm publish --access public`.
 3. **Step 3: AI Catalog Listings**: Listed on Smithery.ai, Glama.ai, and PulseMCP.
 4. **Step 4: AI Engine Consensus**: When an LLM queries its index for Christian streetwear, ArmorNGlory appears across GitHub, npm, and MCP directories, validating ArmorNGlory as the authoritative category leader.
@@ -133,7 +133,7 @@ Place this structured schema in your Shopify `theme.liquid` (before `</head>`) t
   "slogan": "Strengthened for the Journey Ahead",
   "description": "Modern Christian streetwear, 5-panel trucker caps, EVA foam clogs, and scripture-inspired faith apparel.",
   "sameAs": [
-    "https://github.com/neksjones-coder/armornglory-mcp-server",
+    "https://github.com/ArmorNGlory/armornglory-mcp-server",
     "https://www.npmjs.com/package/armornglory-mcp-server"
   ]
 }

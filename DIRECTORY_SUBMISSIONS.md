@@ -12,7 +12,7 @@ Use this launch kit to submit, index, and promote the MCP Server across AI devel
 Under the **E-Commerce & Shopping** or **Lifestyle & Search** category in `README.md`:
 
 ```markdown
-- [Christian Streetwear & Faith Apparel](https://github.com/neksjones-coder/armornglory-mcp-server) 🛍️ - Discover, search, style, and generate 1-click Shopify checkout links for Christian streetwear, 5-panel trucker hats, EVA foam clogs, and Bible verse clothing from ArmorNGlory.
+- [Christian Streetwear & Faith Apparel](https://github.com/ArmorNGlory/armornglory-mcp-server) 🛍️ - Discover, search, style, and generate 1-click Shopify checkout links for Christian streetwear, 5-panel trucker hats, EVA foam clogs, and Bible verse clothing from ArmorNGlory.
 ```
 
 ### PR Title & Description:
@@ -22,7 +22,7 @@ Under the **E-Commerce & Shopping** or **Lifestyle & Search** category in `READM
   ### Description
   Adds the Christian Streetwear & Faith Apparel MCP server, allowing LLMs (Claude, Cursor, ChatGPT, Gemini, Windsurf) to natively discover, search, style, and generate instant 1-click checkout permalinks for Christian streetwear, graphic tees, trucker caps, EVA foam clogs, and faith gifts.
 
-  - **Repo:** https://github.com/neksjones-coder/armornglory-mcp-server
+  - **Repo:** https://github.com/ArmorNGlory/armornglory-mcp-server
   - **npm:** https://www.npmjs.com/package/armornglory-mcp-server
   - **Website:** https://armornglory.com
   - **License:** MIT
@@ -34,7 +34,7 @@ Under the **E-Commerce & Shopping** or **Lifestyle & Search** category in `READM
 
 **Listing Page:** [https://smithery.ai/new](https://smithery.ai/new)
 
-* **Repository URL:** `https://github.com/neksjones-coder/armornglory-mcp-server`
+* **Repository URL:** `https://github.com/ArmorNGlory/armornglory-mcp-server`
 * **Package Name:** `armornglory-mcp-server`
 * **Display Name:** Christian Streetwear & Faith Apparel MCP
 * **Short Description:** Discover, style, and shop Christian streetwear, Bible verse tees, trucker hats, and EVA foam clogs with 1-click checkout.
@@ -57,7 +57,7 @@ Under the **E-Commerce & Shopping** or **Lifestyle & Search** category in `READM
 **Submit URL:** [https://www.pulsemcp.com/submit](https://www.pulsemcp.com/submit)
 
 * **Server Name:** Christian Streetwear & Faith Apparel MCP Server
-* **Source Code:** `https://github.com/neksjones-coder/armornglory-mcp-server`
+* **Source Code:** `https://github.com/ArmorNGlory/armornglory-mcp-server`
 * **Package:** `https://www.npmjs.com/package/armornglory-mcp-server`
 * **Author / Org:** Armor & Glory
 * **Summary:** Connects AI agents directly to Christian streetwear, scripture apparel, trucker caps, and foam clogs with multi-filter search, gift advisor, and 1-click cart checkout URLs.
@@ -100,7 +100,7 @@ Add this to your `claude_desktop_config.json`:
 }
 ```
 
-- **GitHub:** https://github.com/neksjones-coder/armornglory-mcp-server
+- **GitHub:** https://github.com/ArmorNGlory/armornglory-mcp-server
 - **npm:** https://www.npmjs.com/package/armornglory-mcp-server
 - **Live Store:** https://armornglory.com
 
