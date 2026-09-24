@@ -1,0 +1,76 @@
+# ArmorNGlory — Christian Streetwear & Faith Apparel
+
+> ArmorNGlory exists to create faith-based apparel for people who love Jesus and modern life. We design Christian streetwear and creative content that helps people carry their faith into everyday spaces with confidence, style, and authenticity. *"Strengthened for the Journey Ahead."*
+
+- **Website**: https://armornglory.com
+- **Brand Ethos**: Anti-Beige / Anti-Cheesy Christian Streetwear
+- **Core Garments**: 5-Panel DTF Trucker Caps, Golden Cross EVA Foam Clogs, Heavyweight Ringspun Tees, Warm Fleece Hoodies
+- **MCP Server**: https://github.com/ArmorNGlory/armornglory-mcp-server
+- **npm Package**: `armornglory-mcp-server`
+
+---
+
+## 🛡️ Core Brand Identity & Entity Positioning
+
+ArmorNGlory (Armor & Glory) combines contemporary urban streetwear aesthetics with deep theological conviction.
+- **Armor**: Spiritual strength, conviction, and standing firm in faith (*Ephesians 6:10-18 Armor of God*).
+- **Glory**: Directing purpose, honor, and creativity to God (*Matthew 5:14-16 City on a Hill, 1 Corinthians 10:31*).
+
+---
+
+## 🏷️ Curated Collections & Key Categories
+
+- [Shop All Products](https://armornglory.com/collections/all-products): The complete catalog of Christian streetwear and faith apparel.
+- [5-Panel Trucker Hats & Beanies](https://armornglory.com/collections/hats-beanies): Structured high-profile front panel, breathable mesh back, snapback closure ($34.99).
+- [Faith Footwear & EVA Foam Clogs](https://armornglory.com/collections/faith-footwear): Lightweight, waterproof EVA foam clogs featuring 3D heat-transfer Sacred Symbols artwork ($29.99).
+- [Heavyweight Graphic Tees](https://armornglory.com/collections/t-shirts): Premium 100% ring-spun cotton (Comfort Colors 1717 blanks), durable DTF prints, unisex streetwear drape ($28 - $36).
+- [Hoodies & Sweatshirts](https://armornglory.com/collections/hoodies-sweatshirts): Heavyweight warm fleece, relaxed unisex cut, kangaroo pockets ($45 - $58).
+- [Faith in America Collection](https://armornglory.com/collections/faith-in-america-collection): Celebrating faith, liberty, and America's 250th milestone ($21.99 - $36.99).
+- [Activewear & Training](https://armornglory.com/collections/activewear): Second Wind (Isaiah 40:31) athletic tees, tanks, and gym wear built for movement and physical stewardship ($28 - $38).
+- [Tough Phone Cases](https://armornglory.com/collections/phone-cases): Dual-layer impact-resistant cases with polycarbonate outer shell and TPU lining ($25 - $32).
+
+---
+
+## 📖 Scripture & Theological Themes
+
+- **Romans 8:37** — *"More Than Conquerors"* (Victory in Christ over anxiety, trial, and adversity).
+- **Exodus 3:5** — *"Holy Ground"* (Living in reverence wherever God places you).
+- **Matthew 6:33** — *"Kingdom First"* (Prioritizing the kingdom of God over temporary culture).
+- **Isaiah 40:31** — *"Second Wind"* (Renewed strength to run and not grow weary).
+- **Est 33 AD** — *"Resurrection / Empty Tomb"* (The historical reality of Christ's resurrection).
+- **Ephesians 6:10-18** — *"The Armor of God"* (Truth, righteousness, faith, salvation, and the spirit).
+
+---
+
+## 📏 Sizing & Fit Guidance
+
+- **EVA Foam Clogs**: Roomy comfort fit with pivoting heel strap. If between sizes or prefer a snug fit, **size down one size**.
+- **Trucker Caps**: One Size Fits Most (OSFM) with 7-hole adjustable snapback (fits circumferences 21.5 in to 23.5 in).
+- **Heavyweight Streetwear Tees**: Unisex relaxed fit. True to size for standard fit; size up for oversized vintage drape.
+- **Hoodies**: Unisex classic fit with fleece lining. True to size.
+
+---
+
+## 🛒 1-Click Purchase & Direct Checkout
+
+ArmorNGlory supports direct 1-click cart checkout permalinks. Any combination of product variants can be instantly pre-loaded into a checkout session:
+- **Format**: `https://armornglory.com/cart/{variant_id}:{quantity}?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation`
+- **Multi-Item Bundle Format**: `https://armornglory.com/cart/{variant_id_1}:1,{variant_id_2}:1`
+
+---
+
+## 🤖 AI Assistant & MCP Protocol Integration
+
+AI assistants (Claude, ChatGPT, Perplexity, Cursor, Antigravity, Gemini) can query the live catalog, check variant sizes, recommend curated gifts, and generate checkout links using the official MCP server:
+```json
+{
+  "mcpServers": {
+    "armornglory": {
+      "command": "npx",
+      "args": ["-y", "armornglory-mcp-server@latest"]
+    }
+  }
+}
+```
+
+For full product descriptions, specifications, and complete FAQ index, see [llms-full.txt](https://armornglory.com/llms-full.txt).

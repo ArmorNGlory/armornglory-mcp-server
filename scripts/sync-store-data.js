@@ -11,6 +11,55 @@ if (!fs.existsSync(dataDir)) {
   fs.mkdirSync(dataDir, { recursive: true });
 }
 
+export function isSafeAndSecureUrl(urlStr) {
+  if (!urlStr || typeof urlStr !== 'string') return null;
+  try {
+    let clean = urlStr.trim();
+    if (clean.startsWith('http://')) {
+      clean = clean.replace('http://', 'https://');
+    }
+    const parsed = new URL(clean);
+    if (parsed.protocol !== 'https:') return null;
+
+    const host = parsed.hostname.toLowerCase();
+    if (host === 'localhost' || /^(\d{1,3}\.){3}\d{1,3}$/.test(host)) return null;
+    if (/\.(xyz|top|work|click|link|cc|to|gq|cf|tk|ml|zip|exe|apk)$/i.test(host)) return null;
+
+    const blacklist = ['stlcatholic.org'];
+    if (blacklist.some(b => host.includes(b))) return null;
+
+    return parsed.toString();
+  } catch {
+    return null;
+  }
+}
+
+async function safeJsonFetch(urlStr) {
+  const secureUrl = isSafeAndSecureUrl(urlStr);
+  if (!secureUrl) {
+    throw new Error(`Insecure or blocked URL rejected: ${urlStr}`);
+  }
+
+  const res = await fetch(secureUrl, {
+    signal: AbortSignal.timeout(5000),
+    headers: {
+      "User-Agent": "Mozilla/5.0 (compatible; ArmorNGloryMCPSync/1.0; +https://armornglory.com)",
+      "Accept": "application/json"
+    }
+  });
+
+  if (!res.ok) {
+    throw new Error(`HTTP error ${res.status} (${res.statusText}) fetching ${secureUrl}`);
+  }
+
+  const contentType = res.headers.get("content-type") || "";
+  if (!contentType.includes("application/json")) {
+    throw new Error(`Unsafe Content-Type: expected application/json, got ${contentType}`);
+  }
+
+  return await res.json();
+}
+
 function cleanHtml(html) {
   if (!html) return "";
   return html
@@ -180,11 +229,7 @@ async function sync() {
 
   while (true) {
     const pUrl = `https://armornglory.com/products.json?limit=250&page=${page}`;
-    const pRes = await fetch(pUrl);
-    if (!pRes.ok) {
-      throw new Error(`Failed to fetch products page ${page}: ${pRes.statusText}`);
-    }
-    const pData = await pRes.json();
+    const pData = await safeJsonFetch(pUrl);
     if (!pData.products || pData.products.length === 0) break;
     rawProducts.push(...pData.products);
     console.log(`[Sync] Page ${page}: fetched ${pData.products.length} products (total so far: ${rawProducts.length})`);
@@ -195,8 +240,7 @@ async function sync() {
   console.log(`[Sync] Successfully retrieved ${rawProducts.length} total products.`);
 
   console.log("[Sync] Fetching live collections...");
-  const cRes = await fetch("https://armornglory.com/collections.json");
-  const cData = await cRes.json();
+  const cData = await safeJsonFetch("https://armornglory.com/collections.json");
   const rawCollections = cData.collections || [];
   console.log(`[Sync] Successfully retrieved ${rawCollections.length} collections.`);
 
@@ -231,7 +275,7 @@ async function sync() {
       option2: v.option2 || null,
       option3: v.option3 || null,
       imageUrl: v.featured_image ? v.featured_image.src : null,
-      checkoutUrl: `https://armornglory.com/cart/${v.id}:1`
+      checkoutUrl: `https://armornglory.com/cart/${v.id}:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation`
     }));
 
     const colors = Array.from(new Set(variants.map((v) => v.option1 || v.option2).filter(Boolean)));

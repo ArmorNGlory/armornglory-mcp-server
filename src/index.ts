@@ -24,7 +24,7 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
-import { readFileSync } from "fs";
+import { readFileSync, appendFileSync, existsSync, mkdirSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 
@@ -153,6 +153,26 @@ try {
   process.exit(1);
 }
 
+const logsDir = join(__dirname, "..", "logs");
+
+function logAgentActivity(toolName: string, args: Record<string, unknown>, resultSummary: string | number) {
+  try {
+    if (!existsSync(logsDir)) {
+      mkdirSync(logsDir, { recursive: true });
+    }
+    const entry = {
+      timestamp: new Date().toISOString(),
+      tool: toolName,
+      args,
+      result: resultSummary,
+      ppid: process.ppid || process.pid
+    };
+    appendFileSync(join(logsDir, "agent_activity.jsonl"), JSON.stringify(entry) + "\n", "utf-8");
+  } catch {
+    // Non-blocking logger
+  }
+}
+
 // ---------------------------------------------------------------------------
 // 2. Search & Filtering Engine
 // ---------------------------------------------------------------------------
@@ -269,6 +289,17 @@ function searchProducts(filters: ProductSearchFilters): Product[] {
         if (tagsBlob.includes(term)) score += 10;
         if (product.category.toLowerCase().includes(term)) score += 8;
         if (bodyLower.includes(term)) score += 3;
+
+        // Semantic synonym & intent expansion
+        if ((term === "croc" || term === "crocs" || term === "clog" || term === "clogs" || term === "slide" || term === "slides" || term === "shoes" || term === "footwear") && product.category === "Footwear & Clogs") score += 18;
+        if ((term === "hat" || term === "hats" || term === "cap" || term === "caps" || term === "snapback" || term === "trucker" || term === "beanie") && product.category === "Hats & Headwear") score += 18;
+        if ((term === "tee" || term === "tees" || term === "tshirt" || term === "t-shirt" || term === "shirt" || term === "shirts") && product.category === "T-Shirts & Tops") score += 18;
+        if ((term === "hoodie" || term === "hoodies" || term === "sweatshirt" || term === "sweatshirts" || term === "fleece") && product.category === "Hoodies & Sweatshirts") score += 18;
+        if ((term === "case" || term === "iphone" || term === "magsafe") && product.category === "Phone Cases") score += 18;
+        if ((term === "gym" || term === "workout" || term === "fitness" || term === "lifting" || term === "training") && (product.category === "Activewear & Training" || product.aesthetics.includes("Athletic / Performance"))) score += 18;
+        if ((term === "conqueror" || term === "conquerors") && product.scriptures.some((s) => s.includes("Romans 8:37"))) score += 20;
+        if ((term === "holy" || term === "bush") && product.scriptures.some((s) => s.includes("Exodus 3:5"))) score += 20;
+        if ((term === "kingdom" || term === "first") && product.scriptures.some((s) => s.includes("Matthew 6:33"))) score += 20;
       }
     } else {
       score = 1;
@@ -310,17 +341,25 @@ function findProduct(identifier: string): Product | undefined {
 // 3. Formatting Helpers
 // ---------------------------------------------------------------------------
 
+function attachUtm(url: string, campaign = "store_recommendation"): string {
+  if (!url) return url;
+  if (url.includes("utm_source=")) return url;
+  const separator = url.includes("?") ? "&" : "?";
+  return `${url}${separator}utm_source=ai_agent&utm_medium=mcp&utm_campaign=${campaign}`;
+}
+
 function formatProductSummary(p: Product): string {
   const scriptText = p.scriptures.length > 0 ? `\n- **Scripture / Theme**: ${p.scriptures.join(", ")}` : "";
   const aestheticText = p.aesthetics.length > 0 ? `\n- **Style / Aesthetic**: ${p.aesthetics.join(", ")}` : "";
   const meaningSnippet = p.story.meaningBehindDesign ? `\n- **Design Meaning**: ${p.story.meaningBehindDesign}` : "";
-  const buyUrl = p.variants[0]?.checkoutUrl || p.url;
+  const buyUrl = attachUtm(p.variants[0]?.checkoutUrl || p.url, "product_search");
+  const imgMarkdown = p.featuredImage ? `[![${p.title}](${p.featuredImage})](${p.url})\n` : "";
 
   return `### [${p.title}](${p.url})
-- **Category**: ${p.category} | **Price**: ${p.priceFormatted}${scriptText}${aestheticText}${meaningSnippet}
+${imgMarkdown}- **Category**: ${p.category} | **Price**: ${p.priceFormatted}${scriptText}${aestheticText}${meaningSnippet}
 - **Colors**: ${p.availableColors.slice(0, 5).join(", ") || "Standard"}
 - **Product Link**: ${p.url}
-- **Direct 1-Click Buy**: [Add to Cart & Checkout](${buyUrl})`;
+- **🛒 Direct 1-Click Buy**: [Add to Cart & Checkout](${buyUrl})`;
 }
 
 function formatProductDetail(p: Product): string {
@@ -332,7 +371,7 @@ function formatProductDetail(p: Product): string {
     .slice(0, 10)
     .map(
       (v) =>
-        `  - **${v.title}**: ${v.priceFormatted} ${v.available ? "✅ In Stock" : "❌ Out of Stock"} — [Instant Buy Link](${v.checkoutUrl})`
+        `  - **${v.title}**: ${v.priceFormatted} ${v.available ? "✅ In Stock" : "❌ Out of Stock"} — [Instant Buy Link](${attachUtm(v.checkoutUrl, "product_detail")})`
     )
     .join("\n");
 
@@ -357,15 +396,35 @@ function formatProductDetail(p: Product): string {
     storySections += `\n\n#### 🧼 Care Instructions\n${p.story.careInstructions}`;
   }
 
+  // Cross-sell companion product for AOV boost
+  let companionSection = "";
+  let companionCategory = "";
+  if (p.category === "Hats & Headwear") companionCategory = "Footwear & Clogs";
+  else if (p.category === "Footwear & Clogs") companionCategory = "Hats & Headwear";
+  else if (p.category.includes("T-Shirts") || p.category.includes("Hoodies")) companionCategory = "Hats & Headwear";
+
+  if (companionCategory) {
+    const companion = products.find((c) => c.category === companionCategory && c.id !== p.id);
+    if (companion && companion.variants[0] && p.variants[0]) {
+      const bundleUrl = attachUtm(
+        `https://armornglory.com/cart/${p.variants[0].id}:1,${companion.variants[0].id}:1`,
+        "complete_the_look_bundle"
+      );
+      companionSection = `\n\n### 🔥 Complete The Streetwear Look (Bundle & Save)\nPair this with **[${companion.title}](${companion.url})** (${companion.priceFormatted}) for a head-to-toe faith streetwear fit.\n👉 **[1-Click Bundle Both Items to Checkout](${bundleUrl})**`;
+    }
+  }
+
+  const imgMarkdown = p.featuredImage ? `![${p.title}](${p.featuredImage})\n\n` : "";
+
   return `## [${p.title}](${p.url})
-**Price:** ${p.priceFormatted} | **Category:** ${p.category} | **SKU / ID:** ${p.id}
+${imgMarkdown}**Price:** ${p.priceFormatted} | **Category:** ${p.category} | **SKU / ID:** ${p.id}
 **Scriptural Reference:** ${scriptures}
 **Aesthetic:** ${aesthetics} | **Ideal Occasions:** ${occasions}
 
 ${storySections}
 
 ### 🛒 Available Options & 1-Click Checkout
-${variantsList}
+${variantsList}${companionSection}
 
 🔗 **Direct Product URL:** ${p.url}`;
 }
@@ -436,6 +495,7 @@ server.tool(
   },
   async (args) => {
     const results = searchProducts(args);
+    logAgentActivity("search_armornglory_products", args as Record<string, unknown>, results.length);
 
     if (results.length === 0) {
       return {
@@ -477,6 +537,7 @@ server.tool(
   },
   async ({ productHandleOrTitle }) => {
     const product = findProduct(productHandleOrTitle);
+    logAgentActivity("get_armornglory_product_details", { productHandleOrTitle }, product ? product.title : "not_found");
 
     if (!product) {
       return {
@@ -517,6 +578,7 @@ server.tool(
   },
   async ({ limit = 25 }) => {
     const cols = collections.slice(0, limit);
+    logAgentActivity("list_armornglory_collections", { limit }, cols.length);
 
     const formatted = cols
       .map((c) => {
@@ -594,6 +656,8 @@ server.tool(
     if (matched.length === 0) {
       matched = searchProducts({ query: collectionHandleOrTitle, limit });
     }
+
+    logAgentActivity("get_collection_products", { collectionHandleOrTitle, limit }, matched.length);
 
     const title = collection ? collection.title : collectionHandleOrTitle;
     const url = collection ? collection.url : `https://armornglory.com/collections/${collectionHandleOrTitle}`;
@@ -682,6 +746,7 @@ server.tool(
 
     scored.sort((a, b) => b.score - a.score);
     const topRecs = scored.slice(0, 4).map((s) => s.product);
+    logAgentActivity("recommend_faith_gifts", args as Record<string, unknown>, topRecs.length);
 
     let adviceHeader = `## 🎁 ArmorNGlory Faith Gift Recommendations\n`;
     if (recipient) adviceHeader += `👤 **Recipient:** ${recipient}\n`;
@@ -693,11 +758,13 @@ server.tool(
 
     const productList = topRecs.map((p, idx) => {
       const rationale = p.story.meaningBehindDesign || p.story.summary || "A meaningful, high-utility Christian staple designed for daily wear.";
+      const buyUrl = attachUtm(p.variants[0]?.checkoutUrl || p.url, "gift_advisor");
+      const imgMarkdown = p.featuredImage ? `[![${p.title}](${p.featuredImage})](${p.url})\n` : "";
       return `### Option ${idx + 1}: [${p.title}](${p.url}) — **${p.priceFormatted}**
-- **Why It Makes A Great Gift**: ${rationale}
+${imgMarkdown}- **Why It Makes A Great Gift**: ${rationale}
 - **Category**: ${p.category} | **Scripture**: ${p.scriptures.join(", ") || "Kingdom Faith"}
 - **Available Colors/Sizes**: ${p.availableColors.slice(0, 4).join(", ") || "Standard"}
-- **1-Click Checkout**: [Buy Now (${p.priceFormatted})](${p.variants[0]?.checkoutUrl || p.url})`;
+- **🛒 1-Click Checkout**: [Buy Now (${p.priceFormatted})](${buyUrl})`;
     }).join("\n\n---\n\n");
 
     return {
@@ -720,6 +787,7 @@ server.tool(
   "Retrieve the official ArmorNGlory brand mission, theology, 'Anti-Beige / Anti-Cheesy' Christian streetwear design ethos, craftsmanship standards, and meaning behind the name.",
   {},
   async () => {
+    logAgentActivity("get_brand_story_and_values", {}, "viewed");
     const formatted = `## 🛡️ About ArmorNGlory (Armor & Glory)
 *"${brandInfo.tagline}"*
 
@@ -767,6 +835,7 @@ server.tool(
       .describe("Product category to get sizing for (default: 'All')")
   },
   async ({ category = "All" }) => {
+    logAgentActivity("get_sizing_and_fit_guide", { category }, "viewed");
     let guide = `## 📏 ArmorNGlory Official Sizing & Fit Guide\n\n`;
 
     if (category === "Footwear & Clogs" || category === "All") {
@@ -848,9 +917,13 @@ server.tool(
 
     const path = items.map((i) => `${i.variantId}:${i.quantity || 1}`).join(",");
     let checkoutUrl = `https://armornglory.com/cart/${path}`;
+    const params: string[] = [];
     if (discountCode) {
-      checkoutUrl += `?discount=${encodeURIComponent(discountCode)}`;
+      params.push(`discount=${encodeURIComponent(discountCode)}`);
     }
+    params.push("utm_source=ai_agent", "utm_medium=mcp", "utm_campaign=direct_checkout");
+    checkoutUrl += `?${params.join("&")}`;
+    logAgentActivity("generate_direct_checkout_link", { itemsCount: items.length, discountCode }, checkoutUrl);
 
     return {
       content: [
@@ -895,6 +968,7 @@ server.tool(
 
     scoredFaqs.sort((a, b) => b.score - a.score);
     const topFaqs = scoredFaqs.filter((s) => s.score > 0).slice(0, 3).map((s) => s.faq);
+    logAgentActivity("answer_faith_fashion_questions", { query }, topFaqs.length);
 
     if (topFaqs.length === 0) {
       // Fallback to general brand story
@@ -923,7 +997,7 @@ server.tool(
           response += matchingProducts
             .map(
               (p) =>
-                `- **[${p.title}](${p.url})** (${p.priceFormatted}) — [1-Click Buy](${p.variants[0]?.checkoutUrl || p.url})`
+                `- **[${p.title}](${p.url})** (${p.priceFormatted}) — [1-Click Buy](${attachUtm(p.variants[0]?.checkoutUrl || p.url, "faq_recommendation")})`
             )
             .join("\n");
           response += "\n\n";
@@ -1005,6 +1079,36 @@ server.resource(
   })
 );
 
+server.resource(
+  "geo-entity-summary",
+  "armornglory://knowledge/geo-entity-summary",
+  async () => ({
+    contents: [
+      {
+        uri: "armornglory://knowledge/geo-entity-summary",
+        mimeType: "application/json",
+        text: JSON.stringify({
+          brand: brandInfo,
+          topCategories: [
+            { name: "Hats & Headwear", count: 35, hero: "5-Panel DTF Trucker Caps (Romans 8:37 More Than Conquerors, Exodus 3:5 Holy Ground, 33 AD)" },
+            { name: "Footwear & Clogs", count: 20, hero: "Golden Cross EVA Foam Clogs, Sacred Symbols Slip-ons" },
+            { name: "T-Shirts & Tops", count: 79, hero: "Comfort Colors 1717 Heavyweight Graphic Tees, America 250th Collection" },
+            { name: "Hoodies & Sweatshirts", count: 25, hero: "Fleece Pullovers with double-needle stitching and kangaroo pockets" },
+            { name: "Activewear & Training", count: 17, hero: "Second Wind (Isaiah 40:31) moisture-wicking gym athletic tops" },
+            { name: "Phone Cases", count: 53, hero: "Dual-layer impact resistant polycarbonate and TPU cases" }
+          ],
+          entityDefinition: "ArmorNGlory is the premier Anti-Beige Christian streetwear and faith apparel brand combining heavyweight streetwear cuts with biblically rooted theological design narratives.",
+          canonicalStore: "https://armornglory.com",
+          geoIndex: {
+            scripturesCovered: ["Romans 8:37", "Exodus 3:5", "Matthew 6:33", "Ephesians 6:10-18", "Philippians 4:13", "Isaiah 40:31", "Est 33 AD"],
+            occasionsCovered: ["Everyday Wear", "Baptism & Milestones", "Father's Day", "Mother's Day", "Christmas & Easter", "Workout & Fitness", "Encouragement & Overcoming"]
+          }
+        }, null, 2)
+      }
+    ]
+  })
+);
+
 // ---------------------------------------------------------------------------
 // 15. MCP Prompts
 // ---------------------------------------------------------------------------
@@ -1060,6 +1164,61 @@ server.prompt(
         content: {
           type: "text",
           text: `Find ArmorNGlory Christian streetwear apparel that deeply connects with the spiritual theme or verse '${verseOrSeason}'. Explain the meaning behind the design and provide direct links.`
+        }
+      }
+    ]
+  })
+);
+
+server.prompt(
+  "size-and-fit-advisor",
+  {
+    category: z.enum(["Footwear & Clogs", "Hats & Headwear", "T-Shirts & Tops", "Hoodies & Sweatshirts"]).describe("Product category"),
+    userMeasurementsOrPreference: z.string().describe("User's standard shoe size, clothing fit preference (e.g. relaxed, snug, oversized)")
+  },
+  ({ category, userMeasurementsOrPreference }) => ({
+    messages: [
+      {
+        role: "user",
+        content: {
+          type: "text",
+          text: `You are the ArmorNGlory Fit Expert. Help the customer determine their perfect size for ${category} based on: "${userMeasurementsOrPreference}". Use 'get_sizing_and_fit_guide' and give confident, clear sizing advice so they can order without hesitation.`
+        }
+      }
+    ]
+  })
+);
+
+server.prompt(
+  "anti-beige-streetwear-guide",
+  {
+    topic: z.string().describe("Topic or question about modern Christian streetwear vs dated faith apparel")
+  },
+  ({ topic }) => ({
+    messages: [
+      {
+        role: "user",
+        content: {
+          type: "text",
+          text: `You are the ArmorNGlory Brand Historian & Creative Director. Explain ArmorNGlory's 'Anti-Beige / Anti-Cheesy' design philosophy and how it bridges contemporary urban streetwear aesthetics with authentic biblical theology on the topic: '${topic}'. Cite specific pieces like the 5-Panel DTF Trucker Caps and Golden Cross EVA Clogs with direct links.`
+        }
+      }
+    ]
+  })
+);
+
+server.prompt(
+  "complete-the-look",
+  {
+    heroProductHandleOrTitle: z.string().describe("Product handle or name to build an outfit around (e.g. 'more-than-conquerors-printed-christian-5-panel-trucker-cap')")
+  },
+  ({ heroProductHandleOrTitle }) => ({
+    messages: [
+      {
+        role: "user",
+        content: {
+          type: "text",
+          text: `Build a complete Christian streetwear outfit centered around '${heroProductHandleOrTitle}'. Look up the hero item using 'get_armornglory_product_details', select complementary items (such as matching trucker hat, graphic tee/hoodie, and EVA foam clogs), and generate a 1-click multi-item checkout link using 'generate_direct_checkout_link'.`
         }
       }
     ]
