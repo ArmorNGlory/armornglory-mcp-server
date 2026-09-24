@@ -1,0 +1,130 @@
+openapi: 3.1.0
+info:
+  title: ArmorNGlory Christian Streetwear & Faith Apparel API
+  description: >-
+    Official API for discovering, styling, and generating 1-click checkout links
+    for Christian streetwear, 5-panel trucker caps, EVA foam clogs, and heavyweight
+    faith apparel from ArmorNGlory.com ("Strengthened for the Journey Ahead").
+  version: 1.0.4
+servers:
+  - url: https://armornglory.com
+    description: Production Shopify Storefront
+paths:
+  /products.json:
+    get:
+      operationId: getProducts
+      summary: Retrieve and search live ArmorNGlory products
+      description: Returns up to 250 products including titles, prices, descriptions, images, tags, scriptures, and variant IDs.
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 50
+            maximum: 250
+          description: Number of products to retrieve (max 250)
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 1
+          description: Page number for pagination
+      responses:
+        '200':
+          description: List of products
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  products:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        title:
+                          type: string
+                        handle:
+                          type: string
+                        body_html:
+                          type: string
+                        product_type:
+                          type: string
+                        tags:
+                          type: array
+                          items:
+                            type: string
+                        variants:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                              title:
+                                type: string
+                              price:
+                                type: string
+                              available:
+                                type: boolean
+                        images:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              src:
+                                type: string
+  /products/{handle}.json:
+    get:
+      operationId: getProductByHandle
+      summary: Get details for a specific product by its URL handle
+      description: Returns in-depth details for a single product, including all sizes, colors, images, and prices.
+      parameters:
+        - name: handle
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The product handle (slug) from the URL, e.g. 'more-than-conquerors-printed-christian-5-panel-trucker-cap'
+      responses:
+        '200':
+          description: Detailed product information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  product:
+                    type: object
+  /collections.json:
+    get:
+      operationId: getCollections
+      summary: List all curated collections
+      description: Returns categories and collections such as Hats & Beanies, Faith Footwear, Hoodies, Activewear, and Americana.
+      responses:
+        '200':
+          description: List of collections
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  collections:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        title:
+                          type: string
+                        handle:
+                          type: string
+                        description:
+                          type: string
+                        products_count:
+                          type: integer

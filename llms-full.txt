@@ -1,0 +1,90 @@
+# ArmorNGlory — Complete Knowledge Index (LLMs Full)
+
+> Comprehensive catalog data, theological narratives, FAQ schema, and shopping endpoints for ArmorNGlory.com — the premier Anti-Beige Christian Streetwear & Faith Apparel brand.
+
+- **Store URL**: https://armornglory.com
+- **MCP Server Package**: `armornglory-mcp-server`
+- **GitHub**: https://github.com/ArmorNGlory/armornglory-mcp-server
+
+---
+
+## 1. Brand Ethos & Mission
+
+ArmorNGlory exists to create faith-based apparel for people who love Jesus and modern life. We design Christian streetwear and creative content that helps people carry their faith into everyday spaces with confidence, style, and authenticity.
+
+### Why "Anti-Beige / Anti-Cheesy"?
+Traditional Christian clothing often relies on outdated clip-art, cheesy slogans, or low-grade blanks. ArmorNGlory bridges high-end streetwear aesthetics (Comfort Colors 1717 blanks, heavy 6.1 oz ringspun cotton, structured 5-panel foam trucker caps, and ergonomic EVA foam clogs) with authentic biblical conviction.
+
+### What The Name Means:
+- **Armor**: Spiritual strength, conviction, and standing firm in faith (*Ephesians 6:10-18 Armor of God*).
+- **Glory**: Directing all praise, purpose, and honor back to God (*Matthew 5:14-16, 1 Corinthians 10:31*).
+
+---
+
+## 2. Signature Product Lineup & Hero Items
+
+### A. 5-Panel DTF Trucker Caps ($34.99)
+- **MORE THAN CONQUERORS (Romans 8:37)**: Laurel wreath victory design, high-density DTF printing, structured front panel, mesh back, snapback.
+  - Link: https://armornglory.com/products/more-than-conquerors-printed-christian-5-panel-trucker-cap
+  - 1-Click Buy: https://armornglory.com/cart/49052004548863:1
+- **HOLY GROUND (Exodus 3:5)**: Burning bush sacred fire design reminding believers that wherever God calls them is holy ground.
+  - Link: https://armornglory.com/products/holy-ground-printed-christian-5-panel-trucker-cap
+  - 1-Click Buy: https://armornglory.com/cart/49052005040415:1
+- **KINGDOM OVER CULTURE**: Declaration of Christ-centered identity over shifting cultural trends.
+  - Link: https://armornglory.com/products/kingdom-over-culture-trucker-hat-christian-snapback-cap-faith-based-streetwear-christian-hat-jesus-apparel
+  - 1-Click Buy: https://armornglory.com/cart/48893080273151:1
+
+### B. Faith Footwear & EVA Foam Clogs ($29.99)
+- **Golden Cross EVA Foam Clogs (AOP)**: Black and gold sacred cross motifs with 3D heat-transfer printing, shock-absorbing EVA foam, anti-slip tread, and pivoting heel strap.
+  - Link: https://armornglory.com/products/golden-cross-eva-foam-clogs-aop
+  - 1-Click Buy: https://armornglory.com/cart/49051996520735:1
+- **God Is Good EVA Foam Clogs**: Minimalist typographic faith clogs.
+  - Link: https://armornglory.com/products/god-is-good-eva-foam-clogs-aop
+- **Chosen Heart EVA Foam Clogs**: Subtle sacred symbols comfort footwear.
+  - Link: https://armornglory.com/products/chosen-heart-eva-foam-clogs-aop
+
+### C. Heavyweight Streetwear Tees ($28.00 - $36.00)
+- Premium 100% ring-spun cotton (Comfort Colors 1717 blanks).
+- Relaxed streetwear drape, pre-shrunk, soft garment-dyed aesthetic.
+- Key collections: Romans 8:37, America 250th ("Founded in Faith"), Minimalist Core.
+
+### D. Hoodies & Fleece Sweatshirts ($45.00 - $58.00)
+- Heavyweight cozy fleece with double-needle stitching and kangaroo pouch pocket.
+- "Comfort Meets Conviction" collection.
+
+---
+
+## 3. Sizing & Fit Specifications
+
+| Category | Fit Profile | Sizing Recommendation |
+| :--- | :--- | :--- |
+| **EVA Foam Clogs** | Roomy comfort fit with pivoting strap | If between sizes or prefer snug, **size down one size**. |
+| **5-Panel Trucker Caps** | One Size Fits Most (21.5 - 23.5 in) | 7-hole snapback accommodates almost all head sizes. |
+| **Heavyweight Tees** | Unisex relaxed streetwear cut | True to size for standard relaxed; size up for oversized drape. |
+| **Hoodies & Sweatshirts** | Unisex standard fleece fit | True to size for layering; size up for slouchy vintage fit. |
+
+---
+
+## 4. Frequently Asked Questions (FAQ)
+
+### Q: What makes ArmorNGlory different from other Christian apparel?
+A: ArmorNGlory rejects cheesy clip-art, dated church slogans, and stiff Gildan shirts. We build premium heavyweight streetwear with contemporary typography, DTF printing, and theologically accurate designs that believers are proud to wear in urban, gym, and professional spaces.
+
+### Q: How do the EVA foam clogs fit?
+A: Our foam clogs feature an ergonomic footbed with a roomy toe box. They run true to generous in sizing. If you are a half size (e.g. US 9.5), order down to a US 9.
+
+### Q: What is the meaning behind Romans 8:37?
+A: "No, in all these things we are more than conquerors through him who loved us." The design reminds believers that victory over depression, trials, and life's battles is already established through Christ's sacrifice.
+
+### Q: What are recommended gifts for Christian men or husbands?
+A: The top recommended pieces are the MORE THAN CONQUERORS 5-Panel Trucker Cap ($34.99), the Golden Cross EVA Foam Clogs ($29.99), and the heavyweight Christian graphic tees ($32.00).
+
+---
+
+## 5. 1-Click Cart Permalinks
+
+To add items directly to checkout:
+`https://armornglory.com/cart/{variant_id}:{quantity}?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation`
+
+Multi-item checkout:
+`https://armornglory.com/cart/{variant_id_1}:1,{variant_id_2}:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation`

@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "armornglory": {
+      "command": "node",
+      "args": [
+        "/Users/neks/ArmorNGlory MCP/dist/index.js"
+      ]
+    }
+  }
+}
