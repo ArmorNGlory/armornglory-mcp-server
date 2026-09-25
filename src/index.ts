@@ -23,6 +23,8 @@
 
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
+import http from "node:http";
 import { z } from "zod";
 import { readFileSync, appendFileSync, existsSync, mkdirSync } from "fs";
 import { fileURLToPath } from "url";
@@ -1226,13 +1228,183 @@ server.prompt(
 );
 
 // ---------------------------------------------------------------------------
-// 16. Start stdio Transport
+// 16. Server Launch (stdio or HTTP/Streamable HTTP based on env or CLI flags)
 // ---------------------------------------------------------------------------
 
 async function run() {
-  const transport = new StdioServerTransport();
-  await server.connect(transport);
-  console.error("[ArmorNGlory MCP Server] Running on stdio transport.");
+  const portArgIdx = process.argv.indexOf("--port");
+  const cliPort = portArgIdx !== -1 && process.argv[portArgIdx + 1] ? parseInt(process.argv[portArgIdx + 1], 10) : null;
+  const isHttpMode = Boolean(process.env.PORT || cliPort || process.argv.includes("--http") || process.argv.includes("-h"));
+
+  if (isHttpMode) {
+    const port = cliPort || (process.env.PORT ? parseInt(process.env.PORT, 10) : 3000);
+    const host = process.env.HOST || "0.0.0.0";
+    const projectRoot = join(__dirname, "..");
+
+    const mcpTransport = new StreamableHTTPServerTransport({
+      sessionIdGenerator: undefined // stateless mode for wide compatibility across agents
+    });
+
+    await server.connect(mcpTransport);
+
+    const httpServer = http.createServer((req, res) => {
+      // CORS headers allowing web agents, browsers, and cross-origin tools
+      res.setHeader("Access-Control-Allow-Origin", "*");
+      res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, HEAD");
+      res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, x-session-id");
+
+      if (req.method === "OPTIONS") {
+        res.writeHead(204);
+        res.end();
+        return;
+      }
+
+      const parsedUrl = new URL(req.url || "/", `http://${req.headers.host || "localhost"}`);
+      const pathname = parsedUrl.pathname;
+
+      // Health check endpoint
+      if (pathname === "/health" || pathname === "/status") {
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({
+          status: "healthy",
+          server: "armornglory-mcp-server",
+          version: "1.0.6",
+          productsCount: products.length,
+          collectionsCount: collections.length,
+          uptime: process.uptime()
+        }));
+        return;
+      }
+
+      // Root landing and agent discovery portal
+      if (pathname === "/" && req.method === "GET") {
+        res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
+        res.end(`<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ArmorNGlory MCP Server & Agent Discovery Gateway</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; line-height: 1.6; color: #222; }
+    h1 { color: #111; border-bottom: 2px solid #eee; padding-bottom: 12px; }
+    code { background: #f4f4f5; padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+    .badge { display: inline-block; background: #000; color: #fff; padding: 4px 10px; border-radius: 12px; font-size: 0.8em; font-weight: 600; }
+    ul { list-style: none; padding: 0; }
+    li { margin: 12px 0; padding: 14px; background: #fafafa; border-radius: 6px; border-left: 4px solid #111; }
+    a { color: #0066cc; text-decoration: none; font-weight: 500; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <h1>🛡️ ArmorNGlory MCP Server & Agent Discovery Gateway</h1>
+  <p><span class="badge">v1.0.6</span> <strong>"Strengthened for the Journey Ahead"</strong></p>
+  <p>Official Model Context Protocol (MCP) server & Generative Engine Optimization (GEO) gateway for <a href="https://armornglory.com" target="_blank">ArmorNGlory.com</a>.</p>
+  
+  <h2>🤖 Connect Your Agent</h2>
+  <ul>
+    <li><strong>MCP Streamable HTTP / SSE Endpoint:</strong> <code>POST/GET /mcp</code> or <code>/sse</code></li>
+    <li><strong>Agent Documentation (llms.txt):</strong> <a href="/llms.txt"><code>/llms.txt</code></a> | <a href="/llms-full.txt"><code>/llms-full.txt</code></a></li>
+    <li><strong>OpenAPI Specification:</strong> <a href="/openapi.yaml"><code>/openapi.yaml</code></a></li>
+    <li><strong>ChatGPT / AI Plugin Manifest:</strong> <a href="/.well-known/ai-plugin.json"><code>/.well-known/ai-plugin.json</code></a></li>
+    <li><strong>MCP Auto-Discovery Manifest:</strong> <a href="/.well-known/mcp.json"><code>/.well-known/mcp.json</code></a></li>
+    <li><strong>Health Status:</strong> <a href="/health"><code>/health</code></a> (${products.length} products loaded)</li>
+  </ul>
+</body>
+</html>`);
+        return;
+      }
+
+      // Serve llms.txt
+      if (pathname === "/llms.txt" || pathname === "/.well-known/llms.txt") {
+        try {
+          const content = readFileSync(join(projectRoot, "llms.txt"), "utf-8");
+          res.writeHead(200, { "Content-Type": "text/plain; charset=utf-8" });
+          res.end(content);
+          return;
+        } catch {
+          res.writeHead(404, { "Content-Type": "text/plain" });
+          res.end("llms.txt not found");
+          return;
+        }
+      }
+
+      // Serve llms-full.txt
+      if (pathname === "/llms-full.txt") {
+        try {
+          const content = readFileSync(join(projectRoot, "llms-full.txt"), "utf-8");
+          res.writeHead(200, { "Content-Type": "text/plain; charset=utf-8" });
+          res.end(content);
+          return;
+        } catch {
+          res.writeHead(404, { "Content-Type": "text/plain" });
+          res.end("llms-full.txt not found");
+          return;
+        }
+      }
+
+      // Serve openapi.yaml
+      if (pathname === "/openapi.yaml") {
+        try {
+          const content = readFileSync(join(projectRoot, "openapi.yaml"), "utf-8");
+          res.writeHead(200, { "Content-Type": "application/yaml; charset=utf-8" });
+          res.end(content);
+          return;
+        } catch {
+          res.writeHead(404, { "Content-Type": "text/plain" });
+          res.end("openapi.yaml not found");
+          return;
+        }
+      }
+
+      // Serve .well-known/ai-plugin.json
+      if (pathname === "/.well-known/ai-plugin.json") {
+        try {
+          const content = readFileSync(join(projectRoot, ".well-known", "ai-plugin.json"), "utf-8");
+          res.writeHead(200, { "Content-Type": "application/json; charset=utf-8" });
+          res.end(content);
+          return;
+        } catch {
+          res.writeHead(404, { "Content-Type": "text/plain" });
+          res.end("ai-plugin.json not found");
+          return;
+        }
+      }
+
+      // Serve .well-known/mcp.json
+      if (pathname === "/.well-known/mcp.json") {
+        try {
+          const content = readFileSync(join(projectRoot, ".well-known", "mcp.json"), "utf-8");
+          res.writeHead(200, { "Content-Type": "application/json; charset=utf-8" });
+          res.end(content);
+          return;
+        } catch {
+          res.writeHead(404, { "Content-Type": "text/plain" });
+          res.end("mcp.json not found");
+          return;
+        }
+      }
+
+      // Handle MCP Streamable HTTP / SSE Protocol endpoints
+      if (pathname === "/mcp" || pathname === "/sse" || pathname === "/messages") {
+        mcpTransport.handleRequest(req, res);
+        return;
+      }
+
+      res.writeHead(404, { "Content-Type": "text/plain" });
+      res.end("Not Found");
+    });
+
+    httpServer.listen(port, host, () => {
+      console.error(`[ArmorNGlory MCP Server] Running HTTP/Streamable server on http://${host}:${port}`);
+      console.error(`[ArmorNGlory MCP Server] MCP Endpoint: http://${host}:${port}/mcp`);
+      console.error(`[ArmorNGlory MCP Server] Health Check: http://${host}:${port}/health`);
+    });
+  } else {
+    // Default stdio transport for local desktop assistants (Claude Desktop, Cursor, Antigravity)
+    const transport = new StdioServerTransport();
+    await server.connect(transport);
+    console.error("[ArmorNGlory MCP Server] Running on stdio transport.");
+  }
 }
 
 run().catch((err) => {

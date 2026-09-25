@@ -1,6 +1,6 @@
 {
   "name": "armornglory-mcp-server",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Official Model Context Protocol (MCP) server for ArmorNGlory.com — empowering AI assistants to discover, recommend, style, and generate instant checkout links for Christian streetwear, trucker hats, foam clogs, and fresh faith apparel drops.",
   "type": "module",
   "main": "dist/index.js",
@@ -9,11 +9,16 @@
   },
   "files": [
     "dist",
-    "data"
+    "data",
+    ".well-known",
+    "llms.txt",
+    "llms-full.txt",
+    "openapi.yaml"
   ],
   "scripts": {
     "build": "tsc && chmod +x dist/index.js",
     "start": "node dist/index.js",
+    "serve": "node dist/index.js --http",
     "dev": "tsc && node dist/index.js",
     "sync-data": "node scripts/sync-store-data.js",
     "test": "node scripts/test-mcp-tools.js",

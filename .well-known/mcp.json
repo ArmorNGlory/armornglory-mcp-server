@@ -1,0 +1,23 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schema/mcp.json",
+  "name": "armornglory-store-search",
+  "title": "ArmorNGlory Christian Streetwear & Faith Apparel MCP",
+  "description": "Empowers AI assistants (Claude, Cursor, ChatGPT, Muse, OpenClaw, Windsurf, Antigravity) to discover, recommend, style, and generate instant 1-click checkout links for Christian streetwear, 5-panel trucker hats, EVA foam clogs, and faith apparel.",
+  "version": "1.0.6",
+  "website": "https://armornglory.com",
+  "repository": "https://github.com/ArmorNGlory/armornglory-mcp-server",
+  "package": "armornglory-mcp-server",
+  "endpoints": {
+    "mcp": "https://mcp.armornglory.com/mcp",
+    "sse": "https://mcp.armornglory.com/sse"
+  },
+  "capabilities": {
+    "tools": true,
+    "resources": true,
+    "prompts": true
+  },
+  "author": {
+    "name": "Armor & Glory",
+    "url": "https://armornglory.com"
+  }
+}
