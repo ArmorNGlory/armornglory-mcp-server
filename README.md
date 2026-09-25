@@ -23,7 +23,6 @@ An open-source **Model Context Protocol (MCP)** server for **Christian streetwea
 ## 🚀 Quickstart & Client Installation
 
 ### 1. Claude Desktop
-
 Add this to your `claude_desktop_config.json`:
 - **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
 - **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
@@ -41,9 +40,8 @@ Add this to your `claude_desktop_config.json`:
 
 ---
 
-### 2. Cursor IDE
-
-Add this to `.cursor/mcp.json`:
+### 2. Cursor IDE & Windsurf
+Add this to `.cursor/mcp.json` or `~/.codeium/windsurf/mcp_config.json`:
 
 ```json
 {
@@ -58,8 +56,32 @@ Add this to `.cursor/mcp.json`:
 
 ---
 
-### 3. Google Antigravity IDE
+### 3. OpenClaw, Muse & Cloud Web Agents (Streamable HTTP / SSE)
+For autonomous web agents, Muse, OpenClaw, or cloud workflows that require an HTTP/SSE endpoint:
 
+Start the server in HTTP mode:
+```bash
+npx -y armornglory-mcp-server@latest --http --port 3000
+```
+Then configure your agent with:
+- **MCP Endpoint**: `http://localhost:3000/mcp` (or your deployed URL `https://your-domain/mcp`)
+- **Transport**: `Streamable HTTP / SSE`
+- **Health Check**: `http://localhost:3000/health`
+- **LLM Context**: `http://localhost:3000/llms.txt`
+
+---
+
+### 4. ChatGPT Custom GPT & OpenAI Actions
+You can connect ChatGPT directly to live store products with zero installation:
+1. In ChatGPT, go to **Explore GPTs > Create a GPT**.
+2. Go to **Configure > Actions > Import from URL**.
+3. Import the OpenAPI specification:
+   `https://armornglory.com/openapi.yaml`
+4. ChatGPT will now natively query the catalog and generate 1-click cart links for your users.
+
+---
+
+### 5. Google Antigravity & Gemini Agents
 Add to `~/.gemini/config/mcp_config.json`:
 
 ```json
