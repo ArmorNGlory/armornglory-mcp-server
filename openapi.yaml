@@ -1,11 +1,11 @@
-openapi: 3.1.0
+openapi: 3.0.2
 info:
   title: ArmorNGlory Christian Streetwear & Faith Apparel API
   description: >-
     Official API for discovering, styling, and generating 1-click checkout links
     for Christian streetwear, 5-panel trucker caps, EVA foam clogs, and heavyweight
     faith apparel from ArmorNGlory.com ("Strengthened for the Journey Ahead").
-  version: 1.0.4
+  version: 1.0.6
 servers:
   - url: https://armornglory.com
     description: Production Shopify Storefront
