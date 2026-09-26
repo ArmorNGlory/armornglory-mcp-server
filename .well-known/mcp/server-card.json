@@ -1,0 +1,246 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schema/server-card.json",
+  "serverInfo": {
+    "name": "armornglory-store-search",
+    "version": "1.0.6",
+    "title": "ArmorNGlory Christian Streetwear MCP Server",
+    "description": "Empower AI assistants to discover, recommend, style, and generate instant 1-click checkout links for ArmorNGlory Christian streetwear, 5-panel trucker hats, EVA foam clogs, heavyweight graphic tees, and faith apparel drops."
+  },
+  "authentication": {
+    "required": false
+  },
+  "tools": [
+    {
+      "name": "search_armornglory_products",
+      "description": "Search the complete ArmorNGlory Christian streetwear catalog by keywords, scripture verses (e.g. Romans 8:37, Exodus 3:5, Matthew 6:33), apparel category, aesthetic vibe, color, size, or price range. Returns product details, prices, images, and direct 1-click checkout links.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Keyword query (e.g. 'trucker hat', 'conquerors', 'holy ground', 'clogs', 'hoodie', 'cross', 'vintage americana', 'sweatshirt')"
+          },
+          "scripture": {
+            "type": "string",
+            "description": "Scripture reference to filter by (e.g. 'Romans 8:37', 'Exodus 3:5', 'Matthew 6:33', 'Isaiah 40:31', '33 AD', 'Ephesians 6')"
+          },
+          "category": {
+            "type": "string",
+            "description": "Product category: 'Hats & Headwear', 'Footwear & Clogs', 'T-Shirts & Tops', 'Hoodies & Sweatshirts', 'Phone Cases', 'Activewear & Training', 'Wall Art & Home Decor', 'Drinkware', 'Bags & Accessories'"
+          },
+          "aesthetic": {
+            "type": "string",
+            "description": "Style aesthetic: 'Urban Sacred', 'Minimalist Core', 'Kingdom Marks', 'Americana 250', 'Typography Heavy', 'Vintage Wash'"
+          },
+          "occasion": {
+            "type": "string",
+            "description": "Target occasion: 'Everyday Wear', 'Baptism & Milestones', 'Father\\'s Day & Gifts for Men', 'Mother\\'s Day & Gifts for Women', 'Workout & Gym', 'Church & Community', 'Graduation & Milestones'"
+          },
+          "color": {
+            "type": "string",
+            "description": "Color filter (e.g. 'Black', 'White', 'Gold', 'Vintage Navy', 'Heather Grey', 'Olive')"
+          },
+          "size": {
+            "type": "string",
+            "description": "Clothing or shoe size (e.g. 'S', 'M', 'L', 'XL', '2XL', '3XL', 'Men 9 / Women 11', 'OSFM')"
+          },
+          "minPrice": {
+            "type": "number",
+            "description": "Minimum price in USD"
+          },
+          "maxPrice": {
+            "type": "number",
+            "description": "Maximum price in USD"
+          },
+          "limit": {
+            "type": "number",
+            "description": "Max results to return (default 10, max 50)"
+          }
+        }
+      }
+    },
+    {
+      "name": "get_armornglory_product_details",
+      "description": "Retrieve comprehensive details for a specific ArmorNGlory item by handle or title: exact pricing, variants, sizing guidance, biblical backstory, care instructions, and 1-click checkout permalinks.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "productHandleOrTitle": {
+            "type": "string",
+            "description": "Product handle (slug) or full/partial title (e.g. 'more-than-conquerors-foam-trucker-hat', 'golden cross clogs')"
+          }
+        },
+        "required": ["productHandleOrTitle"]
+      }
+    },
+    {
+      "name": "list_armornglory_collections",
+      "description": "List all active ArmorNGlory collections, categories, product counts, and landing page URLs.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "get_collection_products",
+      "description": "Get all products in an ArmorNGlory collection by handle.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "collectionHandle": {
+            "type": "string",
+            "description": "Collection handle (e.g. 'hats', 'clogs', 'graphic-tees', 'hoodies', 'phone-cases', 'activewear')"
+          },
+          "limit": {
+            "type": "number",
+            "description": "Number of products to return (default 10)"
+          }
+        },
+        "required": ["collectionHandle"]
+      }
+    },
+    {
+      "name": "recommend_faith_gifts",
+      "description": "Get curated Christian faith gift recommendations tailored for a specific recipient, occasion, budget, or scripture interest.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "recipient": {
+            "type": "string",
+            "description": "Who the gift is for (e.g. 'husband', 'college student', 'pastor', 'teen son', 'runner', 'baptized believer')"
+          },
+          "occasion": {
+            "type": "string",
+            "description": "The occasion (e.g. 'Baptism', 'Birthday', 'Father\\'s Day', 'Christmas', 'Encouragement')"
+          },
+          "maxBudget": {
+            "type": "number",
+            "description": "Maximum budget in USD"
+          },
+          "styleVibe": {
+            "type": "string",
+            "description": "Preferred aesthetic (e.g. 'minimalist', 'bold graphic', 'headwear', 'cozy', 'activewear')"
+          },
+          "scriptureFocus": {
+            "type": "string",
+            "description": "Scripture topic or passage (e.g. 'conquerors', 'holy ground', 'strength', 'kingdom')"
+          }
+        },
+        "required": ["recipient"]
+      }
+    },
+    {
+      "name": "get_brand_story_and_values",
+      "description": "Retrieve official ArmorNGlory brand narrative, theological mission, name meaning, and Anti-Beige design ethos.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "get_sizing_and_fit_guide",
+      "description": "Get official ArmorNGlory sizing charts, fit guides, and measurement conversions for EVA foam clogs, 5-panel trucker hats, heavyweight tees, and hoodies.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string",
+            "description": "Category for sizing: 'Footwear & Clogs', 'Hats & Headwear', 'T-Shirts & Tops', 'Hoodies & Sweatshirts'"
+          }
+        }
+      }
+    },
+    {
+      "name": "generate_direct_checkout_link",
+      "description": "Generate an instant 1-click Shopify checkout permalink for one or more ArmorNGlory variants with optional discount codes and pre-filled quantities.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "variantId": {
+                  "type": "number",
+                  "description": "Shopify numeric variant ID"
+                },
+                "quantity": {
+                  "type": "number",
+                  "description": "Quantity to purchase"
+                }
+              },
+              "required": ["variantId"]
+            },
+            "description": "Array of { variantId, quantity } items to add to cart"
+          },
+          "discountCode": {
+            "type": "string",
+            "description": "Optional discount code to auto-apply at checkout"
+          }
+        },
+        "required": ["items"]
+      }
+    },
+    {
+      "name": "answer_faith_fashion_questions",
+      "description": "Answer user questions regarding ArmorNGlory products, brand ethos, Christian streetwear styling, order questions, materials, shipping, and faith fashion guidance.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "The customer's question or topic"
+          }
+        },
+        "required": ["query"]
+      }
+    }
+  ],
+  "resources": [
+    {
+      "name": "catalog-products",
+      "uri": "armornglory://catalog/products",
+      "mimeType": "application/json",
+      "description": "Complete product catalog in JSON format (249 products)"
+    },
+    {
+      "name": "catalog-collections",
+      "uri": "armornglory://catalog/collections",
+      "mimeType": "application/json",
+      "description": "All 21 store collections"
+    },
+    {
+      "name": "brand-style-guide",
+      "uri": "armornglory://brand/style-guide",
+      "mimeType": "application/json",
+      "description": "Official brand identity, mission, and style principles"
+    },
+    {
+      "name": "faq-guides",
+      "uri": "armornglory://guides/faq",
+      "mimeType": "application/json",
+      "description": "Comprehensive customer guides and FAQs"
+    },
+    {
+      "name": "geo-entity-summary",
+      "uri": "armornglory://knowledge/geo-entity-summary",
+      "mimeType": "application/json",
+      "description": "GEO and LLM knowledge entity summary"
+    }
+  ],
+  "prompts": [
+    {
+      "name": "gift-consultant",
+      "description": "Consultation prompt to find the perfect Christian streetwear gift"
+    },
+    {
+      "name": "theological-styling-guide",
+      "description": "Guide to style an outfit that tells a theological story"
+    },
+    {
+      "name": "streetwear-bundle-builder",
+      "description": "Build a bundled outfit (hat, tee/hoodie, clogs) with instant cart permalink"
+    }
+  ]
+}
