@@ -228,12 +228,12 @@ async function sync() {
   const rawProducts = [];
 
   while (true) {
-    const pUrl = `https://armornglory.com/products.json?limit=250&page=${page}`;
+    const pUrl = `https://armornglory.com/products.json?limit=50&page=${page}`;
     const pData = await safeJsonFetch(pUrl);
     if (!pData.products || pData.products.length === 0) break;
     rawProducts.push(...pData.products);
     console.log(`[Sync] Page ${page}: fetched ${pData.products.length} products (total so far: ${rawProducts.length})`);
-    if (pData.products.length < 250) break;
+    if (pData.products.length < 50) break;
     page++;
   }
 
