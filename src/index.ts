@@ -1228,6 +1228,145 @@ server.prompt(
 );
 
 // ---------------------------------------------------------------------------
+// 15b. Free Conversational Chat Engine (Zero Token Costs)
+// ---------------------------------------------------------------------------
+
+export interface FormattedChatProduct {
+  id: number;
+  title: string;
+  url: string;
+  category: string;
+  priceFormatted: string;
+  featuredImage: string | null;
+  scriptures: string[];
+  aesthetics: string[];
+  checkoutUrl: string;
+  meaningBehindDesign?: string | null;
+}
+
+export interface ChatQueryResult {
+  reply: string;
+  products: FormattedChatProduct[];
+  suggestions: string[];
+}
+
+export function handleChatQuery(userQuery: string): ChatQueryResult {
+  const queryLower = userQuery.toLowerCase().trim();
+
+  // Helper to format products for chat
+  const formatProducts = (list: Product[]): FormattedChatProduct[] =>
+    list.map((p) => ({
+      id: p.id,
+      title: p.title,
+      url: p.url,
+      category: p.category,
+      priceFormatted: p.priceFormatted,
+      featuredImage: p.featuredImage || null,
+      scriptures: p.scriptures,
+      aesthetics: p.aesthetics,
+      checkoutUrl: attachUtm(p.variants[0]?.checkoutUrl || p.url, "web_chat"),
+      meaningBehindDesign: p.story.meaningBehindDesign || p.story.summary || null
+    }));
+
+  // 1. Sizing and Fit Guidance
+  if (
+    queryLower.includes("size") ||
+    queryLower.includes("sizing") ||
+    queryLower.includes("fit") ||
+    queryLower.includes("measurements")
+  ) {
+    let guideText = "";
+    if (queryLower.includes("clog") || queryLower.includes("shoe") || queryLower.includes("footwear")) {
+      guideText =
+        "👟 **Faith Footwear (EVA Clogs)**: Roomy, relaxed comfort fit with pivoting heel strap. If you are between sizes or prefer a snug fit, **size down one size**.";
+    } else if (queryLower.includes("hat") || queryLower.includes("cap") || queryLower.includes("trucker")) {
+      guideText =
+        "🧢 **5-Panel Trucker Caps**: One Size Fits Most (OSFM) with an adjustable 7-hole snapback closure (fits 21.5 in to 23.5 in circumference). Structured front panel with breathable mesh.";
+    } else if (queryLower.includes("tee") || queryLower.includes("shirt")) {
+      guideText =
+        "👕 **Heavyweight Graphic Tees**: 100% premium Comfort Colors 1717 ring-spun cotton. True to size for a classic relaxed streetwear drape; size up one size for an oversized vintage look.";
+    } else {
+      guideText =
+        "👟 **Clogs**: Roomy fit (size down if between sizes).\n🧢 **Trucker Hats**: Adjustable snapback (fits all standard adult heads).\n👕 **Streetwear Tees**: Relaxed unisex drape (true to size, size up for oversized).";
+    }
+
+    return {
+      reply: `Here is our official sizing guidance:\n\n${guideText}\n\nNeed sizing on a specific piece? Just ask!`,
+      products: formatProducts(searchProducts({ limit: 3 })),
+      suggestions: ["Show me 5-panel trucker hats", "Golden Cross EVA clogs", "Heavyweight graphic tees"]
+    };
+  }
+
+  // 2. Gift Recommendations
+  if (
+    queryLower.includes("gift") ||
+    queryLower.includes("baptism") ||
+    queryLower.includes("birthday") ||
+    queryLower.includes("husband") ||
+    queryLower.includes("dad") ||
+    queryLower.includes("father") ||
+    queryLower.includes("mom") ||
+    queryLower.includes("pastor")
+  ) {
+    let maxBudget: number | undefined;
+    const budgetMatch = queryLower.match(/\$?(\d+)/);
+    if (budgetMatch) {
+      maxBudget = parseInt(budgetMatch[1], 10);
+    }
+
+    let occasion = "Everyday Encouragement";
+    if (queryLower.includes("baptism")) occasion = "Baptism & Milestones";
+    else if (queryLower.includes("father") || queryLower.includes("dad")) occasion = "Father's Day & Gifts for Men";
+    else if (queryLower.includes("mother") || queryLower.includes("mom")) occasion = "Mother's Day & Gifts for Women";
+
+    const giftPool = searchProducts({ occasion, maxPrice: maxBudget, limit: 4 });
+    const finalPool = giftPool.length > 0 ? giftPool : searchProducts({ query: "hat", maxPrice: maxBudget, limit: 4 });
+
+    return {
+      reply: `Here are handpicked faith gift ideas rooted in biblical truth and premium streetwear quality${
+        maxBudget ? ` under $${maxBudget}` : ""
+      }:`,
+      products: formatProducts(finalPool),
+      suggestions: ["Baptism gifts under $35", "5-Panel Trucker Caps", "Golden Cross Clogs"]
+    };
+  }
+
+  // 3. Brand Story & Anti-Beige Ethos
+  if (
+    queryLower.includes("anti-beige") ||
+    queryLower.includes("cheesy") ||
+    queryLower.includes("brand") ||
+    queryLower.includes("mission") ||
+    queryLower.includes("story") ||
+    queryLower.includes("who are you") ||
+    queryLower.includes("armor & glory")
+  ) {
+    return {
+      reply: `🛡️ **About ArmorNGlory ("Strengthened for the Journey Ahead")**\n\nArmorNGlory creates authentic Christian streetwear for people who love Jesus and modern culture. Our **"Anti-Beige / Anti-Cheesy"** ethos rejects dated clip-art and hollow slogans. Instead, we pair heavyweight urban silhouettes (5-panel trucker caps, Golden Cross EVA clogs, drop-shoulder tees) with deep theological conviction (*Ephesians 6, Romans 8:37, Exodus 3:5*).`,
+      products: formatProducts(searchProducts({ limit: 3 })),
+      suggestions: ["Romans 8:37 More Than Conquerors", "Holy Ground Trucker Cap", "Golden Cross Clogs"]
+    };
+  }
+
+  // 4. Default: Intelligent Keyword & Scripture Search
+  const found = searchProducts({ query: userQuery, limit: 4 });
+  if (found.length === 0) {
+    const fallback = searchProducts({ limit: 4 });
+    return {
+      reply: `I couldn't find an exact match for "${userQuery}", but here are our signature best-selling faith streetwear pieces:`,
+      products: formatProducts(fallback),
+      suggestions: ["5-Panel Trucker Hats", "EVA Foam Clogs", "Romans 8:37 Conquerors", "Holy Ground Exodus 3:5"]
+    };
+  }
+
+  return {
+    reply: `Found ${found.length} piece${found.length === 1 ? "" : "s"} matching "${userQuery}". Every item is built with premium materials and deep theological intentionality:`,
+    products: formatProducts(found),
+    suggestions: ["How do these fit?", "Baptism gifts under $40", "Anti-Beige brand story"]
+  };
+}
+
+// ---------------------------------------------------------------------------
 // 16. Server Launch (stdio or HTTP/Streamable HTTP based on env or CLI flags)
 // ---------------------------------------------------------------------------
 
@@ -1302,6 +1441,7 @@ async function run() {
   
   <h2>🤖 Connect Your Agent</h2>
   <ul>
+    <li><strong>💬 Free AI Stylist Web Chat:</strong> <a href="/chat" style="font-weight:700; color:#d4af37;">Launch /chat App ↗</a> <em>(100% Free • Zero Token Cost)</em></li>
     <li><strong>MCP Streamable HTTP / SSE Endpoint:</strong> <code>POST/GET /mcp</code> or <code>/sse</code></li>
     <li><strong>Agent Documentation (llms.txt):</strong> <a href="/llms.txt"><code>/llms.txt</code></a> | <a href="/llms-full.txt"><code>/llms-full.txt</code></a></li>
     <li><strong>OpenAPI Specification:</strong> <a href="/openapi.yaml"><code>/openapi.yaml</code></a></li>
@@ -1384,6 +1524,41 @@ async function run() {
         }
       }
 
+      // Serve Interactive Web Chat UI (100% Free, Zero Token Cost)
+      if (pathname === "/chat") {
+        try {
+          const chatHtml = readFileSync(join(dataDir, "chat_ui.html"), "utf-8");
+          res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
+          res.end(chatHtml);
+          return;
+        } catch {
+          res.writeHead(404, { "Content-Type": "text/plain" });
+          res.end("chat_ui.html not found");
+          return;
+        }
+      }
+
+      // Handle Free Chat API (Zero Token Cost)
+      if (pathname === "/api/chat" && req.method === "POST") {
+        let body = "";
+        req.on("data", (chunk) => {
+          body += chunk;
+        });
+        req.on("end", () => {
+          try {
+            const parsed = JSON.parse(body || "{}");
+            const userMsg = parsed.message || "";
+            const result = handleChatQuery(userMsg);
+            res.writeHead(200, { "Content-Type": "application/json; charset=utf-8" });
+            res.end(JSON.stringify(result));
+          } catch {
+            res.writeHead(400, { "Content-Type": "application/json" });
+            res.end(JSON.stringify({ error: "Invalid JSON request" }));
+          }
+        });
+        return;
+      }
+
       // Handle MCP Streamable HTTP / SSE Protocol endpoints
       if (pathname === "/mcp" || pathname === "/sse" || pathname === "/messages") {
         mcpTransport.handleRequest(req, res);
@@ -1396,6 +1571,7 @@ async function run() {
 
     httpServer.listen(port, host, () => {
       console.error(`[ArmorNGlory MCP Server] Running HTTP/Streamable server on http://${host}:${port}`);
+      console.error(`[ArmorNGlory MCP Server] Free Web Chat App: http://${host}:${port}/chat`);
       console.error(`[ArmorNGlory MCP Server] MCP Endpoint: http://${host}:${port}/mcp`);
       console.error(`[ArmorNGlory MCP Server] Health Check: http://${host}:${port}/health`);
     });
