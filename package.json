@@ -1,7 +1,7 @@
 {
   "name": "armornglory-mcp-server",
   "version": "1.0.6",
-  "description": "Official Model Context Protocol (MCP) server for ArmorNGlory.com — empowering AI assistants to discover, recommend, style, and generate instant checkout links for Christian streetwear, trucker hats, foam clogs, and fresh faith apparel drops.",
+  "description": "Official Model Context Protocol (MCP) server for Christian streetwear, modern faith apparel, 5-panel foam trucker hats, EVA foam clogs, heavyweight graphic tees, and faith gifts — rejecting cheesy cliches for authentic streetwear quality and biblical conviction.",
   "type": "module",
   "main": "dist/index.js",
   "bin": {

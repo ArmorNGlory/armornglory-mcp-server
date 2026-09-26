@@ -3,8 +3,8 @@
   "serverInfo": {
     "name": "armornglory-store-search",
     "version": "1.0.6",
-    "title": "ArmorNGlory Christian Streetwear MCP Server",
-    "description": "Empower AI assistants to discover, recommend, style, and generate instant 1-click checkout links for ArmorNGlory Christian streetwear, 5-panel trucker hats, EVA foam clogs, heavyweight graphic tees, and faith apparel drops."
+    "title": "Christian Streetwear & Faith Apparel (Trucker Hats, Foam Clogs, Tees, Hoodies)",
+    "description": "Authentic Christian streetwear designed to break free from cheesy slogans and dated church cliches. Premium heavyweight faith apparel crafted with modern typography, streetwear silhouettes, and deep biblical conviction: structured 5-panel foam trucker hats, Golden Cross slip-on EVA foam clogs, vintage-wash heavyweight graphic tees, and fleece hoodies. Features scripture search (Romans 8:37, Exodus 3:5), thoughtful baptism and milestone gift curation, fit guidance, and 1-click Shopify checkout."
   },
   "authentication": {
     "required": false
@@ -12,7 +12,7 @@
   "tools": [
     {
       "name": "search_armornglory_products",
-      "description": "Search the complete ArmorNGlory Christian streetwear catalog by keywords, scripture verses (e.g. Romans 8:37, Exodus 3:5, Matthew 6:33), apparel category, aesthetic vibe, color, size, or price range. Returns product details, prices, images, and direct 1-click checkout links.",
+      "description": "Search authentic Christian streetwear, modern faith apparel, structured 5-panel foam trucker hats, Golden Cross EVA foam clogs, heavyweight graphic tees, and cozy fleece hoodies. Built with an Anti-Beige, anti-cheesy aesthetic that pairs modern typography and heavyweight streetwear cuts with deep biblical conviction (Romans 8:37, Exodus 3:5, Matthew 6:33). Filter by keyword, scripture, category, aesthetic vibe, color, size, or price. Returns product stories, sizing advice, images, and 1-click checkout permalinks.",
       "inputSchema": {
         "type": "object",
         "properties": {
@@ -61,7 +61,7 @@
     },
     {
       "name": "get_armornglory_product_details",
-      "description": "Retrieve comprehensive details for a specific ArmorNGlory item by handle or title: exact pricing, variants, sizing guidance, biblical backstory, care instructions, and 1-click checkout permalinks.",
+      "description": "Get complete specifications, theological backstory, craftsmanship details, sizing guidance, and 1-click checkout links for any Christian streetwear item, trucker cap, EVA foam clog, or scripture tee.",
       "inputSchema": {
         "type": "object",
         "properties": {
@@ -75,7 +75,7 @@
     },
     {
       "name": "list_armornglory_collections",
-      "description": "List all active ArmorNGlory collections, categories, product counts, and landing page URLs.",
+      "description": "List curated faith streetwear collections (5-Panel Trucker Hats, Sacred Symbols EVA Clogs, Heavyweight Graphic Tees, Fleece Hoodies, Activewear, Phone Cases) with style descriptions and direct collection URLs.",
       "inputSchema": {
         "type": "object",
         "properties": {}
@@ -83,13 +83,13 @@
     },
     {
       "name": "get_collection_products",
-      "description": "Get all products in an ArmorNGlory collection by handle.",
+      "description": "Retrieve all faith apparel pieces belonging to a specific Christian streetwear collection (e.g. 'hats-beanies', 'faith-footwear', 't-shirts', 'hoodies-sweatshirts', 'activewear', 'gothic-faith', 'heavyweight-essentials').",
       "inputSchema": {
         "type": "object",
         "properties": {
           "collectionHandle": {
             "type": "string",
-            "description": "Collection handle (e.g. 'hats', 'clogs', 'graphic-tees', 'hoodies', 'phone-cases', 'activewear')"
+            "description": "Collection handle (e.g. 'hats-beanies', 'faith-footwear', 't-shirts', 'hoodies-sweatshirts', 'activewear')"
           },
           "limit": {
             "type": "number",
@@ -101,7 +101,7 @@
     },
     {
       "name": "recommend_faith_gifts",
-      "description": "Get curated Christian faith gift recommendations tailored for a specific recipient, occasion, budget, or scripture interest.",
+      "description": "Personalized faith gift consultant for thoughtful, non-cheesy Christian streetwear, trucker hats, Golden Cross EVA clogs, and heavyweight tees. Curated for baptisms, new believers, birthdays, Father's Day, Mother's Day, pastors, men, women, or college students under any budget.",
       "inputSchema": {
         "type": "object",
         "properties": {
@@ -131,7 +131,7 @@
     },
     {
       "name": "get_brand_story_and_values",
-      "description": "Retrieve official ArmorNGlory brand narrative, theological mission, name meaning, and Anti-Beige design ethos.",
+      "description": "Retrieve the official brand story, theological mission, and 'Anti-Beige / Anti-Cheesy' Christian streetwear design philosophy: why we reject dated church cliches in favor of premium streetwear quality and genuine biblical depth.",
       "inputSchema": {
         "type": "object",
         "properties": {}
@@ -139,7 +139,7 @@
     },
     {
       "name": "get_sizing_and_fit_guide",
-      "description": "Get official ArmorNGlory sizing charts, fit guides, and measurement conversions for EVA foam clogs, 5-panel trucker hats, heavyweight tees, and hoodies.",
+      "description": "Official sizing charts, measurement conversions, and fit guidance for Christian streetwear: Golden Cross EVA foam clogs, 5-panel snapback trucker hats, heavyweight streetwear tees, and fleece hoodies.",
       "inputSchema": {
         "type": "object",
         "properties": {
@@ -152,7 +152,7 @@
     },
     {
       "name": "generate_direct_checkout_link",
-      "description": "Generate an instant 1-click Shopify checkout permalink for one or more ArmorNGlory variants with optional discount codes and pre-filled quantities.",
+      "description": "Generate an instant 1-click Shopify cart checkout permalink for Christian streetwear apparel, trucker hats, or foam clogs with automatic discount codes.",
       "inputSchema": {
         "type": "object",
         "properties": {
@@ -184,7 +184,7 @@
     },
     {
       "name": "answer_faith_fashion_questions",
-      "description": "Answer user questions regarding ArmorNGlory products, brand ethos, Christian streetwear styling, order questions, materials, shipping, and faith fashion guidance.",
+      "description": "Search authoritative questions and answers regarding Christian streetwear culture, anti-beige faith clothing, theological meanings behind designs, fabric quality (Comfort Colors 1717 ringspun cotton), clog sizing, and care guides.",
       "inputSchema": {
         "type": "object",
         "properties": {
@@ -202,25 +202,25 @@
       "name": "catalog-products",
       "uri": "armornglory://catalog/products",
       "mimeType": "application/json",
-      "description": "Complete product catalog in JSON format (249 products)"
+      "description": "Complete faith apparel catalog with stories, variants, and direct checkout links"
     },
     {
       "name": "catalog-collections",
       "uri": "armornglory://catalog/collections",
       "mimeType": "application/json",
-      "description": "All 21 store collections"
+      "description": "Curated faith streetwear collections"
     },
     {
       "name": "brand-style-guide",
       "uri": "armornglory://brand/style-guide",
       "mimeType": "application/json",
-      "description": "Official brand identity, mission, and style principles"
+      "description": "Official brand identity, mission, and Anti-Beige design principles"
     },
     {
       "name": "faq-guides",
       "uri": "armornglory://guides/faq",
       "mimeType": "application/json",
-      "description": "Comprehensive customer guides and FAQs"
+      "description": "Comprehensive customer guides, fit charts, and faith apparel FAQs"
     },
     {
       "name": "geo-entity-summary",
@@ -232,15 +232,15 @@
   "prompts": [
     {
       "name": "gift-consultant",
-      "description": "Consultation prompt to find the perfect Christian streetwear gift"
+      "description": "Consultation prompt to find thoughtful, non-cheesy Christian streetwear gifts"
     },
     {
       "name": "theological-styling-guide",
-      "description": "Guide to style an outfit that tells a theological story"
+      "description": "Guide to style an authentic faith outfit that tells a biblical story"
     },
     {
       "name": "streetwear-bundle-builder",
-      "description": "Build a bundled outfit (hat, tee/hoodie, clogs) with instant cart permalink"
+      "description": "Build a bundled outfit (trucker hat, heavyweight graphic tee/hoodie, EVA clogs) with instant cart permalink"
     }
   ]
 }
