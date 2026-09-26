@@ -24,6 +24,9 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
+import { SSEServerTransport } from "@modelcontextprotocol/sdk/server/sse.js";
+import { isInitializeRequest } from "@modelcontextprotocol/sdk/types.js";
+import { randomUUID } from "node:crypto";
 import http from "node:http";
 import { z } from "zod";
 import { readFileSync, appendFileSync, existsSync, mkdirSync } from "fs";
@@ -432,13 +435,14 @@ ${variantsList}${companionSection}
 }
 
 // ---------------------------------------------------------------------------
-// 4. Initialize MCP Server
+// 4. MCP Server Factory: createArmorNGloryServer()
 // ---------------------------------------------------------------------------
 
-const server = new McpServer({
-  name: "armornglory-store-search",
-  version: "1.0.0"
-});
+export function createArmorNGloryServer(): McpServer {
+  const server = new McpServer({
+    name: "armornglory-store-search",
+    version: "1.0.6"
+  });
 
 // ---------------------------------------------------------------------------
 // 5. Tool 1: search_armornglory_products
@@ -1227,6 +1231,9 @@ server.prompt(
   })
 );
 
+  return server;
+}
+
 // ---------------------------------------------------------------------------
 // 15b. Free Conversational Chat Engine (Zero Token Costs)
 // ---------------------------------------------------------------------------
@@ -1380,17 +1387,16 @@ async function run() {
     const host = process.env.HOST || "0.0.0.0";
     const projectRoot = join(__dirname, "..");
 
-    const mcpTransport = new StreamableHTTPServerTransport({
-      sessionIdGenerator: undefined // stateless mode for wide compatibility across agents
-    });
+    // Session transports map (for both Streamable HTTP and SSE)
+    const streamableTransports = new Map<string, StreamableHTTPServerTransport>();
+    const sseTransports = new Map<string, SSEServerTransport>();
 
-    await server.connect(mcpTransport);
-
-    const httpServer = http.createServer((req, res) => {
+    const httpServer = http.createServer(async (req, res) => {
       // CORS headers allowing web agents, browsers, and cross-origin tools
       res.setHeader("Access-Control-Allow-Origin", "*");
-      res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, HEAD");
-      res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, x-session-id");
+      res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, HEAD, DELETE");
+      res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, x-session-id, mcp-session-id, mcp-protocol-version, last-event-id");
+      res.setHeader("Access-Control-Expose-Headers", "mcp-session-id, mcp-protocol-version");
 
       if (req.method === "OPTIONS") {
         res.writeHead(204);
@@ -1410,6 +1416,8 @@ async function run() {
           version: "1.0.6",
           productsCount: products.length,
           collectionsCount: collections.length,
+          activeStreamableSessions: streamableTransports.size,
+          activeSseSessions: sseTransports.size,
           uptime: process.uptime()
         }));
         return;
@@ -1442,7 +1450,9 @@ async function run() {
   <h2>🤖 Connect Your Agent</h2>
   <ul>
     <li><strong>💬 Free AI Stylist Web Chat:</strong> <a href="/chat" style="font-weight:700; color:#d4af37;">Launch /chat App ↗</a> <em>(100% Free • Zero Token Cost)</em></li>
-    <li><strong>MCP Streamable HTTP / SSE Endpoint:</strong> <code>POST/GET /mcp</code> or <code>/sse</code></li>
+    <li><strong>MCP Streamable HTTP Endpoint:</strong> <code>POST/GET /mcp</code> (Protocol: 2025-11-25)</li>
+    <li><strong>MCP SSE Endpoint:</strong> <code>GET /sse</code> and <code>POST /messages</code> (Protocol: 2024-11-05)</li>
+    <li><strong>Smithery Server Card:</strong> <a href="/.well-known/mcp/server-card.json"><code>/.well-known/mcp/server-card.json</code></a></li>
     <li><strong>Agent Documentation (llms.txt):</strong> <a href="/llms.txt"><code>/llms.txt</code></a> | <a href="/llms-full.txt"><code>/llms-full.txt</code></a></li>
     <li><strong>OpenAPI Specification:</strong> <a href="/openapi.yaml"><code>/openapi.yaml</code></a></li>
     <li><strong>ChatGPT / AI Plugin Manifest:</strong> <a href="/.well-known/ai-plugin.json"><code>/.well-known/ai-plugin.json</code></a></li>
@@ -1524,6 +1534,20 @@ async function run() {
         }
       }
 
+      // Serve Smithery metadata server-card.json
+      if (pathname === "/.well-known/mcp/server-card.json" || pathname === "/server-card.json" || pathname === "/.well-known/server-card.json") {
+        try {
+          const content = readFileSync(join(projectRoot, ".well-known", "mcp", "server-card.json"), "utf-8");
+          res.writeHead(200, { "Content-Type": "application/json; charset=utf-8" });
+          res.end(content);
+          return;
+        } catch {
+          res.writeHead(404, { "Content-Type": "text/plain" });
+          res.end("server-card.json not found");
+          return;
+        }
+      }
+
       // Serve Interactive Web Chat UI (100% Free, Zero Token Cost)
       if (pathname === "/chat") {
         try {
@@ -1559,9 +1583,206 @@ async function run() {
         return;
       }
 
-      // Handle MCP Streamable HTTP / SSE Protocol endpoints
-      if (pathname === "/mcp" || pathname === "/sse" || pathname === "/messages") {
-        mcpTransport.handleRequest(req, res);
+      // ---------------------------------------------------------------------
+      // SSE Transport Endpoints (Protocol version: 2024-11-05)
+      // ---------------------------------------------------------------------
+      if (pathname === "/sse" && req.method === "GET") {
+        try {
+          const transport = new SSEServerTransport("/messages", res);
+          const sid = transport.sessionId;
+          sseTransports.set(sid, transport);
+          res.on("close", () => {
+            sseTransports.delete(sid);
+          });
+          const server = createArmorNGloryServer();
+          await server.connect(transport);
+        } catch (err) {
+          console.error("[ArmorNGlory MCP Server] Error establishing SSE transport:", err);
+          if (!res.headersSent) {
+            res.writeHead(500, { "Content-Type": "application/json" });
+            res.end(JSON.stringify({ jsonrpc: "2.0", error: { code: -32603, message: "Internal server error" }, id: null }));
+          }
+        }
+        return;
+      }
+
+      if (pathname === "/messages" && req.method === "POST") {
+        const sessionId = parsedUrl.searchParams.get("sessionId");
+        if (!sessionId || !sseTransports.has(sessionId)) {
+          res.writeHead(400, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({ jsonrpc: "2.0", error: { code: -32000, message: "No active SSE transport found for session" }, id: null }));
+          return;
+        }
+        const transport = sseTransports.get(sessionId)!;
+        let body = "";
+        req.on("data", (chunk) => { body += chunk; });
+        req.on("end", async () => {
+          try {
+            const parsed = body ? JSON.parse(body) : undefined;
+            await transport.handlePostMessage(req, res, parsed);
+          } catch (err) {
+            console.error("[ArmorNGlory MCP Server] Error in /messages POST:", err);
+            if (!res.headersSent) {
+              res.writeHead(400, { "Content-Type": "application/json" });
+              res.end(JSON.stringify({ jsonrpc: "2.0", error: { code: -32700, message: "Invalid JSON message" }, id: null }));
+            }
+          }
+        });
+        return;
+      }
+
+      // ---------------------------------------------------------------------
+      // Streamable HTTP Transport Endpoints (Protocol version: 2025-11-25)
+      // ---------------------------------------------------------------------
+      if (pathname === "/mcp") {
+        // Normalize Accept and Content-Type headers for seamless client compatibility
+        if (!req.headers["accept"] || req.headers["accept"] === "*/*") {
+          req.headers["accept"] = "application/json, text/event-stream";
+        } else if (!req.headers["accept"].includes("text/event-stream") && req.method === "POST") {
+          req.headers["accept"] = req.headers["accept"] + ", text/event-stream";
+        }
+        if (!req.headers["content-type"] && req.method === "POST") {
+          req.headers["content-type"] = "application/json";
+        }
+
+        // Handle GET /mcp
+        if (req.method === "GET") {
+          const accept = req.headers["accept"] || "";
+          if (!accept.includes("text/event-stream")) {
+            // Friendly discovery status for browsers, curl, scanners, and Smithery pre-flights
+            res.writeHead(200, { "Content-Type": "application/json; charset=utf-8" });
+            res.end(JSON.stringify({
+              status: "healthy",
+              server: "armornglory-store-search",
+              version: "1.0.6",
+              description: "ArmorNGlory Christian Streetwear & Faith Apparel MCP Server",
+              authentication: {
+                required: false
+              },
+              transports: ["streamable-http", "sse"],
+              endpoints: {
+                mcp: "/mcp",
+                sse: "/sse",
+                messages: "/messages",
+                serverCard: "/.well-known/mcp/server-card.json"
+              },
+              toolsCount: 9,
+              productsCount: products.length
+            }, null, 2));
+            return;
+          }
+
+          // GET /mcp with Accept: text/event-stream
+          const sessionId = req.headers["mcp-session-id"] as string | undefined;
+          if (sessionId && streamableTransports.has(sessionId)) {
+            const transport = streamableTransports.get(sessionId)!;
+            await transport.handleRequest(req, res);
+            return;
+          }
+
+          // Standalone GET SSE stream
+          try {
+            const transport = new StreamableHTTPServerTransport({
+              sessionIdGenerator: () => randomUUID(),
+              onsessioninitialized: (sid) => {
+                streamableTransports.set(sid, transport);
+              }
+            });
+            transport.onclose = () => {
+              if (transport.sessionId) streamableTransports.delete(transport.sessionId);
+            };
+            const server = createArmorNGloryServer();
+            await server.connect(transport);
+            await transport.handleRequest(req, res);
+          } catch (err) {
+            console.error("[ArmorNGlory MCP Server] Error in GET /mcp stream:", err);
+            if (!res.headersSent) {
+              res.writeHead(500, { "Content-Type": "application/json" });
+              res.end(JSON.stringify({ jsonrpc: "2.0", error: { code: -32603, message: "Internal server error" }, id: null }));
+            }
+          }
+          return;
+        }
+
+        // Handle DELETE /mcp
+        if (req.method === "DELETE") {
+          const sessionId = req.headers["mcp-session-id"] as string | undefined;
+          if (sessionId && streamableTransports.has(sessionId)) {
+            const transport = streamableTransports.get(sessionId)!;
+            await transport.handleRequest(req, res);
+            streamableTransports.delete(sessionId);
+          } else {
+            res.writeHead(404, { "Content-Type": "application/json" });
+            res.end(JSON.stringify({ jsonrpc: "2.0", error: { code: -32001, message: "Session not found" }, id: null }));
+          }
+          return;
+        }
+
+        // Handle POST /mcp
+        if (req.method === "POST") {
+          let body = "";
+          req.on("data", (chunk) => { body += chunk; });
+          req.on("end", async () => {
+            try {
+              let parsedBody: unknown;
+              try {
+                parsedBody = body ? JSON.parse(body) : undefined;
+              } catch {
+                res.writeHead(400, { "Content-Type": "application/json" });
+                res.end(JSON.stringify({ jsonrpc: "2.0", error: { code: -32700, message: "Parse error: Invalid JSON" }, id: null }));
+                return;
+              }
+
+              const sessionId = req.headers["mcp-session-id"] as string | undefined;
+
+              // Case A: Existing session
+              if (sessionId && streamableTransports.has(sessionId)) {
+                const transport = streamableTransports.get(sessionId)!;
+                await transport.handleRequest(req, res, parsedBody);
+                return;
+              }
+
+              // Case B: Initialization request (starts stateful session)
+              if (isInitializeRequest(parsedBody)) {
+                const transport = new StreamableHTTPServerTransport({
+                  sessionIdGenerator: () => randomUUID(),
+                  onsessioninitialized: (sid) => {
+                    streamableTransports.set(sid, transport);
+                  }
+                });
+                transport.onclose = () => {
+                  if (transport.sessionId) streamableTransports.delete(transport.sessionId);
+                };
+                const server = createArmorNGloryServer();
+                await server.connect(transport);
+                await transport.handleRequest(req, res, parsedBody);
+                return;
+              }
+
+              // Case C: Stateless request (e.g. tools/list or direct tool call without session management)
+              const transport = new StreamableHTTPServerTransport({
+                sessionIdGenerator: undefined
+              });
+              const server = createArmorNGloryServer();
+              await server.connect(transport);
+              await transport.handleRequest(req, res, parsedBody);
+              res.on("close", () => {
+                transport.close().catch(() => {});
+                server.close().catch(() => {});
+              });
+            } catch (err) {
+              console.error("[ArmorNGlory MCP Server] Error handling POST /mcp:", err);
+              if (!res.headersSent) {
+                res.writeHead(500, { "Content-Type": "application/json" });
+                res.end(JSON.stringify({ jsonrpc: "2.0", error: { code: -32603, message: "Internal server error" }, id: null }));
+              }
+            }
+          });
+          return;
+        }
+
+        res.writeHead(405, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ jsonrpc: "2.0", error: { code: -32000, message: "Method not allowed" }, id: null }));
         return;
       }
 
@@ -1572,18 +1793,28 @@ async function run() {
     httpServer.listen(port, host, () => {
       console.error(`[ArmorNGlory MCP Server] Running HTTP/Streamable server on http://${host}:${port}`);
       console.error(`[ArmorNGlory MCP Server] Free Web Chat App: http://${host}:${port}/chat`);
-      console.error(`[ArmorNGlory MCP Server] MCP Endpoint: http://${host}:${port}/mcp`);
+      console.error(`[ArmorNGlory MCP Server] MCP Streamable HTTP: http://${host}:${port}/mcp`);
+      console.error(`[ArmorNGlory MCP Server] MCP SSE Endpoint: http://${host}:${port}/sse`);
       console.error(`[ArmorNGlory MCP Server] Health Check: http://${host}:${port}/health`);
     });
   } else {
     // Default stdio transport for local desktop assistants (Claude Desktop, Cursor, Antigravity)
+    const server = createArmorNGloryServer();
     const transport = new StdioServerTransport();
     await server.connect(transport);
     console.error("[ArmorNGlory MCP Server] Running on stdio transport.");
   }
 }
 
-run().catch((err) => {
-  console.error("[ArmorNGlory MCP Server] Fatal error:", err);
-  process.exit(1);
-});
+const isMain = process.argv[1] && (
+  process.argv[1].endsWith("index.js") ||
+  process.argv[1].endsWith("index.ts") ||
+  process.argv[1].includes("armornglory-mcp-server")
+);
+
+if (isMain) {
+  run().catch((err) => {
+    console.error("[ArmorNGlory MCP Server] Fatal error:", err);
+    process.exit(1);
+  });
+}
