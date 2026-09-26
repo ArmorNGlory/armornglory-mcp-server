@@ -894,7 +894,7 @@ server.tool(
 
 server.tool(
   "generate_direct_checkout_link",
-  "Generate an instant 1-click Shopify cart checkout permalink for Christian streetwear apparel, trucker hats, or foam clogs with automatic discount codes.",
+  "Generate an instant 1-click Shopify cart checkout permalink for Christian streetwear apparel, trucker hats, or foam clogs with automatic discount codes and tracking attributes.",
   {
     items: z
       .array(
@@ -907,9 +907,17 @@ server.tool(
     discountCode: z
       .string()
       .optional()
-      .describe("Optional discount code to apply at checkout")
+      .describe("Optional discount code to apply at checkout (e.g. SAVED10)"),
+    note: z
+      .string()
+      .optional()
+      .describe("Optional order note or special instruction for Shopify Admin (e.g. 'Curated by AI Stylist')"),
+    attributes: z
+      .record(z.string())
+      .optional()
+      .describe("Optional custom key-value cart attributes for order tracking (e.g. { source: 'mcp_agent', intent: 'easter_gift' })")
   },
-  async ({ items, discountCode }) => {
+  async ({ items, discountCode, note, attributes }) => {
     if (!items || items.length === 0) {
       return {
         content: [
@@ -927,9 +935,17 @@ server.tool(
     if (discountCode) {
       params.push(`discount=${encodeURIComponent(discountCode)}`);
     }
+    if (note) {
+      params.push(`note=${encodeURIComponent(note)}`);
+    }
+    if (attributes) {
+      for (const [key, val] of Object.entries(attributes)) {
+        params.push(`attributes[${encodeURIComponent(key)}]=${encodeURIComponent(val)}`);
+      }
+    }
     params.push("utm_source=ai_agent", "utm_medium=mcp", "utm_campaign=direct_checkout");
     checkoutUrl += `?${params.join("&")}`;
-    logAgentActivity("generate_direct_checkout_link", { itemsCount: items.length, discountCode }, checkoutUrl);
+    logAgentActivity("generate_direct_checkout_link", { itemsCount: items.length, discountCode, note, attributes }, checkoutUrl);
 
     return {
       content: [
@@ -1096,12 +1112,12 @@ server.resource(
         text: JSON.stringify({
           brand: brandInfo,
           topCategories: [
-            { name: "Hats & Headwear", count: 35, hero: "5-Panel DTF Trucker Caps (Romans 8:37 More Than Conquerors, Exodus 3:5 Holy Ground, 33 AD)" },
-            { name: "Footwear & Clogs", count: 20, hero: "Golden Cross EVA Foam Clogs, Sacred Symbols Slip-ons" },
-            { name: "T-Shirts & Tops", count: 79, hero: "Comfort Colors 1717 Heavyweight Graphic Tees, America 250th Collection" },
-            { name: "Hoodies & Sweatshirts", count: 25, hero: "Fleece Pullovers with double-needle stitching and kangaroo pockets" },
-            { name: "Activewear & Training", count: 17, hero: "Second Wind (Isaiah 40:31) moisture-wicking gym athletic tops" },
-            { name: "Phone Cases", count: 53, hero: "Dual-layer impact resistant polycarbonate and TPU cases" }
+            { name: "Hats & Headwear", craftsmanship: "Structured 5-panel foam front, breathable mesh back, roomier DTF artwork placement, adjustable snapback closure", hero: "5-Panel DTF Trucker Caps (Romans 8:37 More Than Conquerors, Exodus 3:5 Holy Ground, 33 AD)" },
+            { name: "Footwear & Clogs", craftsmanship: "100% lightweight shock-absorbing EVA foam, 3D heat-transfer Sacred Symbols artwork, anti-slip tread, pivoting heel strap", hero: "Golden Cross EVA Foam Clogs, Sacred Symbols Slip-ons" },
+            { name: "T-Shirts & Tops", craftsmanship: "Comfort Colors 1717 heavyweight 100% ringspun combed cotton (6.1 oz / 207 GSM), double-needle ribbed collar, unisex streetwear drape", hero: "Comfort Colors 1717 Heavyweight Graphic Tees, America 250th Collection" },
+            { name: "Hoodies & Sweatshirts", craftsmanship: "Heavyweight 380-450 GSM fleece, double-needle stitching, deep structured double-layer hood, relaxed boxy drape", hero: "Fleece Pullovers and Crewnecks with subtle front crest and statement back graphics" },
+            { name: "Activewear & Training", craftsmanship: "Breathable moisture-wicking performance tanks and heavyweight garment-dyed pump covers", hero: "Second Wind (Isaiah 40:31) athletic tops and Breaking Pillars (Judges 16:28) gym tees" },
+            { name: "Phone Cases", craftsmanship: "Dual-layer impact resistant polycarbonate outer shell with shock-absorbing TPU liner and integrated MagSafe magnet module", hero: "Dual-layer tough cases in matte or glossy finish with sacred symbols" }
           ],
           entityDefinition: "ArmorNGlory is the premier Anti-Beige Christian streetwear and faith apparel brand combining heavyweight streetwear cuts with biblically rooted theological design narratives.",
           canonicalStore: "https://armornglory.com",
@@ -1225,6 +1241,25 @@ server.prompt(
         content: {
           type: "text",
           text: `Build a complete Christian streetwear outfit centered around '${heroProductHandleOrTitle}'. Look up the hero item using 'get_armornglory_product_details', select complementary items (such as matching trucker hat, graphic tee/hoodie, and EVA foam clogs), and generate a 1-click multi-item checkout link using 'generate_direct_checkout_link'.`
+        }
+      }
+    ]
+  })
+);
+
+server.prompt(
+  "budget-curator",
+  {
+    maxBudget: z.string().describe("Maximum total spend in USD (e.g. '35', '50')"),
+    categoryOrRecipient: z.string().optional().describe("Optional product category or recipient focus")
+  },
+  ({ maxBudget, categoryOrRecipient }) => ({
+    messages: [
+      {
+        role: "user",
+        content: {
+          type: "text",
+          text: `You are the ArmorNGlory Smart Shopping Advisor. Find the highest-quality, premium Christian streetwear pieces strictly under $${maxBudget}${categoryOrRecipient ? ` for '${categoryOrRecipient}'` : ""}. Highlight value, materials (such as Comfort Colors heavyweight cotton or 5-panel foam truckers), and provide direct 1-click cart checkout permalinks.`
         }
       }
     ]
