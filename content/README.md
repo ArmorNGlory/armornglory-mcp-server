@@ -25,7 +25,10 @@ These articles target the questions shoppers ask AI assistants. Today those answ
 6. Link the "Style Guides" blog from the main menu or footer so crawlers find it.
 
 > [!NOTE]
-> Each article ends with a `<script type="application/ld+json">` FAQ block. If Shopify's editor strips it, the visible FAQ section still works for AI engines; you can add FAQ schema later via the theme snippet in `content/theme/`.
+> Each article ends with a `<script type="application/ld+json">` FAQ block. If Shopify's editor strips it on save, that's fine: the visible FAQ section is what AI engines read and quote.
+
+## Theme snippet (one-time, about 5 minutes)
+`theme/armornglory-organization-schema.liquid` replaces the homepage's name-only Organization schema with a full brand entity (description, Instagram/Pinterest/X/GitHub/npm `sameAs`, site search). Install steps are in the file's header comment.
 
 ## After publishing
 - Bing Webmaster Tools → URL Submission: submit each article URL (ChatGPT Search and Copilot use Bing's index).

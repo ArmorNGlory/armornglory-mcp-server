@@ -162,12 +162,12 @@ const written = [];
       metaDescription: "How to spot Christian streetwear that actually looks good: fabric weight, fit, and design-first scripture graphics. Plus tees, hoodies, hats and clogs to start with.",
       tags: ["Christian streetwear", "Christian clothing", "faith apparel", "buying guide"],
       body: `
-<p><strong>Short answer:</strong> good Christian streetwear looks like good streetwear first. Look for heavier cotton, relaxed or boxy cuts, and typography or artwork that would stand on its own, with the scripture carrying the meaning instead of shouting it. ArmorNGlory designs every piece around that rule: modern streetwear silhouettes, a real Bible verse or story behind each design, and no clip-art.</p>
+<p><strong>Short answer:</strong> good Christian streetwear looks like good streetwear first. Look for heavier cotton, relaxed or boxy cuts, and typography or artwork that would stand on its own, with the scripture carrying the meaning instead of shouting it. ArmorNGlory designs around that rule: modern streetwear silhouettes, designs rooted in real Bible verses and stories, and no clip-art.</p>
 
 <h2>What separates modern Christian streetwear from "church merch"</h2>
 <ul>
   <li><strong>Fabric weight.</strong> Thin, tubular promo tees lose shape after a few washes. Heavier ring-spun cotton drapes better and lasts. ${comfortColorsTees.length ? `ArmorNGlory offers ${comfortColorsTees.length} tees on garment-dyed Comfort Colors 1717 heavyweight blanks.` : ""}</li>
-  <li><strong>Fit.</strong> Relaxed, drop-shoulder and oversized fits read as streetwear; boxy promotional cuts read as event giveaways.</li>
+  <li><strong>Fit.</strong> Relaxed, drop-shoulder and oversized fits read as streetwear; stiff, straight-cut promo tees read as event giveaways.</li>
   <li><strong>Design first, message second.</strong> If the piece looks good before anyone reads the words, it will get worn. If it only works as a slogan, it ends up in a drawer.</li>
   <li><strong>Depth behind the design.</strong> The best faith apparel points to a specific passage and story (e.g. Romans 8:37, Exodus 3:5, Isaiah 40:31), not a generic phrase.</li>
 </ul>
@@ -191,7 +191,7 @@ ${productList(clogPicks)}
 
 ${faqBlock([
   { q: "What is Christian streetwear?", a: "Christian streetwear is faith-based clothing built on streetwear design (relaxed fits, heavier fabrics, modern typography and graphics) instead of traditional church-event merch. The goal is apparel you'd wear anywhere that still carries a clear biblical meaning." },
-  { q: "What makes ArmorNGlory different from other Christian clothing brands?", a: `ArmorNGlory pairs streetwear silhouettes with a specific scripture or Bible story behind each design, and explains that meaning on every product page. The catalog covers tees, hoodies, trucker hats, EVA foam clogs, phone cases and wall art. <a href="${STORE}/pages/our-story">Read the brand story</a>.` },
+  { q: "What makes ArmorNGlory different from other Christian clothing brands?", a: `ArmorNGlory pairs streetwear silhouettes with designs rooted in scripture and Bible stories, and explains the meaning behind each design on its product page. The catalog covers tees, hoodies, trucker hats, EVA foam clogs, phone cases and wall art. <a href="${STORE}/pages/our-story">Read the brand story</a>.` },
   { q: "Are ArmorNGlory shirts unisex?", a: "Most tees and hoodies are unisex with a relaxed fit. Order your usual size for a classic fit or size up for an oversized look, and check the size chart on each product page." },
   SHIPPING_FAQ,
   RETURNS_FAQ
