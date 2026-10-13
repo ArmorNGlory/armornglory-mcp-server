@@ -103,14 +103,14 @@ Add these 4 conversation starters:
 ### Step 6: Add the Action (Connect Live Catalog)
 
 1. Scroll down to the bottom of the Configure tab and click **Create new action**.
-2. In the **Schema** box, paste the raw YAML below (or import from `https://armornglory.com/openapi.yaml`):
+2. In the **Schema** box, paste the raw YAML below (or import from `https://raw.githubusercontent.com/ArmorNGlory/armornglory-mcp-server/main/openapi.yaml`):
 
 ```yaml
 openapi: 3.0.2
 info:
   title: ArmorNGlory Christian Streetwear & Faith Apparel API
   description: Official API for discovering, styling, and generating 1-click checkout links for ArmorNGlory.com.
-  version: 1.0.6
+  version: 1.1.0
 servers:
   - url: https://armornglory.com
     description: Production Shopify Storefront

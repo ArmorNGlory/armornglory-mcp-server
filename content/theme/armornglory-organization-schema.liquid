@@ -1,0 +1,70 @@
+{%- comment -%}
+  ArmorNGlory — Organization + WebSite structured data (entity anchor for AI engines & Google)
+
+  INSTALL (Shopify Admin → Online Store → Themes → … → Edit code):
+  1. Snippets → Add a new snippet named: armornglory-organization-schema
+     and paste this whole file.
+  2. Open layout/theme.liquid and, just before </head>, add:
+       {%- if request.page_type == 'index' -%}{% render 'armornglory-organization-schema' %}{%- endif -%}
+  3. Find the theme's existing minimal Organization JSON-LD (search the theme code for "Organization",
+     usually in sections/header.liquid or snippets/meta-tags.liquid) and remove it, so there's only one
+     Organization entity on the homepage.
+  4. Validate at https://search.google.com/test/rich-results with https://armornglory.com/
+
+  Why: today the homepage only says {"@type":"Organization","name":"ArmorNGlory"}. AI engines build their
+  picture of a brand from description + sameAs links (social, GitHub, npm). This connects them.
+{%- endcomment -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "OnlineStore",
+      "@id": "https://armornglory.com/#organization",
+      "name": "ArmorNGlory",
+      "alternateName": ["Armor & Glory", "Armor N Glory"],
+      "url": "https://armornglory.com",
+      "logo": "https://armornglory.com/cdn/shop/files/Armor_GloryLogo_d520ecf8-adbe-4602-93bd-44c352e59529.png",
+      "slogan": "Strengthened for the Journey Ahead",
+      "description": "ArmorNGlory is a modern Christian streetwear and faith apparel brand: scripture trucker hats, Bible verse t-shirts, Christian hoodies, EVA foam clogs, faith phone cases, and Christian gifts, each designed around a specific Bible verse or story.",
+      "knowsAbout": [
+        "Christian streetwear",
+        "Christian clothing",
+        "Bible verse apparel",
+        "Christian trucker hats",
+        "Christian gifts",
+        "Baptism gifts",
+        "Faith-based apparel"
+      ],
+      "email": "customersupport@armornglory.com",
+      "sameAs": [
+        "https://www.instagram.com/armornglory/",
+        "https://www.pinterest.com/armornglory/",
+        "https://x.com/ArmorNGlory",
+        "https://github.com/ArmorNGlory/armornglory-mcp-server",
+        "https://www.npmjs.com/package/armornglory-mcp-server"
+      ],
+      "brand": {
+        "@type": "Brand",
+        "name": "ArmorNGlory",
+        "slogan": "Strengthened for the Journey Ahead"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://armornglory.com/#website",
+      "url": "https://armornglory.com",
+      "name": "ArmorNGlory",
+      "publisher": { "@id": "https://armornglory.com/#organization" },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://armornglory.com/search?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+  ]
+}
+</script>

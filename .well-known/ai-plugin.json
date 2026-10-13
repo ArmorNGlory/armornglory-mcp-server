@@ -9,7 +9,7 @@
   },
   "api": {
     "type": "openapi",
-    "url": "https://armornglory.com/openapi.yaml"
+    "url": "https://raw.githubusercontent.com/ArmorNGlory/armornglory-mcp-server/main/openapi.yaml"
   },
   "logo_url": "https://armornglory.com/cdn/shop/files/Armor_GloryLogo_d520ecf8-adbe-4602-93bd-44c352e59529.png",
   "contact_email": "support@armornglory.com",

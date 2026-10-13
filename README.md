@@ -1,36 +1,35 @@
-# ✝️ Christian Streetwear & Faith Apparel MCP Server (ArmorNGlory)
+# ✝️ ArmorNGlory MCP Server: Christian Streetwear & Faith Apparel
 
 [![MCP Server](https://img.shields.io/badge/MCP-Model%20Context%20Protocol-blue.svg)](https://modelcontextprotocol.io)
-[![Category](https://img.shields.io/badge/Category-Christian%20Streetwear-gold.svg)](https://armornglory.com)
+[![MCP Registry](https://img.shields.io/badge/MCP%20Registry-io.github.ArmorNGlory%2Farmornglory--mcp--server-black.svg)](https://registry.modelcontextprotocol.io)
 [![npm version](https://img.shields.io/npm/v/armornglory-mcp-server.svg?color=green)](https://www.npmjs.com/package/armornglory-mcp-server)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-An open-source **Model Context Protocol (MCP)** server for **Christian streetwear, faith-based apparel, 5-panel trucker hats, EVA foam clogs, and Bible verse clothing**. Empowers AI assistants (Claude Desktop, Cursor, Antigravity, ChatGPT, Gemini, Windsurf, Zed) to natively search, recommend, style, and generate instant 1-click checkout links for live faith fashion collections from [ArmorNGlory.com](https://armornglory.com).
+Shop **modern Christian streetwear and faith apparel** from [ArmorNGlory.com](https://armornglory.com) inside any AI assistant (Claude, ChatGPT, Gemini, Cursor, Windsurf, VS Code, Antigravity). Search **300+ products**: scripture trucker hats and dad caps, Bible verse t-shirts, Christian hoodies, EVA foam clogs, gym wear, phone cases and wall art. Search by verse, style, occasion, size or price; get the meaning behind each design and fit advice; and generate 1-click Shopify checkout links.
+
+No API key. Runs locally. Free.
 
 ---
 
-## 🌟 Key Capabilities
+## 💬 Try asking your assistant
 
-- 👕 **Christian Streetwear & Apparel Search**: Multi-filter discovery across Bible verses (*Romans 8:37, Exodus 3:5, Matthew 6:33, Ephesians 6*), streetwear cuts, trucker caps, foam clogs, hoodies, and faith aesthetics (*Minimalist Core, Sacred Symbols, Gothic Faith, Americana*).
-- 📖 **Theological Meaning & Design Stories**: Biblical truth behind every piece (*"Meaning Behind The Design"*, *"Why You Will Love It"*, craftsmanship specs, and fit advice).
-- 🧢 **5-Panel Trucker Hats & Faith Footwear**: Instant sizing and availability for signature DTF trucker caps, embroidered foam snapbacks, and ergonomic Golden Cross EVA foam clogs.
-- 🎁 **Faith Gift Advisor**: Algorithmic gift recommendations for Christian milestones (*Baptisms, Confirmations, Father's Day, Mother's Day, Easter, Christmas, Encouragement*).
-- 🛒 **1-Click Shopify Checkout**: Direct cart permalinks (`/cart/{variant_id}:{quantity}`) allowing instant purchases without manual browsing.
-- ❓ **Faith & Fashion Q&A**: Answers to questions regarding Christian streetwear culture, anti-beige design philosophy, sizing, and care guides.
+- *"Find me Christian streetwear that doesn't look cheesy."*
+- *"Show me a Christian trucker hat with Romans 8:37."*
+- *"Baptism gift for my husband under $40."*
+- *"Are there Christian Crocs? How do they fit?"*
+- *"I want a Philippians 4:13 hoodie in black, size L."*
 
 ---
 
-## 🚀 Quickstart & Client Installation
+## 🚀 Install
 
-### 1. Claude Desktop
-Add this to your `claude_desktop_config.json`:
-- **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
-- **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
+### Claude Desktop · Cursor · Windsurf · VS Code · Antigravity
+Add to your MCP config (`claude_desktop_config.json`, `.cursor/mcp.json`, `~/.codeium/windsurf/mcp_config.json`, `.vscode/mcp.json`, or `~/.gemini/antigravity/mcp_config.json`):
 
 ```json
 {
   "mcpServers": {
-    "christian-streetwear": {
+    "armornglory": {
       "command": "npx",
       "args": ["-y", "armornglory-mcp-server@latest"]
     }
@@ -38,92 +37,69 @@ Add this to your `claude_desktop_config.json`:
 }
 ```
 
----
-
-### 2. Cursor IDE & Windsurf
-Add this to `.cursor/mcp.json` or `~/.codeium/windsurf/mcp_config.json`:
-
-```json
-{
-  "mcpServers": {
-    "christian-streetwear": {
-      "command": "npx",
-      "args": ["-y", "armornglory-mcp-server@latest"]
-    }
-  }
-}
+### Claude Code
+```bash
+claude mcp add armornglory -- npx -y armornglory-mcp-server@latest
 ```
 
----
-
-### 3. OpenClaw, Muse & Cloud Web Agents (Streamable HTTP / SSE)
-For autonomous web agents, Muse, OpenClaw, or cloud workflows that require an HTTP/SSE endpoint:
-
-Start the server in HTTP mode:
+### Self-hosted HTTP (Streamable HTTP + SSE)
 ```bash
 npx -y armornglory-mcp-server@latest --http --port 3000
-```
-Then configure your agent with:
-- **MCP Endpoint**: `http://localhost:3000/mcp` (or your deployed URL `https://your-domain/mcp`)
-- **Transport**: `Streamable HTTP / SSE`
-- **Health Check**: `http://localhost:3000/health`
-- **LLM Context**: `http://localhost:3000/llms.txt`
-
----
-
-### 4. ChatGPT Custom GPT & OpenAI Actions
-You can connect ChatGPT directly to live store products with zero installation:
-1. In ChatGPT, go to **Explore GPTs > Create a GPT**.
-2. Go to **Configure > Actions > Import from URL**.
-3. Import the OpenAPI specification:
-   `https://armornglory.com/openapi.yaml`
-4. ChatGPT will now natively query the catalog and generate 1-click cart links for your users.
-
----
-
-### 5. Google Antigravity & Gemini Agents
-Add to `~/.gemini/config/mcp_config.json`:
-
-```json
-{
-  "mcpServers": {
-    "armornglory-store-search": {
-      "command": "node",
-      "args": ["/Users/neks/ArmorNGlory MCP/dist/index.js"]
-    }
-  }
-}
+# MCP: http://localhost:3000/mcp · SSE: /sse · health: /health · free web chat: /chat
 ```
 
----
+### Live cart & checkout: Shopify's hosted endpoint
+armornglory.com also runs Shopify's native **Universal Commerce Protocol (UCP)** MCP endpoint for live inventory, carts and Shop Pay checkout:
+`https://armornglory.com/api/ucp/mcp` (discovery: `https://armornglory.com/.well-known/ucp`). This server complements it with brand story, scripture meaning, gift curation and fit guidance.
 
-## 🛠️ MCP Tools Reference
-
-| Tool Name | Description | Key Parameters |
-| :--- | :--- | :--- |
-| `search_armornglory_products` | Search Christian streetwear, faith tees, trucker hats, and clogs by keywords, scriptures, aesthetics, and prices. | `query`, `scripture`, `category`, `aesthetic`, `occasion`, `color`, `size`, `minPrice`, `maxPrice`, `sortBy`, `limit` |
-| `get_armornglory_product_details` | Detailed product profile with theological background, specs, fit guide, and variant buy links. | `productHandleOrTitle` |
-| `list_armornglory_collections` | Browse curated collections (Hats & Beanies, Faith Footwear, Hoodies, Activewear, Phone Cases). | `limit` |
-| `get_collection_products` | Get items in a specific faith collection. | `collectionHandleOrTitle`, `limit` |
-| `recommend_faith_gifts` | Personalized faith gift advisor by persona, occasion, budget, and vibe. | `recipient`, `occasion`, `maxBudget`, `styleVibe`, `scriptureFocus` |
-| `get_brand_story_and_values` | Mission, meaning of Armor & Glory, and Anti-Beige Christian streetwear ethos. | *(none)* |
-| `get_sizing_and_fit_guide` | Exact size charts for EVA foam clogs, trucker hats, and streetwear tees. | `category` |
-| `generate_direct_checkout_link` | Generate 1-click Shopify cart checkout permalinks. | `items: [{ variantId, quantity }]`, `discountCode` |
-| `answer_faith_fashion_questions` | Authoritative answers on Christian streetwear trends, scripture meaning, sizing, and care. | `query` |
+### ChatGPT Custom GPT (Actions)
+Import the OpenAPI spec from
+`https://raw.githubusercontent.com/ArmorNGlory/armornglory-mcp-server/main/openapi.yaml`.
+See [CHATGPT_CUSTOM_GPT_KIT.md](CHATGPT_CUSTOM_GPT_KIT.md).
 
 ---
 
-## 💬 Sample User Queries for AI Assistants
+## 🛠️ Tools
 
-Try asking your AI assistant:
-- *"Find me modern Christian streetwear that doesn't feel cheesy or dated."*
-- *"Show me 5-panel faith trucker hats with Romans 8:37 More Than Conquerors."*
-- *"What's a great baptism gift for an adult under $40?"*
-- *"Show me Christian foam clogs with cross symbols and how they fit."*
-- *"Give me a direct 1-click checkout link for the Holy Ground trucker cap."*
+All tools are read-only (annotated `readOnlyHint: true`).
+
+| Tool | What it does |
+|---|---|
+| `search_armornglory_products` | Search by keyword, Bible verse, category, aesthetic, occasion, color, size or price |
+| `get_armornglory_product_details` | Full details: meaning behind the design, materials, fit, care, per-variant checkout links |
+| `recommend_faith_gifts` | Gift ideas by recipient, occasion (baptism, Father's Day…), budget, style and verse |
+| `list_armornglory_collections` | All collections with descriptions and URLs |
+| `get_collection_products` | Products in one collection |
+| `get_sizing_and_fit_guide` | Size charts: EVA clogs (run roomy, so size down), snapback caps, tees, hoodies |
+| `generate_direct_checkout_link` | Shopify cart permalink for one or more variants |
+| `answer_faith_fashion_questions` | Brand FAQ: verse meanings, quality, care, shipping |
+| `get_brand_story_and_values` | Mission and design philosophy |
+| `search` / `fetch` | ChatGPT connector & deep-research compatible search + document fetch |
+
+**Prompts:** `gift-consultant`, `outfit-curator`, `scripture-match`, `size-and-fit-advisor`, `anti-beige-streetwear-guide`, `complete-the-look`, `budget-curator`
+**Resources:** `armornglory://catalog/products`, `armornglory://catalog/collections`, `armornglory://brand/style-guide`, `armornglory://guides/faq`, `armornglory://knowledge/geo-entity-summary`
+
+---
+
+## 🧑‍💻 Development
+
+```bash
+npm install
+npm run sync-data       # pull the live catalog from armornglory.com (public products.json)
+npm run build
+npm test                # data checks + full MCP protocol smoke test
+npm run card            # regenerate .well-known/mcp/server-card.json from the real server
+npm run audit:catalog   # AI-readiness audit of product titles/data -> reports/
+npm run content         # regenerate the Shopify article kit -> content/
+```
+
+Discovery & growth docs:
+- [AI_DISCOVERABILITY_CHECKLIST.md](AI_DISCOVERABILITY_CHECKLIST.md): the full checklist (Shopify admin, publishing, directories)
+- [DIRECTORY_SUBMISSIONS.md](DIRECTORY_SUBMISSIONS.md): listing copy for MCP directories
+- [content/README.md](content/README.md): publishing the article kit
 
 ---
 
 ## 📜 License
 
-MIT License © 2026 [Armor & Glory](https://armornglory.com).
+MIT © 2026 [Armor & Glory](https://armornglory.com)

@@ -1,7 +1,8 @@
 {
   "name": "armornglory-mcp-server",
-  "version": "1.0.6",
-  "description": "Official Model Context Protocol (MCP) server for Christian streetwear, modern faith apparel, 5-panel foam trucker hats, EVA foam clogs, heavyweight graphic tees, and faith gifts — rejecting cheesy cliches for authentic streetwear quality and biblical conviction.",
+  "version": "1.1.0",
+  "mcpName": "io.github.ArmorNGlory/armornglory-mcp-server",
+  "description": "Official MCP server for ArmorNGlory: shop modern Christian streetwear and faith apparel from any AI assistant. Scripture trucker hats, Bible verse tees, Christian hoodies, EVA foam clogs, gym wear, and Christian gifts with 1-click checkout.",
   "type": "module",
   "main": "dist/index.js",
   "bin": {
@@ -13,7 +14,8 @@
     ".well-known",
     "llms.txt",
     "llms-full.txt",
-    "openapi.yaml"
+    "openapi.yaml",
+    "server.json"
   ],
   "scripts": {
     "build": "tsc && chmod +x dist/index.js",
@@ -21,24 +23,39 @@
     "serve": "node dist/index.js --http",
     "dev": "tsc && node dist/index.js",
     "sync-data": "node scripts/sync-store-data.js",
-    "test": "node scripts/test-mcp-tools.js",
+    "audit:catalog": "node scripts/audit-catalog-for-ai.js",
+    "test": "node scripts/test-mcp-tools.js && node scripts/smoke-test-mcp.js",
     "logs": "cat logs/agent_activity.jsonl 2>/dev/null || echo 'No agent activity recorded yet.'",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build && npm run card && npm test",
+    "card": "node scripts/generate-server-card.js",
+    "content": "node scripts/build-content-kit.js"
   },
   "keywords": [
     "mcp",
     "mcp-server",
     "model-context-protocol",
     "armornglory",
-    "christian-streetwear",
-    "faith-apparel",
     "christian-clothing",
-    "bible-verse-apparel",
+    "christian-streetwear",
+    "christian-apparel",
+    "faith-apparel",
+    "faith-based-clothing",
+    "bible-verse-shirts",
+    "scripture-apparel",
+    "christian-hats",
+    "christian-trucker-hat",
+    "christian-hoodie",
     "christian-gifts",
-    "ai-shopping",
+    "baptism-gifts",
+    "christian-shoes",
+    "foam-clogs",
+    "shopify",
     "ecommerce",
-    "claude",
+    "ai-shopping",
+    "shopping-assistant",
     "chatgpt",
+    "claude",
+    "gemini",
     "cursor"
   ],
   "homepage": "https://armornglory.com",
@@ -46,11 +63,17 @@
     "type": "git",
     "url": "git+https://github.com/ArmorNGlory/armornglory-mcp-server.git"
   },
+  "bugs": {
+    "url": "https://github.com/ArmorNGlory/armornglory-mcp-server/issues"
+  },
   "author": "Armor & Glory",
   "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.12.1",
-    "zod": "^3.24.2"
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "zod": "^3.25.0"
   },
   "devDependencies": {
     "@types/node": "^22.13.4",

@@ -10,7 +10,7 @@ This file defines Cursor rules and code context when developing or using the Arm
 - **Protocol**: Model Context Protocol (MCP) by Anthropic over `stdio` transport.
 - **Tech Stack**: TypeScript, Node.js (`ES2022`, `NodeNext`), `@modelcontextprotocol/sdk`, `zod`.
 - **E-Commerce Target**: [ArmorNGlory.com](https://armornglory.com) (Shopify Storefront).
-- **Data Bundle**: 249 enriched products in `data/products.json`, 21 collections in `data/collections.json`, and brand identity in `data/brand_info.json`.
+- **Data Bundle**: 300+ enriched products (synced via `npm run sync-data`) in `data/products.json`, 21 collections in `data/collections.json`, and brand identity in `data/brand_info.json`.
 
 ---
 

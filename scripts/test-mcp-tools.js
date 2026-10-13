@@ -42,4 +42,23 @@ const sampleVariantId = testItem.variants[0]?.id;
 const checkoutUrl = `https://armornglory.com/cart/${sampleVariantId}:1?discount=SAVED10`;
 console.log(`✓ Generated checkout link test: ${checkoutUrl}`);
 
+// Test 6: No dead product/cart links in agent-facing docs
+const variantIds = new Set(products.flatMap((p) => p.variants.map((v) => String(v.id))));
+const handles = new Set(products.map((p) => p.handle));
+let deadLinks = 0;
+for (const file of ["llms.txt", "llms-full.txt", "data/faqs_and_guides.json"]) {
+  const text = fs.readFileSync(path.join(rootDir, file), "utf-8");
+  for (const [, id] of text.matchAll(/armornglory\.com\/cart\/(\d{8,})/g)) {
+    if (!variantIds.has(id)) { console.log(`✗ Dead cart variant ${id} in ${file}`); deadLinks++; }
+  }
+  for (const [, h] of text.matchAll(/armornglory\.com\/products\/([a-z0-9-]+)/g)) {
+    if (!handles.has(h)) { console.log(`✗ Dead product handle ${h} in ${file}`); deadLinks++; }
+  }
+}
+if (deadLinks) {
+  console.log(`\n${deadLinks} dead link(s) found. Update the docs after syncing the catalog.`);
+  process.exit(1);
+}
+console.log("✓ No dead product or cart links in llms.txt, llms-full.txt, or FAQs");
+
 console.log("\nAll core verification checks passed successfully!");

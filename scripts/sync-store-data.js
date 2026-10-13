@@ -105,6 +105,33 @@ const SCRIPTURE_PATTERNS = [
   { ref: "Est 33 AD", keywords: ["33 ad", "est 33 ad", "resurrection"] }
 ];
 
+const BOOKS = [
+  "Genesis", "Exodus", "Leviticus", "Numbers", "Deuteronomy", "Joshua", "Judges", "Ruth", "1 Samuel", "2 Samuel", "1 Kings", "2 Kings",
+  "1 Chronicles", "2 Chronicles", "Ezra", "Nehemiah", "Esther", "Job", "Psalms", "Psalm", "Proverbs", "Ecclesiastes", "Song of Solomon",
+  "Isaiah", "Jeremiah", "Lamentations", "Ezekiel", "Daniel", "Hosea", "Joel", "Amos", "Obadiah", "Jonah", "Micah", "Nahum", "Habakkuk",
+  "Zephaniah", "Haggai", "Zechariah", "Malachi", "Matthew", "Mark", "Luke", "John", "Acts", "Romans", "1 Corinthians", "2 Corinthians",
+  "Galatians", "Ephesians", "Philippians", "Colossians", "1 Thessalonians", "2 Thessalonians", "1 Timothy", "2 Timothy", "Titus",
+  "Philemon", "Hebrews", "James", "1 Peter", "2 Peter", "1 John", "2 John", "3 John", "Jude", "Revelation"
+];
+const BOOK_ALT = BOOKS.map((b) => b.replace(/ /g, "\\s")).join("|");
+// "Romans 8:37", "ROMANS 8 37", "1 Peter 5:7", "Ephesians 6:10-18", "Ephesians 6"
+const REF_RE = new RegExp(`\\b(${BOOK_ALT})\\s(\\d{1,3})(?:[:\\s](\\d{1,3})(?:\\s?[-–]\\s?(\\d{1,3}))?)?\\b`, "gi");
+
+function canonicalBook(raw) {
+  const lower = raw.toLowerCase().replace(/\s+/g, " ");
+  return BOOKS.find((b) => b.toLowerCase() === lower) || raw;
+}
+
+function normalizeRefs(text) {
+  const out = [];
+  for (const m of text.matchAll(REF_RE)) {
+    const [, book, ch, v, vEnd] = m;
+    if (Number(ch) > 150) continue; // e.g. "JEREMIAH 2911" — ambiguous, skip rather than guess
+    out.push(`${canonicalBook(book)} ${ch}${v ? `:${v}${vEnd ? `-${vEnd}` : ""}` : ""}`);
+  }
+  return out;
+}
+
 function extractScriptures(title, bodyText, tags) {
   const combined = `${title} ${bodyText} ${tags.join(" ")}`.toLowerCase();
   const matched = new Set();
@@ -115,50 +142,50 @@ function extractScriptures(title, bodyText, tags) {
     }
   }
 
-  // Also check tag regex for references like "ROMANS 8:37" or "EXODUS 3:5"
-  for (const tag of tags) {
-    const bookRegex = /^(GENESIS|EXODUS|LEVITICUS|NUMBERS|DEUTERONOMY|JOSHUA|JUDGES|RUTH|1 SAMUEL|2 SAMUEL|1 KINGS|2 KINGS|PSALM|PSALMS|PROVERBS|ECCLESIASTES|ISAIAH|JEREMIAH|LAMENTATIONS|EZEKIEL|DANIEL|MATTHEW|MARK|LUKE|JOHN|ACTS|ROMANS|1 CORINTHIANS|2 CORINTHIANS|GALATIANS|EPHESIANS|PHILIPPIANS|COLOSSIANS|1 THESSALONIANS|2 THESSALONIANS|1 TIMOTHY|2 TIMOTHY|TITUS|HEBREWS|JAMES|1 PETER|2 PETER|1 JOHN|2 JOHN|3 JOHN|JUDE|REVELATION)\s+\d+[:\d\-]*/i;
-    if (bookRegex.test(tag)) {
-      matched.add(tag.toUpperCase());
-    }
-  }
+  // Explicit references in tags and the title (normalized), e.g. "ROMANS 8 37" -> "Romans 8:37"
+  for (const ref of normalizeRefs(`${tags.join(" | ")} | ${title}`)) matched.add(ref);
+  // Explicit chapter:verse references in the description (only with a verse number, to avoid noise)
+  for (const ref of normalizeRefs(bodyText)) if (ref.includes(":")) matched.add(ref);
 
-  return Array.from(matched);
+  // Drop bare-chapter refs when a more specific ref for the same chapter exists ("Ephesians 6" vs "Ephesians 6:10-18")
+  const list = Array.from(matched);
+  return list.filter((r) => r.includes(":") || r === "Psalm 23" || r === "Est 33 AD" || !list.some((o) => o !== r && o.startsWith(`${r}:`)));
 }
 
 function categorizeProduct(type, title, tags) {
   const t = (type || "").toLowerCase();
   const titleLower = title.toLowerCase();
   const tagsJoined = tags.join(" ").toLowerCase();
+  const has = (re) => re.test(titleLower);
 
-  if (t.includes("hat") || titleLower.includes("hat") || titleLower.includes("cap") || titleLower.includes("beanie") || tagsJoined.includes("trucker")) {
+  if (t.includes("hat") || has(/\b(hats?|caps?|beanies?|snapbacks?)\b/) || tagsJoined.includes("trucker")) {
     return "Hats & Headwear";
   }
-  if (t.includes("shoe") || titleLower.includes("clog") || titleLower.includes("shoe") || tagsJoined.includes("footwear") || tagsJoined.includes("eva clogs")) {
+  if (t.includes("shoe") || has(/\b(clogs?|shoes?|slip-?ons?)\b/) || tagsJoined.includes("footwear") || tagsJoined.includes("eva clogs")) {
     return "Footwear & Clogs";
   }
-  if (t.includes("hoodie") || t.includes("sweatshirt") || titleLower.includes("hoodie") || titleLower.includes("sweatshirt") || titleLower.includes("crewneck")) {
+  if (t.includes("hoodie") || t.includes("sweatshirt") || has(/\b(hoodies?|sweatshirts?|crewnecks?)\b/)) {
     return "Hoodies & Sweatshirts";
   }
-  if (t.includes("t-shirt") || t.includes("tank") || titleLower.includes("tee") || titleLower.includes("shirt") || titleLower.includes("tank")) {
-    return "T-Shirts & Tops";
-  }
-  if (t.includes("phone case") || titleLower.includes("phone case") || tagsJoined.includes("phone case")) {
-    return "Phone Cases";
-  }
-  if (t.includes("activewear") || tagsJoined.includes("activewear") || titleLower.includes("training") || titleLower.includes("gym")) {
-    return "Activewear & Training";
-  }
-  if (t.includes("canvas") || t.includes("poster") || t.includes("home decor") || titleLower.includes("wall art") || titleLower.includes("poster")) {
-    return "Wall Art & Decor";
-  }
-  if (t.includes("kids") || titleLower.includes("youth") || titleLower.includes("kids")) {
-    return "Kids & Youth";
-  }
-  if (t.includes("pajama") || titleLower.includes("pajama")) {
+  if (t.includes("pajama") || has(/\bpajamas?\b/)) {
     return "Pajamas & Sleepwear";
   }
-  if (t.includes("bag") || t.includes("mug") || titleLower.includes("tote") || titleLower.includes("mug")) {
+  if (t.includes("t-shirt") || t.includes("tank") || has(/\b(tees?|t-shirts?|shirts?|tanks?)\b/)) {
+    return "T-Shirts & Tops";
+  }
+  if (t.includes("phone case") || has(/\bphone case\b/) || tagsJoined.includes("phone case")) {
+    return "Phone Cases";
+  }
+  if (t.includes("activewear") || tagsJoined.includes("activewear") || has(/\b(training|gym)\b/)) {
+    return "Activewear & Training";
+  }
+  if (t.includes("canvas") || t.includes("poster") || t.includes("home decor") || has(/\b(wall art|posters?|canvas)\b/)) {
+    return "Wall Art & Decor";
+  }
+  if (t.includes("kids") || has(/\b(youth|kids)\b/)) {
+    return "Kids & Youth";
+  }
+  if (t.includes("bag") || t.includes("mug") || has(/\b(totes?|mugs?|bags?|blankets?)\b/)) {
     return "Accessories";
   }
   return "Apparel & Accessories";
@@ -194,28 +221,35 @@ function determineAesthetic(title, bodyText, tags) {
 }
 
 function mapOccasions(category, title, bodyText, tags) {
-  const combined = `${title} ${bodyText} ${tags.join(" ")}`.toLowerCase();
-  const occasions = ["Everyday Wear", "Church & Fellowship"];
+  // Title + tags carry intent; long descriptions contain boilerplate ("great gift", "men and women")
+  // that previously tagged nearly every product with every occasion.
+  const intent = `${title} ${tags.join(" ")}`.toLowerCase();
+  const body = (bodyText || "").toLowerCase();
+  const occasions = ["Everyday Wear"];
+  const any = (text, words) => words.some((w) => new RegExp(`\\b${w}\\b`, "i").test(text));
 
-  if (combined.includes("gift") || combined.includes("easter") || combined.includes("christmas") || combined.includes("holiday")) {
+  if (any(intent, ["church", "worship", "sunday", "fellowship"]) || category === "T-Shirts & Tops" || category === "Hoodies & Sweatshirts" || category === "Hats & Headwear") {
+    occasions.push("Church & Fellowship");
+  }
+  if (any(intent, ["gift", "gifts", "easter", "christmas", "holiday"])) {
     occasions.push("Holiday & Easter Gift");
   }
-  if (combined.includes("america") || combined.includes("fourth of july") || combined.includes("memorial day") || combined.includes("veterans day")) {
+  if (any(intent, ["america", "american", "americana", "usa", "patriotic", "fourth of july", "4th of july", "1776", "250th"])) {
     occasions.push("Patriotic / 4th of July");
   }
-  if (combined.includes("activewear") || combined.includes("training") || combined.includes("gym") || combined.includes("lifting") || combined.includes("running")) {
+  if (any(intent, ["activewear", "training", "gym", "lifting", "running", "workout", "athletic", "pump cover", "bodybuilding"])) {
     occasions.push("Workout & Fitness");
   }
-  if (combined.includes("baptism") || combined.includes("confirmation") || combined.includes("resurrection") || combined.includes("33 ad")) {
+  if (any(`${intent} ${body}`, ["baptism", "baptized", "confirmation", "new believer", "born again", "made new"])) {
     occasions.push("Baptism & Milestones");
   }
-  if (combined.includes("father") || combined.includes("dad") || combined.includes("men")) {
+  if (any(intent, ["father", "fathers", "dad", "dads", "men", "mens", "him", "husband", "unisex"]) || category === "Hats & Headwear") {
     occasions.push("Father's Day & Gifts for Men");
   }
-  if (combined.includes("mother") || combined.includes("mom") || combined.includes("women")) {
+  if (any(intent, ["mother", "mothers", "mom", "moms", "women", "womens", "her", "wife", "ladies", "unisex"])) {
     occasions.push("Mother's Day & Gifts for Women");
   }
-  if (combined.includes("conquerors") || combined.includes("courage") || combined.includes("strong") || combined.includes("second wind")) {
+  if (any(`${intent} ${body}`, ["conquerors", "courage", "courageous", "overcome", "overcomer", "second wind", "endure", "strength", "fear not", "anxiety"])) {
     occasions.push("Encouragement & Overcoming");
   }
 

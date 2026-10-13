@@ -2,6 +2,36 @@
 
 Use this launch kit to submit, index, and promote the MCP Server across AI developer catalogs, directories, e-commerce agent registries, and community forums.
 
+## Status (audited 2026-10-13)
+
+| Channel | Status | Action |
+|---|---|---|
+| npm `armornglory-mcp-server` | Was stuck on 1.0.4 | Publish 1.1.0 (`npm publish`) |
+| Official MCP Registry | Not listed | `mcp-publisher publish` (section 0) |
+| GitHub repo | Public ✅ | Push latest |
+| Glama | Listed ✅ | Click **Claim** and re-sync after pushing (`glama.json` lists the maintainer) |
+| Smithery | Not listed | Section 2 (`smithery.yaml` + `Dockerfile` are ready) |
+| PulseMCP | Unknown | Auto-ingests from the MCP Registry; submit manually if missing after a week |
+| awesome-mcp-servers | Not listed | Section 1 PR |
+| mcp.so | Not listed | https://mcp.so/submit: use the Smithery copy below |
+| Cline MCP Marketplace | Not listed | Issue at https://github.com/cline/mcp-marketplace (needs a 400×400 PNG logo) |
+
+---
+
+## 0. Official MCP Registry (feeds VS Code, GitHub Copilot, PulseMCP and others)
+
+`server.json` and `mcpName` in `package.json` are already set up. The registry verifies that the npm package's `mcpName` matches, so **publish to npm first**.
+
+```bash
+npm publish                                   # 1.1.0 must be live on npm first
+brew install mcp-publisher                    # or download from github.com/modelcontextprotocol/registry/releases
+mcp-publisher login github                    # sign in as an owner/member of the ArmorNGlory GitHub org
+mcp-publisher publish                         # reads server.json
+curl "https://registry.modelcontextprotocol.io/v0/servers?search=armornglory"   # verify
+```
+
+> If your GitHub account can't publish under `io.github.ArmorNGlory`, change `mcpName` (package.json) and `name` (server.json) to `io.github.<your-username>/armornglory-mcp-server`, bump the patch version, and re-publish to npm before `mcp-publisher publish`.
+
 ---
 
 ## 1. Submission to `awesome-mcp-servers` (GitHub)
