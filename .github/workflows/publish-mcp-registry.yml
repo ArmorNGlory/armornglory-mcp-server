@@ -1,0 +1,54 @@
+name: Publish to MCP Registry
+
+# Publishes server.json to the official MCP Registry (registry.modelcontextprotocol.io)
+# using GitHub OIDC — no tokens or secrets needed, and nothing runs on a local machine.
+#
+# Triggers:
+#   - pushing a version tag, e.g.  git tag v1.1.0 && git push origin v1.1.0
+#   - manually from the GitHub "Actions" tab (Run workflow)
+#
+# The npm package must already be published at the same version (the registry
+# verifies package.json "mcpName" on npm matches server.json "name").
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+jobs:
+  publish-registry:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write # Required for GitHub OIDC authentication to the MCP Registry
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Verify server.json matches package.json and npm
+        run: |
+          PKG_VERSION=$(jq -r .version package.json)
+          SERVER_VERSION=$(jq -r .version server.json)
+          PKG_IN_SERVER=$(jq -r '.packages[0].version' server.json)
+          echo "package.json=$PKG_VERSION server.json=$SERVER_VERSION packages[0]=$PKG_IN_SERVER"
+          test "$PKG_VERSION" = "$SERVER_VERSION"
+          test "$PKG_VERSION" = "$PKG_IN_SERVER"
+          NPM_VERSIONS=$(npm view armornglory-mcp-server versions --json)
+          echo "$NPM_VERSIONS" | jq -e --arg v "$PKG_VERSION" 'index($v) != null' > /dev/null \
+            || { echo "::error::armornglory-mcp-server@$PKG_VERSION is not on npm yet. Publish to npm first."; exit 1; }
+
+      - name: Install mcp-publisher
+        run: |
+          curl -fsSL "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_$(uname -s | tr '[:upper:]' '[:lower:]')_$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/').tar.gz" | tar xz mcp-publisher
+
+      - name: Authenticate to MCP Registry (GitHub OIDC)
+        run: ./mcp-publisher login github-oidc
+
+      - name: Publish server to MCP Registry
+        run: ./mcp-publisher publish
+
+      - name: Confirm listing
+        run: |
+          sleep 5
+          curl -fsS "https://registry.modelcontextprotocol.io/v0/servers?search=io.github.ArmorNGlory/armornglory-mcp-server" | jq '.servers[] | {name: .server.name, version: .server.version}'
