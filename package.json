@@ -6,7 +6,7 @@
   "type": "module",
   "main": "dist/index.js",
   "bin": {
-    "armornglory-mcp-server": "./dist/index.js"
+    "armornglory-mcp-server": "dist/index.js"
   },
   "files": [
     "dist",
