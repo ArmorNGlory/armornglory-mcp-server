@@ -370,13 +370,16 @@ function searchProducts(filters: ProductSearchFilters): Product[] {
 }
 
 function findProduct(identifier: string): Product | undefined {
-  const clean = identifier.toLowerCase().trim();
-  return products.find(
-    (p) =>
-      p.handle.toLowerCase() === clean ||
-      p.title.toLowerCase() === clean ||
-      String(p.id) === clean ||
-      p.title.toLowerCase().includes(clean)
+  const clean = (identifier || "").toLowerCase().trim();
+  if (!clean) return undefined;
+  // Exact matches first (handle, id, title), then the shortest title containing the text.
+  return (
+    products.find((p) => p.handle.toLowerCase() === clean) ||
+    products.find((p) => String(p.id) === clean) ||
+    products.find((p) => p.title.toLowerCase() === clean) ||
+    products
+      .filter((p) => p.title.toLowerCase().includes(clean))
+      .sort((a, b) => a.title.length - b.title.length)[0]
   );
 }
 
@@ -998,7 +1001,21 @@ server.tool(
       };
     }
 
-    const path = items.map((i) => `${i.variantId}:${i.quantity || 1}`).join(",");
+    const invalid = items.filter(
+      (i) => !/^\d{6,20}$/.test(String(i.variantId).trim()) || !Number.isInteger(i.quantity ?? 1) || (i.quantity ?? 1) < 1 || (i.quantity ?? 1) > 99
+    );
+    if (invalid.length > 0) {
+      return {
+        content: [
+          {
+            type: "text",
+            text: `Invalid item(s): ${invalid.map((i) => String(i.variantId)).join(", ")}. Variant IDs must be numeric Shopify variant IDs (get them from search_armornglory_products or get_armornglory_product_details) and quantities must be whole numbers from 1 to 99.`
+          }
+        ]
+      };
+    }
+
+    const path = items.map((i) => `${String(i.variantId).trim()}:${i.quantity || 1}`).join(",");
     let checkoutUrl = `https://armornglory.com/cart/${path}`;
     const params: string[] = [];
     if (discountCode) {
@@ -1580,6 +1597,26 @@ async function run() {
         res.end();
         return;
       }
+
+      // Reject oversized bodies (self-hosted mode safety): declared size or streamed size over 1 MB.
+      const MAX_BODY_BYTES = 1_000_000;
+      if (Number(req.headers["content-length"] || 0) > MAX_BODY_BYTES) {
+        res.writeHead(413, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ error: "Request body too large" }));
+        req.destroy();
+        return;
+      }
+      let streamedBytes = 0;
+      req.on("data", (chunk: Buffer) => {
+        streamedBytes += chunk.length;
+        if (streamedBytes > MAX_BODY_BYTES) {
+          if (!res.headersSent) {
+            res.writeHead(413, { "Content-Type": "application/json" });
+            res.end(JSON.stringify({ error: "Request body too large" }));
+          }
+          req.destroy();
+        }
+      });
 
       const parsedUrl = new URL(req.url || "/", `http://${req.headers.host || "localhost"}`);
       const pathname = parsedUrl.pathname;

@@ -61,7 +61,11 @@ ArmorNGlory supports direct 1-click cart checkout permalinks. Any combination of
 
 ## 🤖 AI Assistant & MCP Protocol Integration
 
-AI assistants (Claude, ChatGPT, Perplexity, Cursor, Antigravity, Gemini) can query the live catalog, check variant sizes, recommend curated gifts, and generate checkout links using the official MCP server:
+AI assistants can query the catalog, check sizes, recommend gifts, and build checkout links.
+
+1. **ArmorNGlory MCP server** (brand story, scripture meaning, gift curation, fit guidance, cart links)
+   - npm: `armornglory-mcp-server` · MCP Registry: `io.github.ArmorNGlory/armornglory-mcp-server`
+   - Tools: `search_armornglory_products`, `get_armornglory_product_details`, `recommend_faith_gifts`, `get_sizing_and_fit_guide`, `generate_direct_checkout_link`, `answer_faith_fashion_questions`, plus ChatGPT-compatible `search` / `fetch`
 ```json
 {
   "mcpServers": {
@@ -72,5 +76,10 @@ AI assistants (Claude, ChatGPT, Perplexity, Cursor, Antigravity, Gemini) can que
   }
 }
 ```
+2. **Shopify-hosted UCP MCP endpoint** (live inventory, cart, Shop Pay checkout): `https://armornglory.com/api/ucp/mcp` · discovery: `https://armornglory.com/.well-known/ucp`
 
-For full product descriptions, specifications, and complete FAQ index, see [llms-full.txt](https://armornglory.com/llms-full.txt).
+## 🧾 Store policies (summary)
+- Most items are made to order: production typically 2–7 business days; US delivery typically 2–8 business days after shipping; international 10–30 business days. Shipping cost is calculated at checkout. [Shipping policy](https://armornglory.com/policies/shipping-policy)
+- No returns for wrong size or change of mind (made to order); damaged, misprinted, or incorrect items are replaced or refunded within 14 days of delivery. [Refund policy](https://armornglory.com/policies/refund-policy)
+
+For full product descriptions, specifications, and the FAQ index, see [llms-full.txt](https://github.com/ArmorNGlory/armornglory-mcp-server/blob/main/llms-full.txt).

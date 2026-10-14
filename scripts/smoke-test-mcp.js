@@ -44,6 +44,15 @@ check("connector fetch shape", Boolean(doc.id && doc.title && doc.text && doc.ur
 const gift = await client.callTool({ name: "recommend_faith_gifts", arguments: { recipient: "Men / Husband / Dad", occasion: "Baptism", maxBudget: 40 } });
 check("gift advisor", /Option 1/.test(textOf(gift)));
 
+const badCart = await client.callTool({ name: "generate_direct_checkout_link", arguments: { items: [{ variantId: "123/../../evil", quantity: 1 }] } });
+check("checkout rejects non-numeric variant IDs", /Invalid item/.test(textOf(badCart)) && !/armornglory\.com\/cart\/123/.test(textOf(badCart)));
+
+const goodCart = await client.callTool({ name: "generate_direct_checkout_link", arguments: { items: [{ variantId: parsed.results.length ? JSON.parse(textOf(f)).metadata.checkoutUrl.match(/cart\/(\d+)/)[1] : "0", quantity: 2 }] } });
+check("checkout builds cart permalink", /https:\/\/armornglory\.com\/cart\/\d+:2\?/.test(textOf(goodCart)));
+
+const emptyLookup = await client.callTool({ name: "get_armornglory_product_details", arguments: { productHandleOrTitle: "   " } });
+check("empty product lookup returns not-found", /not found/i.test(textOf(emptyLookup)));
+
 const footer = textOf(nl);
 check("no unverified free-shipping claim", !/free shipping/i.test(footer));
 
