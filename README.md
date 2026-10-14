@@ -88,6 +88,7 @@ npm install
 npm run sync-data       # pull the live catalog from armornglory.com (public products.json)
 npm run build
 npm test                # data checks + full MCP protocol smoke test
+npm run audit:deps      # dependency vulnerability audit (also runs automatically before publish)
 npm run card            # regenerate .well-known/mcp/server-card.json from the real server
 npm run audit:catalog   # AI-readiness audit of product titles/data -> reports/
 npm run content         # regenerate the Shopify article kit -> content/
@@ -97,6 +98,7 @@ Discovery & growth docs:
 - [AI_DISCOVERABILITY_CHECKLIST.md](AI_DISCOVERABILITY_CHECKLIST.md): the full checklist (Shopify admin, publishing, directories)
 - [DIRECTORY_SUBMISSIONS.md](DIRECTORY_SUBMISSIONS.md): listing copy for MCP directories
 - [content/README.md](content/README.md): publishing the article kit
+- [SECURITY.md](SECURITY.md): security policy and vulnerability reporting
 
 ---
 

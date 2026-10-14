@@ -26,9 +26,10 @@
     "audit:catalog": "node scripts/audit-catalog-for-ai.js",
     "test": "node scripts/test-mcp-tools.js && node scripts/smoke-test-mcp.js",
     "logs": "cat logs/agent_activity.jsonl 2>/dev/null || echo 'No agent activity recorded yet.'",
-    "prepublishOnly": "npm run build && npm run card && npm test",
+    "prepublishOnly": "npm run audit:deps && npm run build && npm run card && npm test",
     "card": "node scripts/generate-server-card.js",
-    "content": "node scripts/build-content-kit.js"
+    "content": "node scripts/build-content-kit.js",
+    "audit:deps": "npm audit --omit=dev --audit-level=high"
   },
   "keywords": [
     "mcp",

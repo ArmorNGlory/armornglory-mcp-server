@@ -1,0 +1,16 @@
+# Weekly dependency + GitHub Actions update PRs (security fixes are raised immediately
+# when "Dependabot security updates" is enabled in repo Settings → Security).
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    groups:
+      minor-and-patch:
+        update-types: ["minor", "patch"]
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"

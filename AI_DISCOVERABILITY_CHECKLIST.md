@@ -98,6 +98,6 @@ To do:
 
 ## Keep it fresh (whenever products change)
 ```bash
-npm run sync-data && npm run build && npm test && npm run card && npm run audit:catalog && npm run content
+npm run audit:deps && npm run sync-data && npm run build && npm test && npm run card && npm run audit:catalog && npm run content
 npm version patch && npm publish && mcp-publisher publish
 ```
