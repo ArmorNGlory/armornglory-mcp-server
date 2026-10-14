@@ -3,7 +3,7 @@
   "name": "io.github.ArmorNGlory/armornglory-mcp-server",
   "title": "ArmorNGlory: Christian Streetwear & Faith Apparel",
   "description": "Shop Christian streetwear: scripture hats, Bible verse tees, hoodies, foam clogs, and faith gifts",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "websiteUrl": "https://armornglory.com",
   "repository": {
     "url": "https://github.com/ArmorNGlory/armornglory-mcp-server",
@@ -13,7 +13,7 @@
     {
       "registryType": "npm",
       "identifier": "armornglory-mcp-server",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "transport": {
         "type": "stdio"
       }

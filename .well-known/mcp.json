@@ -3,7 +3,7 @@
   "name": "armornglory-store-search",
   "title": "ArmorNGlory: Christian Streetwear & Faith Apparel MCP",
   "description": "Lets AI assistants (Claude, ChatGPT, Gemini, Cursor, Windsurf, Antigravity) search, recommend, and build 1-click checkout links for ArmorNGlory Christian streetwear: scripture trucker hats, Bible verse tees, Christian hoodies, EVA foam clogs, gym wear, and Christian gifts.",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "website": "https://armornglory.com",
   "repository": "https://github.com/ArmorNGlory/armornglory-mcp-server",
   "package": "armornglory-mcp-server",

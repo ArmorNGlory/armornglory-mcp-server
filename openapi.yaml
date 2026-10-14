@@ -5,7 +5,7 @@ info:
     Official API for discovering, styling, and generating 1-click checkout links
     for Christian streetwear, 5-panel trucker caps, EVA foam clogs, and heavyweight
     faith apparel from ArmorNGlory.com ("Strengthened for the Journey Ahead").
-  version: 1.1.0
+  version: 1.1.1
 servers:
   - url: https://armornglory.com
     description: Production Shopify Storefront

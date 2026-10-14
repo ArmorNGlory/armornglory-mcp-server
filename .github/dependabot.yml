@@ -1,16 +1,38 @@
-# Weekly dependency + GitHub Actions update PRs (security fixes are raised immediately
-# when "Dependabot security updates" is enabled in repo Settings → Security).
+# Dependabot — low-noise configuration
+#
+# - Security alerts (repo Settings → Code security) are unaffected: GitHub still alerts you
+#   about vulnerable dependencies. `npm run audit:deps` also blocks publishing on high/critical issues.
+# - Routine version updates: at most ONE grouped PR per ecosystem per month, minor + patch only.
+# - Major-version upgrades (e.g. TypeScript 5 → 7, zod 3 → 4) are ignored here because they can
+#   break the build; they get upgraded deliberately and tested, not via automatic PRs.
 version: 2
 updates:
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      interval: "weekly"
-    open-pull-requests-limit: 5
+      interval: "monthly"
+    open-pull-requests-limit: 1
     groups:
-      minor-and-patch:
+      all-minor-and-patch:
+        patterns: ["*"]
         update-types: ["minor", "patch"]
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+    commit-message:
+      prefix: "chore(deps)"
+
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
+    open-pull-requests-limit: 1
+    groups:
+      all-actions:
+        patterns: ["*"]
+        update-types: ["minor", "patch"]
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+    commit-message:
+      prefix: "chore(ci)"
