@@ -50,6 +50,8 @@
     "baptism-gifts",
     "christian-shoes",
     "foam-clogs",
+    "christian-water-bottle",
+    "christian-phone-case",
     "shopify",
     "ecommerce",
     "ai-shopping",
@@ -73,11 +75,11 @@
     "node": ">=18"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.32.1",
-    "zod": "^3.25.0"
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
-    "@types/node": "^22.13.4",
+    "@types/node": "^22.20.5",
     "typescript": "^5.7.3"
   }
 }

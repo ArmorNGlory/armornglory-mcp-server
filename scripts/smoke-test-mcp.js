@@ -33,6 +33,18 @@ check("natural-language search returns hats", /Hats & Headwear/.test(textOf(nl))
 const verse = await client.callTool({ name: "search_armornglory_products", arguments: { scripture: "Romans 8:37" } });
 check("scripture filter", /Romans 8:37/i.test(textOf(verse)));
 
+const bottle = await client.callTool({ name: "search_armornglory_products", arguments: { query: "stainless steel water bottle" } });
+check("water bottle search returns drinkware", /Stainless Steel Water Bottle/i.test(textOf(bottle)));
+
+const s26 = await client.callTool({ name: "search_armornglory_products", arguments: { query: "Samsung Galaxy S26 phone case" } });
+check("Samsung Galaxy S26 case search", /Samsung Galaxy S26/i.test(textOf(s26)));
+
+const holidayCol = await client.callTool({ name: "get_collection_products", arguments: { collectionHandleOrTitle: "christmas-collection", limit: 5 } });
+check("christmas-collection lookup returns items", /https:\/\/armornglory\.com\/products\//i.test(textOf(holidayCol)));
+
+const accCol = await client.callTool({ name: "get_collection_products", arguments: { collectionHandleOrTitle: "misc-amp-accessories", limit: 5 } });
+check("accessories collection lookup returns items", /https:\/\/armornglory\.com\/products\//i.test(textOf(accCol)));
+
 const s = await client.callTool({ name: "search", arguments: { query: "foam clogs" } });
 const parsed = JSON.parse(textOf(s));
 check("connector search shape", Array.isArray(parsed.results) && parsed.results.length > 0 && parsed.results.every((r) => r.id && r.title && r.url));

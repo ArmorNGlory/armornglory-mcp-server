@@ -42,6 +42,7 @@ async function safeJsonFetch(urlStr) {
 
   const res = await fetch(secureUrl, {
     signal: AbortSignal.timeout(5000),
+    redirect: "error",
     headers: {
       "User-Agent": "Mozilla/5.0 (compatible; ArmorNGloryMCPSync/1.0; +https://armornglory.com)",
       "Accept": "application/json"
@@ -100,8 +101,21 @@ const SCRIPTURE_PATTERNS = [
   { ref: "Matthew 5:14-16", keywords: ["matthew 5:14", "light of the world", "city on a hill"] },
   { ref: "2 Timothy 1:7", keywords: ["2 timothy 1:7", "not a spirit of fear", "power and love"] },
   { ref: "Galatians 2:20", keywords: ["galatians 2:20", "crucified with christ"] },
+  { ref: "Galatians 6:9", keywords: ["galatians 6:9", "do not grow weary"] },
   { ref: "Hebrews 11:1", keywords: ["hebrews 11:1", "faith is confidence", "assurance"] },
   { ref: "Isaiah 6:8", keywords: ["isaiah 6:8", "send me", "here am i send me"] },
+  { ref: "1 Corinthians 9:24-27", keywords: ["1 corinthians 9:24", "run your race"] },
+  { ref: "1 Corinthians 10:31", keywords: ["1 corinthians 10:31", "every rep, his glory", "every rep his glory"] },
+  { ref: "2 Corinthians 5:7", keywords: ["2 corinthians 5:7", "walk by faith"] },
+  { ref: "Philippians 3:14", keywords: ["philippians 3:14", "press toward the mark"] },
+  { ref: "Colossians 3:23", keywords: ["colossians 3:23", "work from the heart"] },
+  { ref: "Proverbs 4:23", keywords: ["proverbs 4:23", "guard the heart", "guard your heart"] },
+  { ref: "Romans 12:2", keywords: ["romans 12:2"] },
+  { ref: "Psalm 42:1-2", keywords: ["psalm 42:1", "psalm 42:2", "thirst for the living god"] },
+  { ref: "Psalm 46:10", keywords: ["psalm 46:10", "be still and know", "be still, i'm trying", "be still i'm trying"] },
+  { ref: "Psalm 62:6", keywords: ["psalm 62:6"] },
+  { ref: "Psalm 90:17", keywords: ["psalm 90:17", "establish the work"] },
+  { ref: "Mark 12:31", keywords: ["mark 12:31", "love your neighbor"] },
   { ref: "Est 33 AD", keywords: ["33 ad", "est 33 ad", "resurrection"] }
 ];
 
@@ -185,7 +199,7 @@ function categorizeProduct(type, title, tags) {
   if (t.includes("kids") || has(/\b(youth|kids)\b/)) {
     return "Kids & Youth";
   }
-  if (t.includes("bag") || t.includes("mug") || has(/\b(totes?|mugs?|bags?|blankets?)\b/)) {
+  if (t.includes("bag") || t.includes("mug") || t.includes("bottle") || t.includes("tumbler") || t.includes("drinkware") || has(/\b(totes?|mugs?|tumblers?|water bottles?|bottles?|drinkware|bags?|blankets?)\b/)) {
     return "Accessories";
   }
   return "Apparel & Accessories";
@@ -210,7 +224,7 @@ function determineAesthetic(title, bodyText, tags) {
   if (combined.includes("america") || combined.includes("americana") || combined.includes("250th") || combined.includes("fourth of july")) {
     aesthetics.push("Vintage Americana");
   }
-  if (combined.includes("activewear") || combined.includes("second wind") || combined.includes("athletic") || combined.includes("gym")) {
+  if (combined.includes("activewear") || combined.includes("second wind") || combined.includes("athletic") || combined.includes("gym") || combined.includes("training gear")) {
     aesthetics.push("Athletic / Performance");
   }
 

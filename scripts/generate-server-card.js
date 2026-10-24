@@ -23,7 +23,7 @@ const card = {
     websiteUrl: info.websiteUrl,
     description:
       "Shop modern Christian streetwear and faith apparel from ArmorNGlory.com inside any AI assistant: scripture trucker hats and dad caps, " +
-      "Bible verse t-shirts, Christian hoodies, EVA foam clogs, Christian gym wear, phone cases, and Christian gifts (baptism, Father's Day, " +
+      "Bible verse t-shirts, Christian hoodies, EVA foam clogs, Christian gym wear, stainless steel water bottles, iPhone & Samsung Galaxy S26 phone cases, and Christian gifts (baptism, Father's Day, " +
       "new believer). Search by verse, style, occasion, size, or price; get the meaning behind each design, fit advice, and 1-click Shopify checkout links."
   },
   instructions: client.getInstructions(),
