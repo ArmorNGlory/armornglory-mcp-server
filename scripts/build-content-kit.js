@@ -373,6 +373,112 @@ ${faqBlock([
 }
 
 // ---------------------------------------------------------------------------
+// 6. Christian Christmas & Holiday Gift Guide (Q4 buyer queries)
+// ---------------------------------------------------------------------------
+{
+  const seen = new Set();
+  const holidayPicks = pick((p) => /christmas|nativity|friendsmas|better together|peace on earth|plaid pajama/i.test(`${p.title} ${p.tags.join(" ")}`), 5, seen);
+  const menPicks = pick((p) => p.category === "Hats & Headwear" && p.scriptures.length > 0, 4, seen);
+  const cozyPicks = pick(byCat("Hoodies & Sweatshirts"), 4, seen);
+  const bottleGiftPicks = pick((p) => p.handle.includes("stainless-steel-water-bottle"), 4, seen);
+  const stockingUnder35 = pick((p) => p.minPrice <= 35 && ["Footwear & Clogs", "Phone Cases"].includes(p.category), 5, seen);
+
+  written.push(
+    writeArticle({
+      slug: "christian-christmas-gifts-guide",
+      title: `Meaningful Christian Christmas Gifts (That Aren't Cheesy): A ${YEAR} Gift Guide`,
+      metaDescription: "Thoughtful Christian Christmas gifts for men, women, teens and small groups: scripture trucker hats, hoodies, stainless steel water bottles and clogs.",
+      tags: ["Christian Christmas gifts", "Christian gifts", "faith gifts", "holiday gift guide"],
+      body: `
+<p><strong>Short answer:</strong> the best Christian Christmas gifts combine daily utility with a specific scripture that fits the person's season of life. One-size pieces like adjustable scripture trucker hats, double-wall stainless steel water bottles, and tough magnetic phone cases eliminate sizing guesswork, while heavyweight hoodies and EVA foam clogs cover cozy winter wear.</p>
+
+${holidayPicks.length ? `<h2>Holiday, Friendsmas &amp; cozy seasonal picks</h2>\n${productList(holidayPicks)}` : ""}
+
+<h2>Christmas gifts for men &amp; dads (no size guesswork)</h2>
+<p>Adjustable 5-panel scripture trucker caps fit most adult heads (about 21.5"–23.5" circumference) and carry a verse daily without feeling preachy.</p>
+${productList(menPicks)}
+<p><a href="${STORE}/collections/hats-beanies">Shop all Christian hats &amp; beanies</a></p>
+
+<h2>Cozy winter layers: Christian hoodies &amp; crewnecks</h2>
+${productList(cozyPicks)}
+<p><a href="${STORE}/collections/hoodies-sweatshirts">Shop all hoodies &amp; sweatshirts</a></p>
+
+<h2>Gifts for gym lovers &amp; runners: insulated scripture water bottles</h2>
+<p>Double-wall 100% stainless steel water bottles with BPA-free polypropylene lids that help keep drinks cold for up to 24 hours or warm for up to 12 hours.</p>
+${productList(bottleGiftPicks)}
+<p><a href="${STORE}/collections/misc-amp-accessories">Shop all drinkware &amp; accessories</a></p>
+
+<h2>Gifts for teens &amp; stocking stuffers under $35</h2>
+${productList(stockingUnder35)}
+
+<h2>Christmas shipping &amp; ordering tips</h2>
+<ul>
+  <li><strong>Order early for December delivery:</strong> ${POLICY.madeToOrder.toLowerCase()} ${POLICY.processing}, and ${POLICY.usShipping}, so place holiday orders at least 2–3 weeks ahead of your gift exchange.</li>
+  <li><strong>Double-check phone models &amp; clog sizes:</strong> phone cases are model-specific (including iPhone MagSafe and Samsung Galaxy S26 / S26 Plus / S26 Ultra), and EVA foam clogs run roomy (size down if between sizes).</li>
+</ul>
+
+${faqBlock([
+  { q: "What is a good Christian Christmas gift for a man who has everything?", a: `A one-size scripture trucker hat (such as Romans 8:37 or Exodus 3:5) or an insulated stainless steel water bottle built around a passage like Proverbs 4:23 or 1 Corinthians 10:31 is practical every day and doesn't require guessing clothing sizes. <a href="${STORE}/collections/hats-beanies">Browse hats</a> or <a href="${STORE}/collections/misc-amp-accessories">drinkware</a>.` },
+  { q: "What are good Christian gifts for teens and college students?", a: `EVA foam clogs, tough magnetic phone cases (for iPhone and Samsung Galaxy S26 series), and relaxed streetwear hoodies are popular daily staples for students. <a href="${STORE}/collections/phone-cases">See phone cases</a> and <a href="${STORE}/collections/faith-footwear">faith footwear</a>.` },
+  { q: "When should I order for Christmas delivery?", a: `${POLICY.madeToOrder} ${POLICY.processing}, and ${POLICY.usShipping}. Order at least 2 to 3 weeks before Christmas for US addresses (and earlier for international orders).` },
+  SHIPPING_FAQ,
+  RETURNS_FAQ
+])}
+`
+    })
+  );
+}
+
+// ---------------------------------------------------------------------------
+// 7. Christian water bottles & faith gym / training gear
+// ---------------------------------------------------------------------------
+{
+  const seen = new Set();
+  const bottles = pick((p) => p.handle.includes("stainless-steel-water-bottle"), 10, seen);
+  const workoutApparel = pick(
+    (p) =>
+      (p.category === "Activewear & Training" || p.category === "T-Shirts & Tops") &&
+      (p.aesthetics.includes("Athletic / Performance") || /workout|gym|running|press on|grace over grind|strong in the lord|pillars|second wind/i.test(`${p.title} ${p.tags.join(" ")}`)),
+    8,
+    seen
+  );
+  const gymExtras = pick((p) => /duffel/i.test(p.title) || p.category === "Footwear & Clogs", 4, seen);
+
+  written.push(
+    writeArticle({
+      slug: "christian-water-bottles-gym-training-gear",
+      title: "Christian Water Bottles & Faith Gym Gear: Scripture Drinkware & Workout Apparel",
+      metaDescription: `Insulated stainless steel Christian water bottles (${priceRange(bottles)}) and faith workout shirts built around 1 Corinthians 10:31, Proverbs 4:23 & Isaiah 40:31.`,
+      tags: ["Christian water bottle", "Christian gym wear", "faith activewear", "workout shirts"],
+      body: `
+<p><strong>Short answer:</strong> ArmorNGlory's Faith Training Gear pairs double-wall 100% stainless steel scripture water bottles (${priceRange(bottles)}) with heavyweight garment-dyed workout tees, performance tanks, and gym duffels. Every design is anchored in a passage about stewardship, endurance, and discipline—such as 1 Corinthians 10:31 ("Every Rep, His Glory"), 1 Corinthians 9:24–27 ("Run Your Race"), Proverbs 4:23 ("Guard the Heart"), and Isaiah 40:31 ("Second Wind").</p>
+
+<h2>Insulated stainless steel Christian water bottles</h2>
+<p>Each bottle is made with a 100% stainless steel double-wall body and a BPA-free 100% polypropylene lid, helping keep drinks cold for up to 24 hours or warm for up to 12 hours.</p>
+${productList(bottles)}
+<p><a href="${STORE}/collections/misc-amp-accessories">Shop all Christian water bottles &amp; accessories</a></p>
+
+<h2>Christian gym shirts, pump covers &amp; running tees</h2>
+<p>From relaxed Comfort Colors 1717 heavyweight cotton pump covers to breathable athletic tops, these pieces are built for lifting, running, and daily training.</p>
+${productList(workoutApparel)}
+<p><a href="${STORE}/collections/activewear">Shop all Christian activewear</a></p>
+
+<h2>Gym duffels &amp; post-workout recovery slip-ons</h2>
+${productList(gymExtras)}
+
+${faqBlock([
+  { q: "Are ArmorNGlory Christian water bottles insulated and BPA-free?", a: "Yes. Every Faith Training Gear water bottle features a double-wall 100% stainless steel body and a BPA-free 100% polypropylene lid, helping keep drinks cold for up to 24 hours or warm for up to 12 hours." },
+  { q: "What Bible verses are on the Faith Training Gear water bottles?", a: "Designs include 1 Corinthians 10:31 (Every Rep, His Glory), Proverbs 4:23 (Guard the Heart), Philippians 3:14 (Press Toward the Mark), Galatians 6:9 (Do Not Grow Weary), Romans 12:2 (Renewed), Colossians 3:23 (Work from the Heart), Psalm 62:6 (Unmoved), Psalm 90:17 (Establish the Work), 1 Corinthians 9:24–27 (Run Your Race), and Psalm 42:1–2 (Thirst for the Living God)." },
+  { q: "What shirts work best as a Christian gym pump cover?", a: `Heavyweight relaxed-fit tees (such as Comfort Colors 1717 6.1 oz ring-spun cotton) drape well over gym gear; size up one size if you want an oversized pump-cover fit. <a href="${STORE}/collections/activewear">Browse activewear</a>.` },
+  SHIPPING_FAQ,
+  RETURNS_FAQ
+])}
+`
+    })
+  );
+}
+
+// ---------------------------------------------------------------------------
 // Publishing guide
 // ---------------------------------------------------------------------------
 const readme = `# ArmorNGlory GEO Content Kit

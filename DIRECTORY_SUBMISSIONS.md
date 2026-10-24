@@ -2,19 +2,19 @@
 
 Use this launch kit to submit, index, and promote the MCP Server across AI developer catalogs, directories, e-commerce agent registries, and community forums.
 
-## Status (audited 2026-10-13)
+## Status (updated 2026-10-24)
 
 | Channel | Status | Action |
 |---|---|---|
-| npm `armornglory-mcp-server` | Was stuck on 1.0.4 | Publish 1.1.0 (`npm publish`) |
-| Official MCP Registry | Not listed | `mcp-publisher publish` (section 0) |
-| GitHub repo | Public ✅ | Push latest |
-| Glama | Listed ✅ | Click **Claim** and re-sync after pushing (`glama.json` lists the maintainer) |
-| Smithery | Not listed | Section 2 (`smithery.yaml` + `Dockerfile` are ready) |
-| PulseMCP | Unknown | Auto-ingests from the MCP Registry; submit manually if missing after a week |
-| awesome-mcp-servers | Not listed | Section 1 PR |
-| mcp.so | Not listed | https://mcp.so/submit: use the Smithery copy below |
-| Cline MCP Marketplace | Not listed | Issue at https://github.com/cline/mcp-marketplace (needs a 400×400 PNG logo) |
+| npm `armornglory-mcp-server` | Live at **v1.1.1** ✅ | Up to date (347 products, 0 vulns) |
+| Official MCP Registry | Live at **v1.1.1** ✅ | Published via GitHub Actions OIDC (`io.github.ArmorNGlory/armornglory-mcp-server`) |
+| GitHub repo | Public ✅ | Add repo topics + website URL + publish `v1.1.1` Release |
+| Glama | Listed ✅ | Click **Claim** and re-sync (`glama.json` lists the maintainer) |
+| Smithery | Ready to submit | Section 2 (`smithery.yaml`, `Dockerfile`, and `server-card.json` are ready) |
+| PulseMCP | Auto-ingests from MCP Registry | Verify listing in ~3–7 days or submit at https://www.pulsemcp.com/submit |
+| awesome-mcp-servers | Ready to PR | Section 1 (exact `### 🛒 E-Commerce` entry format below) |
+| mcp.so | Ready to submit | https://mcp.so/submit: use the Smithery copy below |
+| Cline MCP Marketplace | Optional | Issue at https://github.com/cline/mcp-marketplace (needs a 400×400 PNG logo) |
 
 ---
 
@@ -38,22 +38,23 @@ curl "https://registry.modelcontextprotocol.io/v0/servers?search=armornglory"   
 
 **Target Repository:** [https://github.com/punkpeye/awesome-mcp-servers](https://github.com/punkpeye/awesome-mcp-servers)
 
-### PR Line to Add:
-Under the **E-Commerce & Shopping** or **Lifestyle & Search** category in `README.md`:
+### Exact PR Line to Add (Matches Official Legend & Alphabetical Order):
+Under `### 🛒 <a name="e-commerce"></a>E-Commerce` in `README.md` (place alphabetically with `A1-x-Tech/...` at the top of the section):
 
 ```markdown
-- [Christian Streetwear & Faith Apparel](https://github.com/ArmorNGlory/armornglory-mcp-server) 🛍️ - Discover, search, style, and generate 1-click Shopify checkout links for Christian streetwear, 5-panel trucker hats, EVA foam clogs, and Bible verse clothing from ArmorNGlory.
+- [ArmorNGlory/armornglory-mcp-server](https://github.com/ArmorNGlory/armornglory-mcp-server) [![ArmorNGlory/armornglory-mcp-server MCP server](https://glama.ai/mcp/servers/ArmorNGlory/armornglory-mcp-server/badges/score.svg)](https://glama.ai/mcp/servers/ArmorNGlory/armornglory-mcp-server) 🎖️ 📇 ☁️ 🍎 🪟 🐧 - Official ArmorNGlory Shopify store MCP: search 340+ Christian streetwear pieces, scripture trucker hats, EVA foam clogs, insulated water bottles, and faith gifts by Bible verse, with sizing advice and 1-click checkout links.
 ```
 
 ### PR Title & Description:
-* **Title:** `Add Christian Streetwear & Faith Apparel MCP Server`
+* **Title:** `Add ArmorNGlory/armornglory-mcp-server to E-Commerce 🤖🤖🤖` *(note: `🤖🤖🤖` opts into their fast-track merge queue per `CONTRIBUTING.md`)*
 * **Description:**
   ```markdown
   ### Description
-  Adds the Christian Streetwear & Faith Apparel MCP server, allowing LLMs (Claude, Cursor, ChatGPT, Gemini, Windsurf) to natively discover, search, style, and generate instant 1-click checkout permalinks for Christian streetwear, graphic tees, trucker caps, EVA foam clogs, and faith gifts.
+  Adds the official `ArmorNGlory/armornglory-mcp-server` under **E-Commerce**, enabling AI assistants (Claude, Cursor, ChatGPT, Gemini, Windsurf, VS Code) to search 340+ Christian streetwear items by Bible verse, aesthetic, occasion, size, or budget, get design theology and fit advice, and build 1-click Shopify checkout links.
 
   - **Repo:** https://github.com/ArmorNGlory/armornglory-mcp-server
   - **npm:** https://www.npmjs.com/package/armornglory-mcp-server
+  - **MCP Registry:** `io.github.ArmorNGlory/armornglory-mcp-server`
   - **Website:** https://armornglory.com
   - **License:** MIT
   ```

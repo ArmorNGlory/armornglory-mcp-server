@@ -15,6 +15,8 @@ These articles target the questions shoppers ask AI assistants. Today those answ
 | `articles/christian-eva-foam-clogs-faith-slip-ons.html` | Christian EVA Foam Clogs: Faith-Inspired Slip-Ons (and How They Fit) |
 | `articles/meaningful-baptism-gifts.html` | Meaningful Baptism Gifts for Men, Women & Teens (That They'll Actually Use) |
 | `articles/bible-verse-clothing-by-scripture.html` | Bible Verse Clothing by Scripture: Shirts, Hoodies & Hats for Your Favorite Verse |
+| `articles/christian-christmas-gifts-guide.html` | Meaningful Christian Christmas Gifts (That Aren't Cheesy): A 2026 Gift Guide |
+| `articles/christian-water-bottles-gym-training-gear.html` | Christian Water Bottles & Faith Gym Gear: Scripture Drinkware & Workout Apparel |
 
 ## How to publish (about 5 minutes per article)
 1. Shopify Admin → **Online Store → Blog posts → Create blog post**. Create a new blog called **"Style Guides"** (handle `style-guides`) the first time.
