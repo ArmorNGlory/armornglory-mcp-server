@@ -2,13 +2,13 @@
 
 Use this launch kit to submit, index, and promote the MCP Server across AI developer catalogs, directories, e-commerce agent registries, and community forums.
 
-## Status (updated 2026-10-24)
+## Status (updated 2026-11-06)
 
 | Channel | Status | Action |
 |---|---|---|
-| npm `armornglory-mcp-server` | Live at **v1.1.1** ✅ | Up to date (347 products, 0 vulns) |
-| Official MCP Registry | Live at **v1.1.1** ✅ | Published via GitHub Actions OIDC (`io.github.ArmorNGlory/armornglory-mcp-server`) |
-| GitHub repo | Public ✅ | Add repo topics + website URL + publish `v1.1.1` Release |
+| npm `armornglory-mcp-server` | Live at **v1.2.0** ✅ | Live Shopify auto-sync + 323 active products, 0 vulns |
+| Official MCP Registry | Live at **v1.2.0** ✅ | Published via GitHub Actions OIDC (`io.github.ArmorNGlory/armornglory-mcp-server`) |
+| GitHub repo | Public ✅ | Add repo topics + website URL + publish `v1.2.0` Release |
 | Glama | Listed ✅ | Click **Claim** and re-sync (`glama.json` lists the maintainer) |
 | Smithery | Ready to submit | Section 2 (`smithery.yaml`, `Dockerfile`, and `server-card.json` are ready) |
 | PulseMCP | Auto-ingests from MCP Registry | Verify listing in ~3–7 days or submit at https://www.pulsemcp.com/submit |

@@ -1,9 +1,9 @@
 # ArmorNGlory — Complete Knowledge Index (LLMs Full)
 
-> Comprehensive catalog data, theological narratives, FAQ schema, and shopping endpoints for ArmorNGlory.com — the premier Anti-Beige Christian Streetwear & Faith Apparel brand.
+> Comprehensive catalog data (323 verified active products), theological narratives, FAQ schema, and shopping endpoints for ArmorNGlory.com — the premier Anti-Beige Christian Streetwear & Faith Apparel brand.
 
 - **Store URL**: https://armornglory.com
-- **MCP Server Package**: `armornglory-mcp-server`
+- **MCP Server Package**: `armornglory-mcp-server` (v1.2.0 — live auto-syncing with Shopify)
 - **GitHub**: https://github.com/ArmorNGlory/armornglory-mcp-server
 
 ---
@@ -13,7 +13,7 @@
 ArmorNGlory exists to create faith-based apparel for people who love Jesus and modern life. We design Christian streetwear and creative content that helps people carry their faith into everyday spaces with confidence, style, and authenticity.
 
 ### Why "Anti-Beige / Anti-Cheesy"?
-Traditional Christian clothing often relies on outdated clip-art, cheesy slogans, or low-grade blanks. ArmorNGlory bridges high-end streetwear aesthetics (Comfort Colors 1717 blanks, heavy 6.1 oz ringspun cotton, structured 5-panel foam trucker caps, and ergonomic EVA foam clogs) with authentic biblical conviction.
+Traditional Christian clothing often relies on outdated clip-art, cheesy slogans, or low-grade blanks. ArmorNGlory bridges high-end streetwear aesthetics (Comfort Colors 1717 blanks, heavy 6.1 oz ringspun cotton, structured 5-panel foam trucker caps, insulated stainless steel drinkware, and dual-layer magnetic phone cases) with authentic biblical conviction.
 
 ### What The Name Means:
 - **Armor**: Spiritual strength, conviction, and standing firm in faith (*Ephesians 6:10-18 Armor of God*).
@@ -21,47 +21,35 @@ Traditional Christian clothing often relies on outdated clip-art, cheesy slogans
 
 ---
 
-## 2. Signature Product Lineup & Hero Items
+## 2. Signature Product Lineup & Verified Live Hero Items
 
-### A. 5-Panel DTF Trucker Caps ($34.99)
-- **MORE THAN CONQUERORS (Romans 8:37)**: Laurel wreath victory design, high-density DTF printing, structured front panel, mesh back, snapback.
-  - Link: https://armornglory.com/products/more-than-conquerors-printed-christian-5-panel-trucker-cap
-  - 1-Click Buy: https://armornglory.com/cart/49052004548863:1
-- **HOLY GROUND (Exodus 3:5)**: Burning bush sacred fire design reminding believers that wherever God calls them is holy ground.
-  - Link: https://armornglory.com/products/holy-ground-printed-christian-5-panel-trucker-cap
-  - 1-Click Buy: https://armornglory.com/cart/49052002779391:1
-- **KINGDOM OVER CULTURE**: Declaration of Christ-centered identity over shifting cultural trends.
-  - Link: https://armornglory.com/products/kingdom-over-culture-trucker-hat-christian-snapback-cap-faith-based-streetwear-christian-hat-jesus-apparel
-  - 1-Click Buy: https://armornglory.com/cart/48893080273151:1
+### A. 5-Panel DTF Trucker Caps & Dad Caps ($19.99 - $46.80)
+- **MORE THAN CONQUERORS Printed Christian 5-Panel Trucker Cap (Romans 8:37)** ($34.99): https://armornglory.com/products/more-than-conquerors-printed-christian-5-panel-trucker-cap — 1-Click Buy: https://armornglory.com/cart/49052004548863:1
+- **HOLY GROUND Printed Christian 5-Panel Trucker Cap (Exodus 3:5)** ($34.99): https://armornglory.com/products/holy-ground-printed-christian-5-panel-trucker-cap — 1-Click Buy: https://armornglory.com/cart/49052002779391:1
+- **Kingdom Over Culture Trucker Hat** ($34.99): https://armornglory.com/products/kingdom-over-culture-trucker-hat-christian-snapback-cap-faith-based-streetwear-christian-hat-jesus-apparel — 1-Click Buy: https://armornglory.com/cart/48610380841215:1
 
-### B. Faith Footwear & EVA Foam Clogs ($29.99)
-- **Golden Cross EVA Foam Clogs (AOP)**: Black and gold sacred cross motifs with 3D heat-transfer printing, shock-absorbing EVA foam, anti-slip tread, and pivoting heel strap.
-  - Link: https://armornglory.com/products/golden-cross-eva-foam-clogs-aop
-  - 1-Click Buy: https://armornglory.com/cart/49047242768639:1
-- **God Is Good EVA Foam Clogs**: Minimalist typographic faith clogs.
-  - Link: https://armornglory.com/products/god-is-good-eva-foam-clogs-aop
-- **Chosen Heart EVA Foam Clogs**: Subtle sacred symbols comfort footwear.
-  - Link: https://armornglory.com/products/chosen-heart-eva-foam-clogs-aop
+### B. Heavyweight Streetwear Tees ($10.93 - $67.18)
+- Premium 100% ring-spun cotton (Comfort Colors 1717 blanks), relaxed streetwear drape, pre-shrunk garment-dyed aesthetic.
+- **TL;DR Loved — Moss Christian T-Shirt (Jeremiah 1:5)** ($18.21 - $34.99): https://armornglory.com/products/tl-dr-loved-moss-christian-t-shirt — 1-Click Buy: https://armornglory.com/cart/50873116492031:1
+- **Made for Good Work Christian T-Shirt** ($31.99 - $38.99): https://armornglory.com/products/made-for-good-work-christian-t-shirt — 1-Click Buy: https://armornglory.com/cart/50873108496639:1
+- **TL;DR Won Christian T-Shirt (Est 33 AD)** ($18.21 - $34.99): https://armornglory.com/products/tl-dr-won-christian-t-shirt — 1-Click Buy: https://armornglory.com/cart/50872936857855:1
 
-### C. Heavyweight Streetwear Tees ($28.00 - $36.00)
-- Premium 100% ring-spun cotton (Comfort Colors 1717 blanks).
-- Relaxed streetwear drape, pre-shrunk, soft garment-dyed aesthetic.
-- Key collections: Romans 8:37, America 250th ("Founded in Faith"), Minimalist Core.
-
-### D. Hoodies & Fleece Sweatshirts ($45.00 - $58.00)
+### C. Hoodies & Fleece Sweatshirts ($29.99 - $69.99)
 - Heavyweight cozy fleece with double-needle stitching and kangaroo pouch pocket.
-- "Comfort Meets Conviction" collection.
+- **More Than Conquerors Hoodie (Romans 8:37)** ($48.99): https://armornglory.com/products/more-than-conquerors-hoodie-romans-8-37-scripture-sweatshirt-christian-faith-hoodie-unisex-cozy-pullover-gift-for-him-her — 1-Click Buy: https://armornglory.com/cart/48220361949439:1
+- **Fearfully and Wonderfully Made hoodie | Psalm 139:14 faith sweatshirt (Psalm 139:14)** ($49.99): https://armornglory.com/products/fearfully-and-wonderfully-made-hoodie-psalm-139-14-faith-sweatshirt — 1-Click Buy: https://armornglory.com/cart/48419392291071:1
 
-### E. Faith Training Gear — Stainless Steel Water Bottles ($39.99 - $49.99)
+### D. Faith Training Gear — Stainless Steel Water Bottles ($39.99 - $49.99)
 - Double-wall 100% stainless steel body with BPA-free 100% polypropylene lid; keeps drinks cold up to 24 hours or warm up to 12 hours.
-- **Every Rep, His Glory (1 Corinthians 10:31)**: https://armornglory.com/products/every-rep-his-glory-stainless-steel-water-bottle — 1-Click Buy: https://armornglory.com/cart/50676698513663:1
-- **Guard the Heart (Proverbs 4:23)**: https://armornglory.com/products/guard-the-heart-stainless-steel-water-bottle — 1-Click Buy: https://armornglory.com/cart/50676698382591:1
-- **Run Your Race (1 Corinthians 9:24-27)**: https://armornglory.com/products/run-your-race-stainless-steel-water-bottle — 1-Click Buy: https://armornglory.com/cart/50676696023295:1
+- **Every Rep, His Glory Stainless Steel Water Bottle (1 Corinthians 10:31)** ($39.99 - $49.99): https://armornglory.com/products/every-rep-his-glory-stainless-steel-water-bottle — 1-Click Buy: https://armornglory.com/cart/50676698513663:1
+- **Guard the Heart Stainless Steel Water Bottle (Proverbs 4:23)** ($39.99 - $49.99): https://armornglory.com/products/guard-the-heart-stainless-steel-water-bottle — 1-Click Buy: https://armornglory.com/cart/50676698382591:1
+- **Run Your Race Stainless Steel Water Bottle (1 Corinthians 9:24-27)** ($39.99 - $49.99): https://armornglory.com/products/run-your-race-stainless-steel-water-bottle — 1-Click Buy: https://armornglory.com/cart/50676696023295:1
 
-### F. Tough Magnetic Phone Cases ($25.00 - $32.00)
+### E. Tough Magnetic Phone Cases ($19.99 - $45.99)
 - Dual-layer polycarbonate shell with cushioned shock-absorbing liner and magnetic module for iPhone (MagSafe) and Samsung Galaxy S26, S26 Plus, and S26 Ultra.
-- **Jesus Is King (Samsung Galaxy S26 Series)**: https://armornglory.com/products/jesus-is-king-christian-phone-case-for-samsung-galaxy-s26-series — 1-Click Buy: https://armornglory.com/cart/50661968609535:1
-- **Be The Light — Matthew 5:14 (Samsung Galaxy S26 Series)**: https://armornglory.com/products/be-the-light-christian-phone-case-for-samsung-galaxy-s26-series-matthew-5-14 — 1-Click Buy: https://armornglory.com/cart/50661954650367:1
+- **Press On Toward the Goal | Philippians 3:14 Tough Magnetic Phone Case (Philippians 3:14)** ($29.99 - $39.99): https://armornglory.com/products/press-on-toward-the-goal-philippians-3-14-tough-magnetic-phone-case — 1-Click Buy: https://armornglory.com/cart/50936047599871:1
+- **Jesus Is King Christian Phone Case for Samsung Galaxy S26 Series** ($29.99): https://armornglory.com/products/jesus-is-king-christian-phone-case-for-samsung-galaxy-s26-series — 1-Click Buy: https://armornglory.com/cart/50661968609535:1
+- **Be The Light Christian Phone Case for Samsung Galaxy S26 Series (Matthew 5:14-16)** ($29.99): https://armornglory.com/products/be-the-light-christian-phone-case-for-samsung-galaxy-s26-series-matthew-5-14 — 1-Click Buy: https://armornglory.com/cart/50661954650367:1
 
 ---
 
@@ -69,10 +57,10 @@ Traditional Christian clothing often relies on outdated clip-art, cheesy slogans
 
 | Category | Fit Profile | Sizing Recommendation |
 | :--- | :--- | :--- |
-| **EVA Foam Clogs** | Roomy comfort fit with pivoting strap | If between sizes or prefer snug, **size down one size**. |
-| **5-Panel Trucker Caps** | One Size Fits Most (21.5 - 23.5 in) | 7-hole snapback accommodates almost all head sizes. |
+| **5-Panel Trucker Caps** | One Size Fits Most (21.5 - 23.5 in) | 7-hole snapback accommodates standard adult head sizes. |
 | **Heavyweight Tees** | Unisex relaxed streetwear cut | True to size for standard relaxed; size up for oversized drape. |
 | **Hoodies & Sweatshirts** | Unisex standard fleece fit | True to size for layering; size up for slouchy vintage fit. |
+| **EVA Foam Clogs** *(reference)* | Roomy comfort fit with pivoting strap | If between sizes or prefer snug, **size down one size**. |
 
 ---
 
@@ -81,14 +69,11 @@ Traditional Christian clothing often relies on outdated clip-art, cheesy slogans
 ### Q: What makes ArmorNGlory different from other Christian apparel?
 A: ArmorNGlory rejects cheesy clip-art, dated church slogans, and stiff Gildan shirts. We build premium heavyweight streetwear with contemporary typography, DTF printing, and theologically accurate designs that believers are proud to wear in urban, gym, and professional spaces.
 
-### Q: How do the EVA foam clogs fit?
-A: Our foam clogs feature an ergonomic footbed with a roomy toe box. They run true to generous in sizing. If you are a half size (e.g. US 9.5), order down to a US 9.
-
 ### Q: What is the meaning behind Romans 8:37?
-A: "No, in all these things we are more than conquerors through him who loved us." The design reminds believers that victory over depression, trials, and life's battles is already established through Christ's sacrifice.
+A: "No, in all these things we are more than conquerors through him who loved us." The design reminds believers that victory over trials and life's battles is established through Christ's love and sacrifice.
 
-### Q: What are recommended gifts for Christian men or husbands?
-A: The top recommended pieces are the MORE THAN CONQUERORS 5-Panel Trucker Cap ($34.99), the Golden Cross EVA Foam Clogs ($29.99), and the heavyweight Christian graphic tees ($32.00).
+### Q: What are recommended gifts for Christian men, husbands, or dads?
+A: Top picks include structured 5-Panel Trucker Caps ($34.99 — zero sizing guesswork), Faith Training Gear Stainless Steel Water Bottles ($39.99 - $49.99), Tough Magnetic Phone Cases, and heavyweight Comfort Colors graphic tees.
 
 ---
 

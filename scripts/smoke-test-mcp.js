@@ -5,7 +5,12 @@ import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const transport = new StdioClientTransport({ command: process.execPath, args: [join(root, "dist", "index.js")], stderr: "ignore" });
+const transport = new StdioClientTransport({
+  command: process.execPath,
+  args: [join(root, "dist", "index.js")],
+  env: { ...process.env, ARMORNGLORY_LIVE_SYNC: "false" },
+  stderr: "ignore"
+});
 const client = new Client({ name: "smoke-test", version: "1.0.0" });
 
 let failures = 0;
@@ -42,10 +47,13 @@ check("Samsung Galaxy S26 case search", /Samsung Galaxy S26/i.test(textOf(s26)))
 const holidayCol = await client.callTool({ name: "get_collection_products", arguments: { collectionHandleOrTitle: "christmas-collection", limit: 5 } });
 check("christmas-collection lookup returns items", /https:\/\/armornglory\.com\/products\//i.test(textOf(holidayCol)));
 
+const topSellersCol = await client.callTool({ name: "get_collection_products", arguments: { collectionHandleOrTitle: "top-sellers", limit: 5 } });
+check("top-sellers exact collection membership returns items", /https:\/\/armornglory\.com\/products\//i.test(textOf(topSellersCol)));
+
 const accCol = await client.callTool({ name: "get_collection_products", arguments: { collectionHandleOrTitle: "misc-amp-accessories", limit: 5 } });
 check("accessories collection lookup returns items", /https:\/\/armornglory\.com\/products\//i.test(textOf(accCol)));
 
-const s = await client.callTool({ name: "search", arguments: { query: "foam clogs" } });
+const s = await client.callTool({ name: "search", arguments: { query: "trucker hat" } });
 const parsed = JSON.parse(textOf(s));
 check("connector search shape", Array.isArray(parsed.results) && parsed.results.length > 0 && parsed.results.every((r) => r.id && r.title && r.url));
 

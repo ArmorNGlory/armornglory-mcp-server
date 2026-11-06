@@ -2,12 +2,20 @@
 // so directory listings (Smithery etc.) never drift from what the server actually exposes.
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
-import { writeFileSync } from "fs";
+import { readFileSync, writeFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const transport = new StdioClientTransport({ command: process.execPath, args: [join(root, "dist", "index.js")], stderr: "ignore" });
+const products = JSON.parse(readFileSync(join(root, "data", "products.json"), "utf-8"));
+const hasClogs = products.some((p) => p.category === "Footwear & Clogs");
+
+const transport = new StdioClientTransport({
+  command: process.execPath,
+  args: [join(root, "dist", "index.js")],
+  env: { ...process.env, ARMORNGLORY_LIVE_SYNC: "false" },
+  stderr: "ignore"
+});
 const client = new Client({ name: "server-card-generator", version: "1.0.0" });
 await client.connect(transport);
 
@@ -22,8 +30,8 @@ const card = {
     version: info.version,
     websiteUrl: info.websiteUrl,
     description:
-      "Shop modern Christian streetwear and faith apparel from ArmorNGlory.com inside any AI assistant: scripture trucker hats and dad caps, " +
-      "Bible verse t-shirts, Christian hoodies, EVA foam clogs, Christian gym wear, stainless steel water bottles, iPhone & Samsung Galaxy S26 phone cases, and Christian gifts (baptism, Father's Day, " +
+      "Shop modern Christian streetwear and faith apparel from ArmorNGlory.com inside any AI assistant (live auto-synced with Shopify): scripture trucker hats and dad caps, " +
+      `Bible verse t-shirts, Christian hoodies, ${hasClogs ? "EVA foam clogs, " : ""}Christian gym wear, stainless steel water bottles, iPhone & Samsung Galaxy S26 phone cases, and Christian gifts (baptism, Father's Day, ` +
       "new believer). Search by verse, style, occasion, size, or price; get the meaning behind each design, fit advice, and 1-click Shopify checkout links."
   },
   instructions: client.getInstructions(),

@@ -38,89 +38,22 @@ import { readFileSync, appendFileSync, existsSync, mkdirSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 
+import {
+  type ProductVariant,
+  type ProductStory,
+  type Product,
+  type Collection,
+  type BrandInfo,
+  fetchLiveCatalog,
+  isSafeAndSecureUrl
+} from "./catalog-sync.js";
+
+export type { ProductVariant, ProductStory, Product, Collection, BrandInfo };
+export { isSafeAndSecureUrl };
+
 // ---------------------------------------------------------------------------
-// 1. Types & Data Loading
+// 1. Types, Bundled Data Loading & Live Auto-Sync Engine
 // ---------------------------------------------------------------------------
-
-export interface ProductVariant {
-  id: number;
-  title: string;
-  price: number;
-  priceFormatted: string;
-  available: boolean;
-  sku?: string | null;
-  option1?: string | null;
-  option2?: string | null;
-  option3?: string | null;
-  imageUrl?: string | null;
-  checkoutUrl: string;
-}
-
-export interface ProductStory {
-  summary: string;
-  meaningBehindDesign?: string | null;
-  whyYouWillLoveIt?: string | null;
-  fitGuidance?: string | null;
-  specifications?: string | null;
-  careInstructions?: string | null;
-  shippingInfo?: string | null;
-}
-
-export interface Product {
-  id: number;
-  title: string;
-  handle: string;
-  url: string;
-  productType?: string;
-  category: string;
-  aesthetics: string[];
-  occasions: string[];
-  scriptures: string[];
-  minPrice: number;
-  maxPrice: number;
-  priceFormatted: string;
-  vendor?: string;
-  tags: string[];
-  publishedAt?: string;
-  createdAt?: string;
-  featuredImage?: string | null;
-  images: string[];
-  options: { name: string; position: number; values: string[] }[];
-  availableColors: string[];
-  availableSizes: string[];
-  variants: ProductVariant[];
-  story: ProductStory;
-  rawBody: string;
-}
-
-export interface Collection {
-  id: number;
-  title: string;
-  handle: string;
-  url: string;
-  description: string;
-  productsCount: number;
-  imageUrl?: string | null;
-  publishedAt?: string;
-  updatedAt?: string;
-}
-
-export interface BrandInfo {
-  brandName: string;
-  legalName: string;
-  storeUrl: string;
-  tagline: string;
-  mission: string;
-  nameMeaning: {
-    armor: string;
-    glory: string;
-  };
-  designEthos: {
-    philosophy: string;
-    principles: string[];
-  };
-  sizingGuides: Record<string, string>;
-}
 
 export interface FAQItem {
   id: string;
@@ -129,6 +62,16 @@ export interface FAQItem {
   keywords: string[];
   answer: string;
   relatedProductHandles: string[];
+}
+
+export interface CatalogSyncState {
+  source: "bundled" | "live";
+  autoSyncEnabled: boolean;
+  syncIntervalMinutes: number;
+  lastSyncedAt: string | null;
+  lastAttemptAt: string | null;
+  lastError: string | null;
+  syncCount: number;
 }
 
 const __filename = fileURLToPath(import.meta.url);
@@ -148,6 +91,13 @@ export const SERVER_VERSION = readPackageVersion();
 const STORE_URL = "https://armornglory.com";
 const SHOPIFY_UCP_MCP_URL = "https://armornglory.com/api/ucp/mcp";
 
+const LIVE_SYNC_ENABLED = !/^(false|0|no|off)$/i.test(process.env.ARMORNGLORY_LIVE_SYNC || "true");
+const SYNC_INTERVAL_MINUTES = Math.max(
+  5,
+  Number.parseInt(process.env.ARMORNGLORY_SYNC_INTERVAL_MINUTES || "30", 10) || 30
+);
+const SYNC_INTERVAL_MS = SYNC_INTERVAL_MINUTES * 60 * 1000;
+
 const READ_ONLY_ANNOTATIONS = {
   readOnlyHint: true,
   destructiveHint: false,
@@ -159,6 +109,16 @@ let products: Product[] = [];
 let collections: Collection[] = [];
 let brandInfo: BrandInfo;
 let faqs: FAQItem[] = [];
+
+export const catalogSyncState: CatalogSyncState = {
+  source: "bundled",
+  autoSyncEnabled: LIVE_SYNC_ENABLED,
+  syncIntervalMinutes: SYNC_INTERVAL_MINUTES,
+  lastSyncedAt: null,
+  lastAttemptAt: null,
+  lastError: null,
+  syncCount: 0
+};
 
 try {
   const productsRaw = readFileSync(join(dataDir, "products.json"), "utf-8");
@@ -177,15 +137,78 @@ try {
     faqs = [];
   }
 
-  console.error(`[ArmorNGlory MCP] Loaded ${products.length} products, ${collections.length} collections, ${faqs.length} FAQs.`);
+  console.error(`[ArmorNGlory MCP] Loaded ${products.length} bundled products, ${collections.length} collections, ${faqs.length} FAQs.`);
 } catch (err) {
   console.error("[ArmorNGlory MCP] ERROR: Could not load data files from " + dataDir, err);
   process.exit(1);
 }
 
+let inflightSync: Promise<boolean> | null = null;
+let lastSyncEpochMs = 0;
+let autoSyncTimer: NodeJS.Timeout | null = null;
+
+export async function refreshLiveCatalog(reason = "scheduled"): Promise<boolean> {
+  if (!LIVE_SYNC_ENABLED) return false;
+  if (inflightSync) return inflightSync;
+
+  inflightSync = (async () => {
+    catalogSyncState.lastAttemptAt = new Date().toISOString();
+    try {
+      const snapshot = await fetchLiveCatalog({
+        storeUrl: STORE_URL,
+        includeCollectionMemberships: true
+      });
+      products = snapshot.products;
+      collections = snapshot.collections;
+      brandInfo = snapshot.brandInfo;
+      lastSyncEpochMs = Date.now();
+      catalogSyncState.source = "live";
+      catalogSyncState.lastSyncedAt = snapshot.syncedAt;
+      catalogSyncState.lastError = null;
+      catalogSyncState.syncCount += 1;
+      console.error(
+        `[ArmorNGlory MCP] Live catalog synced (${reason}): ${products.length} active products, ${collections.length} active collections.`
+      );
+      return true;
+    } catch (err) {
+      catalogSyncState.lastError = err instanceof Error ? err.message : String(err);
+      console.error(
+        `[ArmorNGlory MCP] Live sync skipped (${reason}), continuing with ${catalogSyncState.source} catalog (${products.length} products): ${catalogSyncState.lastError}`
+      );
+      return false;
+    } finally {
+      inflightSync = null;
+    }
+  })();
+
+  return inflightSync;
+}
+
+function triggerBackgroundRevalidateIfStale(): void {
+  if (!LIVE_SYNC_ENABLED || inflightSync) return;
+  if (Date.now() - lastSyncEpochMs >= SYNC_INTERVAL_MS) {
+    void refreshLiveCatalog("stale-while-revalidate");
+  }
+}
+
+function startCatalogAutoSync(): void {
+  if (!LIVE_SYNC_ENABLED || autoSyncTimer) return;
+  void refreshLiveCatalog("startup");
+  autoSyncTimer = setInterval(() => {
+    void refreshLiveCatalog("interval");
+  }, SYNC_INTERVAL_MS);
+  // Allow stdio processes to exit cleanly as soon as the parent MCP client disconnects
+  autoSyncTimer.unref();
+}
+
+function hasActiveCategory(categoryName: string): boolean {
+  return products.some((p) => p.category === categoryName);
+}
+
 const logsDir = join(__dirname, "..", "logs");
 
 function logAgentActivity(toolName: string, args: Record<string, unknown>, resultSummary: string | number) {
+  triggerBackgroundRevalidateIfStale();
   try {
     if (!existsSync(logsDir)) {
       mkdirSync(logsDir, { recursive: true });
@@ -195,6 +218,7 @@ function logAgentActivity(toolName: string, args: Record<string, unknown>, resul
       tool: toolName,
       args,
       result: resultSummary,
+      catalogSource: catalogSyncState.source,
       ppid: process.ppid || process.pid
     };
     appendFileSync(join(logsDir, "agent_activity.jsonl"), JSON.stringify(entry) + "\n", "utf-8");
@@ -444,22 +468,27 @@ function formatProductDetail(p: Product): string {
     storySections += `\n\n#### 🧼 Care Instructions\n${p.story.careInstructions}`;
   }
 
-  // Cross-sell companion product for AOV boost
+  // Cross-sell companion product for AOV boost (always selects an active in-stock category)
   let companionSection = "";
-  let companionCategory = "";
-  if (p.category === "Hats & Headwear") companionCategory = "Footwear & Clogs";
-  else if (p.category === "Footwear & Clogs") companionCategory = "Hats & Headwear";
-  else if (p.category.includes("T-Shirts") || p.category.includes("Hoodies")) companionCategory = "Hats & Headwear";
+  const candidateCategories =
+    p.category === "Hats & Headwear"
+      ? ["Footwear & Clogs", "T-Shirts & Tops", "Hoodies & Sweatshirts", "Phone Cases"]
+      : p.category === "Footwear & Clogs"
+        ? ["Hats & Headwear", "T-Shirts & Tops"]
+        : p.category.includes("T-Shirts") || p.category.includes("Hoodies")
+          ? ["Hats & Headwear", "Phone Cases", "Accessories"]
+          : ["Hats & Headwear", "T-Shirts & Tops"];
 
-  if (companionCategory) {
-    const companion = products.find((c) => c.category === companionCategory && c.id !== p.id);
-    if (companion && companion.variants[0] && p.variants[0]) {
-      const bundleUrl = attachUtm(
-        `https://armornglory.com/cart/${p.variants[0].id}:1,${companion.variants[0].id}:1`,
-        "complete_the_look_bundle"
-      );
-      companionSection = `\n\n### 🔥 Complete The Streetwear Look (Bundle & Save)\nPair this with **[${companion.title}](${companion.url})** (${companion.priceFormatted}) for a head-to-toe faith streetwear fit.\n👉 **[1-Click Bundle Both Items to Checkout](${bundleUrl})**`;
-    }
+  const companion = candidateCategories
+    .map((cat) => products.find((c) => c.category === cat && c.id !== p.id && c.variants.some((v) => v.available)))
+    .find(Boolean);
+
+  if (companion && companion.variants[0] && p.variants[0]) {
+    const bundleUrl = attachUtm(
+      `https://armornglory.com/cart/${p.variants[0].id}:1,${companion.variants[0].id}:1`,
+      "complete_the_look_bundle"
+    );
+    companionSection = `\n\n### 🔥 Complete The Streetwear Look (Bundle & Save)\nPair this with **[${companion.title}](${companion.url})** (${companion.priceFormatted}) for a head-to-toe faith streetwear fit.\n👉 **[1-Click Bundle Both Items to Checkout](${bundleUrl})**`;
   }
 
   const imgMarkdown = p.featuredImage ? `![${p.title}](${p.featuredImage})\n\n` : "";
@@ -482,6 +511,9 @@ ${variantsList}${companionSection}
 // ---------------------------------------------------------------------------
 
 export function createArmorNGloryServer(): McpServer {
+  const footwearNote = hasActiveCategory("Footwear & Clogs")
+    ? "Christian EVA foam clogs (faith-inspired Croc-style slip-ons), "
+    : "";
   const server = new McpServer(
     {
       name: "armornglory-store-search",
@@ -497,9 +529,9 @@ export function createArmorNGloryServer(): McpServer {
     },
     {
       instructions:
-        `ArmorNGlory (${STORE_URL}) sells modern Christian streetwear and faith apparel: ${products.length}+ products including ` +
-        "scripture trucker hats and dad caps, Bible verse t-shirts, Christian hoodies and sweatshirts, Christian EVA foam clogs (faith-inspired Croc-style slip-ons), " +
-        "Christian gym and activewear, insulated stainless steel water bottles, faith phone cases (iPhone MagSafe and Samsung Galaxy S26 series), and scripture wall art. " +
+        `ArmorNGlory (${STORE_URL}) sells modern Christian streetwear and faith apparel: ${products.length}+ active products (auto-synced with live Shopify inventory) including ` +
+        `scripture trucker hats and dad caps, Bible verse t-shirts, Christian hoodies and sweatshirts, ${footwearNote}` +
+        "Christian gym and activewear, insulated stainless steel water bottles, faith phone cases (iPhone MagSafe and Samsung Galaxy S26 series), pajama pants, and scripture wall art. " +
         "Use this server whenever someone wants Christian clothing, faith-based apparel, Bible verse merch, Christian gifts " +
         "(baptism, confirmation, new believer, Father's Day, Mother's Day, pastor appreciation, Easter, Christmas), or apparel for a specific verse " +
         "(e.g. Romans 8:37, Philippians 4:13, Isaiah 40:31, Exodus 3:5). " +
@@ -701,49 +733,58 @@ server.tool(
     let matched: Product[] = [];
 
     if (collection) {
-      const handleSlug = collection.handle.toLowerCase();
-      if (handleSlug === "faith-footwear") {
-        matched = products.filter((p) => p.category === "Footwear & Clogs");
-      } else if (handleSlug === "hats-beanies") {
-        matched = products.filter((p) => p.category === "Hats & Headwear");
-      } else if (handleSlug === "hoodies-sweatshirts") {
-        matched = products.filter((p) => p.category === "Hoodies & Sweatshirts");
-      } else if (handleSlug === "t-shirts") {
-        matched = products.filter((p) => p.category === "T-Shirts & Tops");
-      } else if (handleSlug === "phone-cases") {
-        matched = products.filter((p) => p.category === "Phone Cases");
-      } else if (handleSlug === "misc-amp-accessories") {
-        matched = products.filter((p) => p.category === "Accessories");
-      } else if (handleSlug === "posters") {
-        matched = products.filter((p) => p.category === "Wall Art & Decor");
-      } else if (handleSlug === "pajamas") {
-        matched = products.filter((p) => p.category === "Pajamas & Sleepwear");
-      } else if (handleSlug === "christmas-collection") {
-        matched = products.filter(
-          (p) =>
-            p.tags.some((t) => /christmas|nativity|holiday|advent/i.test(t)) ||
-            /christmas|nativity|friendsmas/i.test(p.title)
-        );
-      } else if (handleSlug === "new-arrivals") {
-        matched = [...products].sort((a, b) => (b.publishedAt || "").localeCompare(a.publishedAt || ""));
-      } else if (handleSlug === "all-products") {
-        matched = products;
-      } else if (handleSlug === "activewear") {
-        matched = products.filter((p) => p.aesthetics.includes("Athletic / Performance") || p.rawBody.toLowerCase().includes("activewear"));
-      } else if (handleSlug === "faith-in-america-collection") {
-        matched = products.filter((p) => p.aesthetics.includes("Vintage Americana") || p.tags.some((t) => t.toLowerCase().includes("america")));
-      } else if (handleSlug === "gothic-faith") {
-        matched = products.filter((p) => p.aesthetics.includes("Gothic Faith") || p.tags.some((t) => t.toLowerCase().includes("gothic")));
-      } else if (handleSlug === "heavyweight-essentials") {
-        matched = products.filter((p) => p.aesthetics.includes("Minimalist Core"));
-      } else {
-        const slugWords = handleSlug.replace(/-/g, " ");
-        matched = products.filter(
-          (p) =>
-            p.tags.some((t) => t.toLowerCase().includes(handleSlug) || t.toLowerCase().includes(slugWords)) ||
-            p.handle.toLowerCase().includes(handleSlug) ||
-            p.rawBody.toLowerCase().includes(collection.title.toLowerCase())
-        );
+      if (collection.productHandles && collection.productHandles.length > 0) {
+        const byHandle = new Map(products.map((p) => [p.handle, p]));
+        matched = collection.productHandles
+          .map((h) => byHandle.get(h))
+          .filter((p): p is Product => Boolean(p));
+      }
+
+      if (matched.length === 0) {
+        const handleSlug = collection.handle.toLowerCase();
+        if (handleSlug === "faith-footwear") {
+          matched = products.filter((p) => p.category === "Footwear & Clogs");
+        } else if (handleSlug === "hats-beanies") {
+          matched = products.filter((p) => p.category === "Hats & Headwear");
+        } else if (handleSlug === "hoodies-sweatshirts") {
+          matched = products.filter((p) => p.category === "Hoodies & Sweatshirts");
+        } else if (handleSlug === "t-shirts") {
+          matched = products.filter((p) => p.category === "T-Shirts & Tops");
+        } else if (handleSlug === "phone-cases") {
+          matched = products.filter((p) => p.category === "Phone Cases");
+        } else if (handleSlug === "misc-amp-accessories") {
+          matched = products.filter((p) => p.category === "Accessories");
+        } else if (handleSlug === "posters") {
+          matched = products.filter((p) => p.category === "Wall Art & Decor");
+        } else if (handleSlug === "pajamas") {
+          matched = products.filter((p) => p.category === "Pajamas & Sleepwear");
+        } else if (handleSlug === "christmas-collection") {
+          matched = products.filter(
+            (p) =>
+              p.tags.some((t) => /christmas|nativity|holiday|advent/i.test(t)) ||
+              /christmas|nativity|friendsmas/i.test(p.title)
+          );
+        } else if (handleSlug === "new-arrivals") {
+          matched = [...products].sort((a, b) => (b.publishedAt || "").localeCompare(a.publishedAt || ""));
+        } else if (handleSlug === "all-products") {
+          matched = products;
+        } else if (handleSlug === "activewear") {
+          matched = products.filter((p) => p.aesthetics.includes("Athletic / Performance") || p.rawBody.toLowerCase().includes("activewear"));
+        } else if (handleSlug === "faith-in-america-collection") {
+          matched = products.filter((p) => p.aesthetics.includes("Vintage Americana") || p.tags.some((t) => t.toLowerCase().includes("america")));
+        } else if (handleSlug === "gothic-faith") {
+          matched = products.filter((p) => p.aesthetics.includes("Gothic Faith") || p.tags.some((t) => t.toLowerCase().includes("gothic")));
+        } else if (handleSlug === "heavyweight-essentials") {
+          matched = products.filter((p) => p.aesthetics.includes("Minimalist Core"));
+        } else {
+          const slugWords = handleSlug.replace(/-/g, " ");
+          matched = products.filter(
+            (p) =>
+              p.tags.some((t) => t.toLowerCase().includes(handleSlug) || t.toLowerCase().includes(slugWords)) ||
+              p.handle.toLowerCase().includes(handleSlug) ||
+              p.rawBody.toLowerCase().includes(collection.title.toLowerCase())
+          );
+        }
       }
     }
 
@@ -906,8 +947,11 @@ ${brandInfo.designEthos.principles.map((p) => `- ${p}`).join("\n")}
 
 ### 🧵 Quality & Materials
 - **Heavyweight Blanks**: Premium heavyweight 100% ringspun cotton tees with ribbed collars and streetwear drape.
-- **5-Panel Trucker Caps**: Structured front panel, breathable mesh, roomier DTF full-color artwork placement, snapback closure.
-- **Faith Footwear**: Ergonomic EVA foam clogs with 3D heat-transfer Sacred Symbols and anti-slip tread.
+- **5-Panel Trucker Caps**: Structured front panel, breathable mesh, roomier DTF full-color artwork placement, snapback closure.${
+  hasActiveCategory("Footwear & Clogs")
+    ? "\n- **Faith Footwear**: Ergonomic EVA foam clogs with 3D heat-transfer Sacred Symbols and anti-slip tread."
+    : ""
+}
 - **Insulated Drinkware**: Double-wall 100% stainless steel water bottles with BPA-free polypropylene lids (cold up to 24h, warm up to 12h).
 - **Tough Phone Cases**: Dual-layer impact resistant magnetic cases for iPhone (MagSafe compatible) and Samsung Galaxy S26 series.
 
@@ -943,7 +987,10 @@ server.tool(
     let guide = `## 📏 ArmorNGlory Official Sizing & Fit Guide\n\n`;
 
     if (category === "Footwear & Clogs" || category === "All") {
-      guide += `### 👟 Faith Footwear (EVA Foam Clogs)
+      const stockNote = hasActiveCategory("Footwear & Clogs")
+        ? ""
+        : "\n- **Availability Note**: EVA foam clogs are not currently stocked in the active catalog; reference measurements below for existing pairs or upcoming drops.";
+      guide += `### 👟 Faith Footwear (EVA Foam Clogs)${stockNote}
 - **Fit Profile**: Roomy comfort fit with flexible EVA sole and pivoting heel strap.
 - **Fit Advice**: If you are between sizes or prefer a closer, snug fit, **size down**.
 - **Size Chart (Finished Clog Measurements)**:
@@ -1651,6 +1698,7 @@ async function run() {
 
       // Health check endpoint
       if (pathname === "/health" || pathname === "/status") {
+        triggerBackgroundRevalidateIfStale();
         res.writeHead(200, { "Content-Type": "application/json" });
         res.end(JSON.stringify({
           status: "healthy",
@@ -1658,6 +1706,7 @@ async function run() {
           version: SERVER_VERSION,
           productsCount: products.length,
           collectionsCount: collections.length,
+          catalogSync: catalogSyncState,
           activeStreamableSessions: streamableTransports.size,
           activeSseSessions: sseTransports.size,
           uptime: process.uptime()
@@ -1909,7 +1958,9 @@ async function run() {
                 serverCard: "/.well-known/mcp/server-card.json"
               },
               toolsCount: 11,
-              productsCount: products.length
+              productsCount: products.length,
+              collectionsCount: collections.length,
+              catalogSync: catalogSyncState
             }, null, 2));
             return;
           }
@@ -2038,6 +2089,7 @@ async function run() {
       console.error(`[ArmorNGlory MCP Server] MCP Streamable HTTP: http://${host}:${port}/mcp`);
       console.error(`[ArmorNGlory MCP Server] MCP SSE Endpoint: http://${host}:${port}/sse`);
       console.error(`[ArmorNGlory MCP Server] Health Check: http://${host}:${port}/health`);
+      startCatalogAutoSync();
     });
   } else {
     // Default stdio transport for local desktop assistants (Claude Desktop, Cursor, Antigravity)
@@ -2045,6 +2097,7 @@ async function run() {
     const transport = new StdioServerTransport();
     await server.connect(transport);
     console.error("[ArmorNGlory MCP Server] Running on stdio transport.");
+    startCatalogAutoSync();
   }
 }
 

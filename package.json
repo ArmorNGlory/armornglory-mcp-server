@@ -1,6 +1,6 @@
 {
   "name": "armornglory-mcp-server",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "mcpName": "io.github.ArmorNGlory/armornglory-mcp-server",
   "description": "Official MCP server for ArmorNGlory: shop modern Christian streetwear and faith apparel from any AI assistant. Scripture trucker hats, Bible verse tees, Christian hoodies, EVA foam clogs, gym wear, and Christian gifts with 1-click checkout.",
   "type": "module",
@@ -22,7 +22,13 @@
     "start": "node dist/index.js",
     "serve": "node dist/index.js --http",
     "dev": "tsc && node dist/index.js",
-    "sync-data": "node scripts/sync-store-data.js",
+    "sync-data": "npm run build && node scripts/sync-store-data.js",
+    "sync:discovery": "node scripts/sync-discovery-files.js",
+    "sync:all": "node scripts/sync-all.js",
+    "autosync:install": "node scripts/install-local-autosync.js install",
+    "autosync:status": "node scripts/install-local-autosync.js status",
+    "autosync:uninstall": "node scripts/install-local-autosync.js uninstall",
+    "release": "node scripts/release.js",
     "audit:catalog": "node scripts/audit-catalog-for-ai.js",
     "test": "node scripts/test-mcp-tools.js && node scripts/smoke-test-mcp.js",
     "logs": "cat logs/agent_activity.jsonl 2>/dev/null || echo 'No agent activity recorded yet.'",
@@ -81,5 +87,8 @@
   "devDependencies": {
     "@types/node": "^22.20.5",
     "typescript": "^5.7.3"
+  },
+  "overrides": {
+    "@hono/node-server": "^2.1.6"
   }
 }
