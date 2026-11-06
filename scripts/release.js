@@ -65,6 +65,24 @@ if (dirty) {
 console.log(`\n=== Publishing armornglory-mcp-server@${nextVersion} to npm (Touch ID Web Auth) ===`);
 run("npm", ["publish", "--auth-type=web"]);
 
+console.log(`\n=== Waiting for npm CDN propagation of v${nextVersion} before tagging ===`);
+for (let attempt = 1; attempt <= 15; attempt++) {
+  try {
+    const out = execFileSync("npm", ["view", `armornglory-mcp-server@${nextVersion}`, "version", "--prefer-online"], {
+      cwd: rootDir,
+      encoding: "utf-8",
+      stdio: ["ignore", "pipe", "ignore"]
+    }).trim();
+    if (out === nextVersion) {
+      console.log(`✓ Verified armornglory-mcp-server@${nextVersion} is live on npm.`);
+      break;
+    }
+  } catch {
+    // Not propagated yet
+  }
+  await new Promise((r) => setTimeout(r, 15000));
+}
+
 const tagName = `v${nextVersion}`;
 const existingTag = execFileSync("git", ["tag", "-l", tagName], { cwd: rootDir, encoding: "utf-8" }).trim();
 if (!existingTag) {
