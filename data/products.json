@@ -1,5 +1,1221 @@
 [
   {
+    "id": 10424415518975,
+    "title": "Train With Purpose Christian T-Shirt",
+    "handle": "train-with-purpose-christian-t-shirt",
+    "url": "https://armornglory.com/products/train-with-purpose-christian-t-shirt",
+    "productType": "T-Shirt",
+    "category": "T-Shirts & Tops",
+    "aesthetics": [
+      "Minimalist Core",
+      "Athletic / Performance"
+    ],
+    "occasions": [
+      "Everyday Wear",
+      "Church & Fellowship",
+      "Holiday & Easter Gift",
+      "Workout & Fitness"
+    ],
+    "scriptures": [],
+    "minPrice": 29.99,
+    "maxPrice": 29.99,
+    "priceFormatted": "$29.99",
+    "vendor": "Printify",
+    "tags": [
+      "ag-tee-recovery-20261021-005-50a8021f6b81",
+      "Armor & Glory",
+      "Bella+Canvas 3001",
+      "christian fitness shirt",
+      "Christian T-Shirt",
+      "Faith Apparel",
+      "faith workout tee",
+      "kettlebell gift",
+      "New Arrivals",
+      "train with purpose"
+    ],
+    "publishedAt": "2026-11-08T11:43:35-08:00",
+    "createdAt": "2026-11-08T11:43:32-08:00",
+    "featuredImage": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/5939055277881799870_2048.jpg?v=1794167017",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/5939055277881799870_2048.jpg?v=1794167017",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/12491719299141080853_2048.jpg?v=1794167018",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/328121490134541779_2048.jpg?v=1794167019",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/1731163195667894135_2048.jpg?v=1794167020",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/3697427728280547505_2048.jpg?v=1794167021",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/17349185570036215853_2048.jpg?v=1794167021",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/3866218360883436768_2048.jpg?v=1794167022"
+    ],
+    "options": [
+      {
+        "name": "Size",
+        "position": 1,
+        "values": [
+          "S",
+          "M",
+          "L",
+          "XL",
+          "2XL",
+          "3XL"
+        ]
+      },
+      {
+        "name": "Color",
+        "position": 2,
+        "values": [
+          "Navy"
+        ]
+      }
+    ],
+    "availableColors": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL"
+    ],
+    "availableSizes": [
+      "Navy"
+    ],
+    "variants": [
+      {
+        "id": 50961662443775,
+        "title": "S / Navy",
+        "price": 29.99,
+        "priceFormatted": "$29.99",
+        "available": true,
+        "sku": "22283349417997504314",
+        "option1": "S",
+        "option2": "Navy",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/5939055277881799870_2048.jpg?v=1794167017",
+        "checkoutUrl": "https://armornglory.com/cart/50961662443775:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961662476543,
+        "title": "M / Navy",
+        "price": 29.99,
+        "priceFormatted": "$29.99",
+        "available": true,
+        "sku": "17168036021377793223",
+        "option1": "M",
+        "option2": "Navy",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/5939055277881799870_2048.jpg?v=1794167017",
+        "checkoutUrl": "https://armornglory.com/cart/50961662476543:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961662509311,
+        "title": "L / Navy",
+        "price": 29.99,
+        "priceFormatted": "$29.99",
+        "available": true,
+        "sku": "19577532936052674281",
+        "option1": "L",
+        "option2": "Navy",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/5939055277881799870_2048.jpg?v=1794167017",
+        "checkoutUrl": "https://armornglory.com/cart/50961662509311:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961662542079,
+        "title": "XL / Navy",
+        "price": 29.99,
+        "priceFormatted": "$29.99",
+        "available": true,
+        "sku": "29485131131471483607",
+        "option1": "XL",
+        "option2": "Navy",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/5939055277881799870_2048.jpg?v=1794167017",
+        "checkoutUrl": "https://armornglory.com/cart/50961662542079:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961662574847,
+        "title": "2XL / Navy",
+        "price": 29.99,
+        "priceFormatted": "$29.99",
+        "available": true,
+        "sku": "29659114661344862884",
+        "option1": "2XL",
+        "option2": "Navy",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/5939055277881799870_2048.jpg?v=1794167017",
+        "checkoutUrl": "https://armornglory.com/cart/50961662574847:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961662607615,
+        "title": "3XL / Navy",
+        "price": 29.99,
+        "priceFormatted": "$29.99",
+        "available": true,
+        "sku": "74804173104340715807",
+        "option1": "3XL",
+        "option2": "Navy",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/5939055277881799870_2048.jpg?v=1794167017",
+        "checkoutUrl": "https://armornglory.com/cart/50961662607615:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      }
+    ],
+    "story": {
+      "summary": "Train With Purpose — An athletic collegiate lockup with a kettlebell accent for purposeful training and everyday wear.",
+      "meaningBehindDesign": null,
+      "whyYouWillLoveIt": null,
+      "fitGuidance": null,
+      "specifications": null,
+      "careInstructions": null,
+      "shippingInfo": null
+    },
+    "rawBody": "Train With Purpose — An athletic collegiate lockup with a kettlebell accent for purposeful training and everyday wear.\n\n Bella+Canvas 3001 is a lightweight 4.2 oz/yd² (142 g/m²) jersey tee. The selected solid colors use 100% Airlume combed and ring-spun cotton. It has a unisex retail fit, ribbed-knit crew collar, tapered shoulders, side seams, and a tear-away label.\n\n Color: Navy. Sizes: S–3XL. Front direct-to-garment print. Made to order.\n\n Fit and size \n\n This shirt has a unisex retail fit. The chart lists garment measurements in inches, not body measurements. Compare it with a similar shirt laid flat before choosing a size.\n\n Size \n Width (in) \n Length (in) \n Sleeve (in) \n Tolerance (in) \n\n S \n 18.00 \n 28.00 \n 8.90 \n 1.50 \n\n M \n 20.00 \n 29.00 \n 9.20 \n 1.50 \n\n L \n 22.00 \n 30.00 \n 9.50 \n 1.50 \n\n XL \n 24.00 \n 31.00 \n 9.70 \n 1.50 \n\n 2XL \n 26.00 \n 32.00 \n 10.00 \n 1.50 \n\n 3XL \n 28.00 \n 33.00 \n 10.40 \n 1.50 \n\n Product measurements in inches, not body measurements. Compare width and length with a similar tee laid flat. Allow for a 1.5 in size tolerance.\n\n Care: Machine wash cold (max 30°C/90°F). Non-chlorine bleach as needed. Tumble dry low. Iron on medium heat. Do not dry clean.\n\n FAQs \n\n What is this design about? An athletic collegiate lockup with a kettlebell accent for purposeful training and everyday wear.\n\n Which color and sizes are offered? This listing is in Navy and is available in sizes S–3XL.\n\n How is the artwork printed? The design is printed on the front using direct-to-garment printing. Placement can vary slightly with garment size and production.\n\n How should I wash the shirt? Machine wash cold (max 30°C/90°F). Non-chlorine bleach as needed. Tumble dry low. Iron on medium heat. Do not dry clean."
+  },
+  {
+    "id": 10424415420671,
+    "title": "TL;DR Peace Christian T-Shirt",
+    "handle": "tl-dr-peace-christian-t-shirt",
+    "url": "https://armornglory.com/products/tl-dr-peace-christian-t-shirt",
+    "productType": "T-Shirt",
+    "category": "T-Shirts & Tops",
+    "aesthetics": [
+      "Minimalist Core"
+    ],
+    "occasions": [
+      "Everyday Wear",
+      "Church & Fellowship"
+    ],
+    "scriptures": [
+      "Psalm 46:10"
+    ],
+    "minPrice": 34.99,
+    "maxPrice": 34.99,
+    "priceFormatted": "$34.99",
+    "vendor": "Printify",
+    "tags": [
+      "ag-tee-recovery-20261021-005-9a8a1f51659a",
+      "Armor & Glory",
+      "be still shirt",
+      "Christian T-Shirt",
+      "Comfort Colors 1717",
+      "Faith Apparel",
+      "New Arrivals",
+      "peace Christian shirt",
+      "Psalm 46:10 tee"
+    ],
+    "publishedAt": "2026-11-08T11:43:23-08:00",
+    "createdAt": "2026-11-08T11:43:18-08:00",
+    "featuredImage": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/4915663623024881622_2048.jpg?v=1794167003",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/4915663623024881622_2048.jpg?v=1794167003",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/9100629494206531420_2048.jpg?v=1794167004",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/4698526845644852112_2048.jpg?v=1794167005",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/12673053554944198835_2048.jpg?v=1794167005",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/15871514247169620495_2048.jpg?v=1794167006"
+    ],
+    "options": [
+      {
+        "name": "Color",
+        "position": 1,
+        "values": [
+          "Pepper"
+        ]
+      },
+      {
+        "name": "Size",
+        "position": 2,
+        "values": [
+          "S",
+          "M",
+          "L",
+          "XL",
+          "2XL",
+          "3XL"
+        ]
+      }
+    ],
+    "availableColors": [
+      "Pepper"
+    ],
+    "availableSizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL"
+    ],
+    "variants": [
+      {
+        "id": 50961662148863,
+        "title": "Pepper / S",
+        "price": 34.99,
+        "priceFormatted": "$34.99",
+        "available": true,
+        "sku": "25707882556693869889",
+        "option1": "Pepper",
+        "option2": "S",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/4915663623024881622_2048.jpg?v=1794167003",
+        "checkoutUrl": "https://armornglory.com/cart/50961662148863:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961662181631,
+        "title": "Pepper / M",
+        "price": 34.99,
+        "priceFormatted": "$34.99",
+        "available": true,
+        "sku": "31182100787345537313",
+        "option1": "Pepper",
+        "option2": "M",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/4915663623024881622_2048.jpg?v=1794167003",
+        "checkoutUrl": "https://armornglory.com/cart/50961662181631:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961662214399,
+        "title": "Pepper / L",
+        "price": 34.99,
+        "priceFormatted": "$34.99",
+        "available": true,
+        "sku": "23255794552889052269",
+        "option1": "Pepper",
+        "option2": "L",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/4915663623024881622_2048.jpg?v=1794167003",
+        "checkoutUrl": "https://armornglory.com/cart/50961662214399:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961662247167,
+        "title": "Pepper / XL",
+        "price": 34.99,
+        "priceFormatted": "$34.99",
+        "available": true,
+        "sku": "12509425542820105654",
+        "option1": "Pepper",
+        "option2": "XL",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/4915663623024881622_2048.jpg?v=1794167003",
+        "checkoutUrl": "https://armornglory.com/cart/50961662247167:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961662279935,
+        "title": "Pepper / 2XL",
+        "price": 34.99,
+        "priceFormatted": "$34.99",
+        "available": true,
+        "sku": "21044574417220497748",
+        "option1": "Pepper",
+        "option2": "2XL",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/4915663623024881622_2048.jpg?v=1794167003",
+        "checkoutUrl": "https://armornglory.com/cart/50961662279935:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961662312703,
+        "title": "Pepper / 3XL",
+        "price": 34.99,
+        "priceFormatted": "$34.99",
+        "available": true,
+        "sku": "13251214767254533575",
+        "option1": "Pepper",
+        "option2": "3XL",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/4915663623024881622_2048.jpg?v=1794167003",
+        "checkoutUrl": "https://armornglory.com/cart/50961662312703:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      }
+    ],
+    "story": {
+      "summary": "TL;DR Peace — A quiet encouragement to be still, with Psalm 46:10.",
+      "meaningBehindDesign": null,
+      "whyYouWillLoveIt": null,
+      "fitGuidance": null,
+      "specifications": null,
+      "careInstructions": "Machine wash: cold (max 30C or 90F), Do not bleach, Tumble dry: low heat, Iron, steam or dry: low heat, Do not dryclean",
+      "shippingInfo": null
+    },
+    "rawBody": "TL;DR Peace — A quiet encouragement to be still, with Psalm 46:10.\n\n Comfort Colors® 1717 is made from pre-shrunk 100% ring-spun US cotton at 6.1 oz/yd² (206.8 g/m²). The garment is dyed after construction for a soft washed color. It has a relaxed fit, a tubular body without side seams, double-needle stitching, and a sewn-in label.\n\n Color: Pepper. Sizes: S–3XL. Front direct-to-garment print. Made to order.\n\n Fit and size \n\n This shirt has a relaxed unisex fit. The chart lists garment measurements in inches, not body measurements. Compare it with a similar shirt laid flat before choosing a size.\n\n Size \n Width (in) \n Length (in) \n Sleeve from center back (in) \n Tolerance (in) \n\n S \n 18.25 \n 26.62 \n 16.25 \n 1.50 \n\n M \n 20.25 \n 28.00 \n 17.75 \n 1.50 \n\n L \n 22.00 \n 29.37 \n 19.00 \n 1.50 \n\n XL \n 24.00 \n 30.75 \n 20.50 \n 1.50 \n\n 2XL \n 26.00 \n 31.62 \n 21.75 \n 1.50 \n\n 3XL \n 27.75 \n 32.50 \n 23.25 \n 1.50 \n\n Product measurements. Size tolerance is 1.5 in.\n\n Care: Machine wash cold (max 30°C/90°F). Do not bleach. Tumble dry low. Iron on low. Do not dry clean.\n\n FAQs \n\n What is this design about? A quiet encouragement to be still, with Psalm 46:10.\n\n Which color and sizes are offered? This listing is in Pepper and is available in sizes S–3XL.\n\n How is the artwork printed? The design is printed on the front using direct-to-garment printing. Placement can vary slightly with garment size and production.\n\n How should I wash the shirt? Machine wash cold (max 30°C/90°F). Do not bleach. Tumble dry low. Iron on low. Do not dry clean.\n\n EU representative : HONSON VENTURES LIMITED, gpsr@honsonventures.com, 3, Gnaftis House flat 102, Limassol, Mesa Geitonia, 4003, CY\n\n Product information : Comfort Colors® 1717, two year warranty in the EU and Northern Ireland\n\n Care instructions : Machine wash: cold (max 30C or 90F), Do not bleach, Tumble dry: low heat, Iron, steam or dry: low heat, Do not dryclean"
+  },
+  {
+    "id": 10424415355135,
+    "title": "TL;DR Dwell — Navy Christian T-Shirt",
+    "handle": "tl-dr-dwell-navy-christian-t-shirt",
+    "url": "https://armornglory.com/products/tl-dr-dwell-navy-christian-t-shirt",
+    "productType": "T-Shirt",
+    "category": "T-Shirts & Tops",
+    "aesthetics": [
+      "Minimalist Core"
+    ],
+    "occasions": [
+      "Everyday Wear",
+      "Church & Fellowship"
+    ],
+    "scriptures": [
+      "John 1:14"
+    ],
+    "minPrice": 34.99,
+    "maxPrice": 34.99,
+    "priceFormatted": "$34.99",
+    "vendor": "Printify",
+    "tags": [
+      "ag-tee-recovery-20261021-008-f8283254e643",
+      "Armor & Glory",
+      "Christian encouragement",
+      "Christian T-Shirt",
+      "Comfort Colors 1717",
+      "dwell Christian shirt",
+      "Faith Apparel",
+      "John 1:14 tee",
+      "New Arrivals"
+    ],
+    "publishedAt": "2026-11-08T11:43:10-08:00",
+    "createdAt": "2026-11-08T11:43:06-08:00",
+    "featuredImage": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/3662279488832648829_2048.jpg?v=1794166991",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/3662279488832648829_2048.jpg?v=1794166991",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/12726017512672710554_2048.jpg?v=1794166992",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/17492103795546463930_2048.jpg?v=1794166993",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/3606845470494773620_2048.jpg?v=1794166994",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/1055115997702685190_2048.jpg?v=1794166994"
+    ],
+    "options": [
+      {
+        "name": "Color",
+        "position": 1,
+        "values": [
+          "Navy"
+        ]
+      },
+      {
+        "name": "Size",
+        "position": 2,
+        "values": [
+          "S",
+          "M",
+          "L",
+          "XL",
+          "2XL",
+          "3XL"
+        ]
+      }
+    ],
+    "availableColors": [
+      "Navy"
+    ],
+    "availableSizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL"
+    ],
+    "variants": [
+      {
+        "id": 50961661755647,
+        "title": "Navy / S",
+        "price": 34.99,
+        "priceFormatted": "$34.99",
+        "available": true,
+        "sku": "25924256173845495085",
+        "option1": "Navy",
+        "option2": "S",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/3662279488832648829_2048.jpg?v=1794166991",
+        "checkoutUrl": "https://armornglory.com/cart/50961661755647:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961661788415,
+        "title": "Navy / M",
+        "price": 34.99,
+        "priceFormatted": "$34.99",
+        "available": true,
+        "sku": "98641846050972969160",
+        "option1": "Navy",
+        "option2": "M",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/3662279488832648829_2048.jpg?v=1794166991",
+        "checkoutUrl": "https://armornglory.com/cart/50961661788415:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961661821183,
+        "title": "Navy / L",
+        "price": 34.99,
+        "priceFormatted": "$34.99",
+        "available": true,
+        "sku": "17229495263763674910",
+        "option1": "Navy",
+        "option2": "L",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/3662279488832648829_2048.jpg?v=1794166991",
+        "checkoutUrl": "https://armornglory.com/cart/50961661821183:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961661853951,
+        "title": "Navy / XL",
+        "price": 34.99,
+        "priceFormatted": "$34.99",
+        "available": true,
+        "sku": "24070784035086236455",
+        "option1": "Navy",
+        "option2": "XL",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/3662279488832648829_2048.jpg?v=1794166991",
+        "checkoutUrl": "https://armornglory.com/cart/50961661853951:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961661886719,
+        "title": "Navy / 2XL",
+        "price": 34.99,
+        "priceFormatted": "$34.99",
+        "available": true,
+        "sku": "77152389563195971281",
+        "option1": "Navy",
+        "option2": "2XL",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/3662279488832648829_2048.jpg?v=1794166991",
+        "checkoutUrl": "https://armornglory.com/cart/50961661886719:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961661919487,
+        "title": "Navy / 3XL",
+        "price": 34.99,
+        "priceFormatted": "$34.99",
+        "available": true,
+        "sku": "24968485851010205052",
+        "option1": "Navy",
+        "option2": "3XL",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/3662279488832648829_2048.jpg?v=1794166991",
+        "checkoutUrl": "https://armornglory.com/cart/50961661919487:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      }
+    ],
+    "story": {
+      "summary": "TL;DR Dwell — Navy — A Word-centered reminder to abide in Christ and make room for His presence, referencing John 1:14.",
+      "meaningBehindDesign": null,
+      "whyYouWillLoveIt": null,
+      "fitGuidance": null,
+      "specifications": null,
+      "careInstructions": null,
+      "shippingInfo": null
+    },
+    "rawBody": "TL;DR Dwell — Navy — A Word-centered reminder to abide in Christ and make room for His presence, referencing John 1:14.\n\n Comfort Colors® 1717 is made from pre-shrunk 100% ring-spun US cotton at 6.1 oz/yd² (206.8 g/m²). The garment is dyed after construction for a soft washed color. It has a relaxed fit, a tubular body without side seams, double-needle stitching, and a sewn-in label.\n\n Color: Navy. Sizes: S–3XL. Front direct-to-garment print. Made to order.\n\n Fit and size \n\n This shirt has a relaxed unisex fit. The chart lists garment measurements in inches, not body measurements. Compare it with a similar shirt laid flat before choosing a size.\n\n Size \n Width (in) \n Length (in) \n Sleeve from center back (in) \n Tolerance (in) \n\n S \n 18.25 \n 26.62 \n 16.25 \n 1.50 \n\n M \n 20.25 \n 28.00 \n 17.75 \n 1.50 \n\n L \n 22.00 \n 29.37 \n 19.00 \n 1.50 \n\n XL \n 24.00 \n 30.75 \n 20.50 \n 1.50 \n\n 2XL \n 26.00 \n 31.62 \n 21.75 \n 1.50 \n\n 3XL \n 27.75 \n 32.50 \n 23.25 \n 1.50 \n\n Product measurements. Size tolerance is 1.5 in.\n\n Care: Machine wash cold (max 30°C/90°F). Do not bleach. Tumble dry low. Iron on low. Do not dry clean.\n\n FAQs \n\n What is this design about? A Word-centered reminder to abide in Christ and make room for His presence, referencing John 1:14.\n\n Which color and sizes are offered? This listing is in Navy and is available in sizes S–3XL.\n\n How is the artwork printed? The design is printed on the front using direct-to-garment printing. Placement can vary slightly with garment size and production.\n\n How should I wash the shirt? Machine wash cold (max 30°C/90°F). Do not bleach. Tumble dry low. Iron on low. Do not dry clean."
+  },
+  {
+    "id": 10424410341631,
+    "title": "Do Justly, Love Mercy, Walk Humbly | Micah 6:8 Tough Magnetic Phone Case",
+    "handle": "do-justly-love-mercy-walk-humbly-micah-6-8-tough-magnetic-phone-case",
+    "url": "https://armornglory.com/products/do-justly-love-mercy-walk-humbly-micah-6-8-tough-magnetic-phone-case",
+    "productType": "Phone Case",
+    "category": "Phone Cases",
+    "aesthetics": [
+      "Minimalist Core"
+    ],
+    "occasions": [
+      "Everyday Wear"
+    ],
+    "scriptures": [
+      "Micah 6:8"
+    ],
+    "minPrice": 29.99,
+    "maxPrice": 39.99,
+    "priceFormatted": "$29.99 - $39.99",
+    "vendor": "Printify",
+    "tags": [
+      "ag-phone_case_scripture_styles_20-005-653bfcac",
+      "Armor & Glory",
+      "Bible verse case",
+      "Christian phone case",
+      "justice mercy humility",
+      "magnetic case",
+      "Micah 6:8",
+      "phone case",
+      "scripture phone case",
+      "tough case"
+    ],
+    "publishedAt": "2026-11-08T11:33:25-08:00",
+    "createdAt": "2026-11-08T11:33:19-08:00",
+    "featuredImage": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/17566200174396181699_2048.jpg?v=1794166408",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/17566200174396181699_2048.jpg?v=1794166408",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/1497997545986163524_2048.jpg?v=1794166410",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/4574003569921019584_2048.jpg?v=1794166412",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/15898947388776200619_2048.jpg?v=1794166413",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/8826641972784209933_2048.jpg?v=1794166416",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/13678472165680971852_2048.jpg?v=1794166418",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/10030357932658029128_2048.jpg?v=1794166420",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/3766546018343704249_2048.jpg?v=1794166422",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/2467421338184765568_2048.jpg?v=1794166424",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/15034522093912463792_2048.jpg?v=1794166426",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/1310872861511485013_2048.jpg?v=1794166427",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/6418846507842671691_2048.jpg?v=1794166430",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/5837648744214865538_2048.jpg?v=1794166434",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/17466356395982907102_2048.jpg?v=1794166436",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/17111523618644191860_2048.jpg?v=1794166438",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/1621683927395525673_2048.jpg?v=1794166439",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/10885672856432063535_2048.jpg?v=1794166442",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/17976832295606296927_2048.jpg?v=1794166443",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/17561996546558095537_2048.jpg?v=1794166445",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/6593721879539042674_2048.jpg?v=1794166447",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/11719525043576041845_2048.jpg?v=1794166449",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/3665542484515317731_2048.jpg?v=1794166452",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/15994555657963333375_2048.jpg?v=1794166453",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/906770586954994952_2048.jpg?v=1794166455",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/11550418499976662643_2048.jpg?v=1794166457",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/11562824717537345064_2048.jpg?v=1794166459",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/7874965997263616044_2048.jpg?v=1794166460",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/16294815033500179184_2048.jpg?v=1794166462",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/7450893958489068755_2048.jpg?v=1794166464",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/9479892304881992502_2048.jpg?v=1794166466",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/4205707964445546898_2048.jpg?v=1794166467",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/15927152011644088445_2048.jpg?v=1794166471",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/1428185307100587689_2048.jpg?v=1794166473",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/11285349181894920142_2048.jpg?v=1794166475",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/16773248787916536272_2048.jpg?v=1794166476",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/8298999685927970798_2048.jpg?v=1794166478",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/2533509786362221350_2048.jpg?v=1794166481",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/8584137279489683409_2048.jpg?v=1794166483",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/4075890283426928875_2048.jpg?v=1794166484",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/16868997970289286844_2048.jpg?v=1794166489",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/13283795141131344699_2048.jpg?v=1794166491",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/6671272755655173571_2048.jpg?v=1794166496",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/486766997873949240_2048.jpg?v=1794166498",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/3002821773922958033_2048.jpg?v=1794166503",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/1630138646360458771_2048.jpg?v=1794166505",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/2584733530816425275_2048.jpg?v=1794166510",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/12061930960059794115_2048.jpg?v=1794166512",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/12334908637526674438_2048.jpg?v=1794166516",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/17093517927780022509_2048.jpg?v=1794166518",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/3098225130790124642_2048.jpg?v=1794166523",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/5271196752392057909_2048.jpg?v=1794166524",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/2910036559787456860_2048.jpg?v=1794166530",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/8443767198660874247_2048.jpg?v=1794166533",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/7160181030218579224_2048.jpg?v=1794166537",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/17611319193384467048_2048.jpg?v=1794166540",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/14988117769641287085_2048.jpg?v=1794166549",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/7660319647332917764_2048.jpg?v=1794166551",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/10236107109749348386_2048.jpg?v=1794166555",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/4801771841176644668_2048.jpg?v=1794166557",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/4235821521294109136_2048.jpg?v=1794166563",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/2200604589049815686_2048.jpg?v=1794166565",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/13194856727393049442_2048.jpg?v=1794166572",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/7722983977650550201_2048.jpg?v=1794166573",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/10407785765078210519_2048.jpg?v=1794166581",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/4228934204267914245_2048.jpg?v=1794166584",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/5811082463598726960_2048.jpg?v=1794166588",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/5769749471044136934_2048.jpg?v=1794166591",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/15693376969663066837_2048.jpg?v=1794166595",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/10503295413530942108_2048.jpg?v=1794166597",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/6104050683988724992_2048.jpg?v=1794166602",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/12163574881926642453_2048.jpg?v=1794166604",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/9972766826358360464_2048.jpg?v=1794166610",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/2252374386281064206_2048.jpg?v=1794166612",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/14400363293978134209_2048.jpg?v=1794166618",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/10373004431536553096_2048.jpg?v=1794166620",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/16753126619188119271_2048.jpg?v=1794166625",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/3125241565990961597_2048.jpg?v=1794166627",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/12301093143309112519_2048.jpg?v=1794166640",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/15298222916581794116_2048.jpg?v=1794166642",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/15762665611594297777_2048.jpg?v=1794166652",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/18383661601002729627_2048.jpg?v=1794166654",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/4218696542790247780_2048.jpg?v=1794166666",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/4713271372848541010_2048.jpg?v=1794166668",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/10457264770770744792_2048.jpg?v=1794166674",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/1799550240633898259_2048.jpg?v=1794166675",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/10778085013745170765_2048.jpg?v=1794166680",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/3004798621014287239_2048.jpg?v=1794166682",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/7664038671541478284_2048.jpg?v=1794166687",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/15281755932851862678_2048.jpg?v=1794166694",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/11008521599844934767_2048.jpg?v=1794166698",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/147222045796520762_2048.jpg?v=1794166704",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/1955287042096249573_2048.jpg?v=1794166710",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/16222315196715793997_2048.jpg?v=1794166722",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/236536962713284320_2048.jpg?v=1794166728",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/10337369894223974426_2048.jpg?v=1794166742",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/2482445934244957302_2048.jpg?v=1794166744",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/3280365059846638226_2048.jpg?v=1794166746",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/18184963461217428688_2048.jpg?v=1794166748"
+    ],
+    "options": [
+      {
+        "name": "Size",
+        "position": 1,
+        "values": [
+          "iPhone 17 Air",
+          "iPhone 17 Pro Max",
+          "iPhone 17 Pro",
+          "iPhone 17",
+          "iPhone 17 Pro Max with Screen Protector",
+          "iPhone 16 Pro Max",
+          "iPhone 16 Pro",
+          "iPhone 16 Plus",
+          "iPhone 16",
+          "iPhone 15 Pro Max",
+          "iPhone 15 Pro",
+          "iPhone 15 Plus",
+          "iPhone 15",
+          "iPhone 14 Pro Max",
+          "iPhone 14 Pro",
+          "iPhone 14 Plus",
+          "iPhone 14",
+          "iPhone 13 Pro Max",
+          "iPhone 13 Pro",
+          "iPhone 13"
+        ]
+      },
+      {
+        "name": "Surface",
+        "position": 2,
+        "values": [
+          "Glossy",
+          "Matte"
+        ]
+      }
+    ],
+    "availableColors": [
+      "iPhone 17 Air",
+      "iPhone 17 Pro Max",
+      "iPhone 17 Pro",
+      "iPhone 17",
+      "iPhone 17 Pro Max with Screen Protector",
+      "iPhone 16 Pro Max",
+      "iPhone 16 Pro",
+      "iPhone 16 Plus",
+      "iPhone 16",
+      "iPhone 15 Pro Max",
+      "iPhone 15 Pro",
+      "iPhone 15 Plus",
+      "iPhone 15",
+      "iPhone 14 Pro Max",
+      "iPhone 14 Pro",
+      "iPhone 14 Plus",
+      "iPhone 14",
+      "iPhone 13 Pro Max",
+      "iPhone 13 Pro",
+      "iPhone 13"
+    ],
+    "availableSizes": [
+      "Glossy",
+      "Matte"
+    ],
+    "variants": [
+      {
+        "id": 50961638326527,
+        "title": "iPhone 17 Air / Glossy",
+        "price": 29.99,
+        "priceFormatted": "$29.99",
+        "available": true,
+        "sku": "30076110151880233228",
+        "option1": "iPhone 17 Air",
+        "option2": "Glossy",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/7874965997263616044_2048.jpg?v=1794166460",
+        "checkoutUrl": "https://armornglory.com/cart/50961638326527:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961638359295,
+        "title": "iPhone 17 Air / Matte",
+        "price": 29.99,
+        "priceFormatted": "$29.99",
+        "available": true,
+        "sku": "15818062583632098681",
+        "option1": "iPhone 17 Air",
+        "option2": "Matte",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/16294815033500179184_2048.jpg?v=1794166462",
+        "checkoutUrl": "https://armornglory.com/cart/50961638359295:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961638392063,
+        "title": "iPhone 17 Pro Max / Glossy",
+        "price": 29.99,
+        "priceFormatted": "$29.99",
+        "available": true,
+        "sku": "18624068626897899720",
+        "option1": "iPhone 17 Pro Max",
+        "option2": "Glossy",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/4205707964445546898_2048.jpg?v=1794166467",
+        "checkoutUrl": "https://armornglory.com/cart/50961638392063:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961638424831,
+        "title": "iPhone 17 Pro Max / Matte",
+        "price": 29.99,
+        "priceFormatted": "$29.99",
+        "available": true,
+        "sku": "26869891255437493308",
+        "option1": "iPhone 17 Pro Max",
+        "option2": "Matte",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/15927152011644088445_2048.jpg?v=1794166471",
+        "checkoutUrl": "https://armornglory.com/cart/50961638424831:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961638457599,
+        "title": "iPhone 17 Pro / Glossy",
+        "price": 29.99,
+        "priceFormatted": "$29.99",
+        "available": true,
+        "sku": "28516166897556222519",
+        "option1": "iPhone 17 Pro",
+        "option2": "Glossy",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/7450893958489068755_2048.jpg?v=1794166464",
+        "checkoutUrl": "https://armornglory.com/cart/50961638457599:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961638490367,
+        "title": "iPhone 17 Pro / Matte",
+        "price": 29.99,
+        "priceFormatted": "$29.99",
+        "available": true,
+        "sku": "31188298559786043160",
+        "option1": "iPhone 17 Pro",
+        "option2": "Matte",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/9479892304881992502_2048.jpg?v=1794166466",
+        "checkoutUrl": "https://armornglory.com/cart/50961638490367:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961638523135,
+        "title": "iPhone 17 / Glossy",
+        "price": 29.99,
+        "priceFormatted": "$29.99",
+        "available": true,
+        "sku": "10166138847751876755",
+        "option1": "iPhone 17",
+        "option2": "Glossy",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/11550418499976662643_2048.jpg?v=1794166457",
+        "checkoutUrl": "https://armornglory.com/cart/50961638523135:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961638555903,
+        "title": "iPhone 17 / Matte",
+        "price": 29.99,
+        "priceFormatted": "$29.99",
+        "available": true,
+        "sku": "13299674497167954773",
+        "option1": "iPhone 17",
+        "option2": "Matte",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/11562824717537345064_2048.jpg?v=1794166459",
+        "checkoutUrl": "https://armornglory.com/cart/50961638555903:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961638588671,
+        "title": "iPhone 17 Pro Max with Screen Protector / Matte",
+        "price": 39.99,
+        "priceFormatted": "$39.99",
+        "available": true,
+        "sku": "38168403666545453934",
+        "option1": "iPhone 17 Pro Max with Screen Protector",
+        "option2": "Matte",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/4075890283426928875_2048.jpg?v=1794166484",
+        "checkoutUrl": "https://armornglory.com/cart/50961638588671:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961638621439,
+        "title": "iPhone 16 Pro Max / Glossy",
+        "price": 29.99,
+        "priceFormatted": "$29.99",
+        "available": true,
+        "sku": "29301658157311353233",
+        "option1": "iPhone 16 Pro Max",
+        "option2": "Glossy",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/17561996546558095537_2048.jpg?v=1794166445",
+        "checkoutUrl": "https://armornglory.com/cart/50961638621439:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961638654207,
+        "title": "iPhone 16 Pro Max / Matte",
+        "price": 29.99,
+        "priceFormatted": "$29.99",
+        "available": true,
+        "sku": "19316381447942809589",
+        "option1": "iPhone 16 Pro Max",
+        "option2": "Matte",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/6593721879539042674_2048.jpg?v=1794166447",
+        "checkoutUrl": "https://armornglory.com/cart/50961638654207:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961638686975,
+        "title": "iPhone 16 Pro / Glossy",
+        "price": 29.99,
+        "priceFormatted": "$29.99",
+        "available": true,
+        "sku": "20229674813910599860",
+        "option1": "iPhone 16 Pro",
+        "option2": "Glossy",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/10885672856432063535_2048.jpg?v=1794166442",
+        "checkoutUrl": "https://armornglory.com/cart/50961638686975:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961638719743,
+        "title": "iPhone 16 Pro / Matte",
+        "price": 29.99,
+        "priceFormatted": "$29.99",
+        "available": true,
+        "sku": "10648405747439792810",
+        "option1": "iPhone 16 Pro",
+        "option2": "Matte",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/17976832295606296927_2048.jpg?v=1794166443",
+        "checkoutUrl": "https://armornglory.com/cart/50961638719743:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961638752511,
+        "title": "iPhone 16 Plus / Glossy",
+        "price": 29.99,
+        "priceFormatted": "$29.99",
+        "available": true,
+        "sku": "16104974102019247948",
+        "option1": "iPhone 16 Plus",
+        "option2": "Glossy",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/15994555657963333375_2048.jpg?v=1794166453",
+        "checkoutUrl": "https://armornglory.com/cart/50961638752511:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961638785279,
+        "title": "iPhone 16 Plus / Matte",
+        "price": 29.99,
+        "priceFormatted": "$29.99",
+        "available": true,
+        "sku": "10737525990123330256",
+        "option1": "iPhone 16 Plus",
+        "option2": "Matte",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/906770586954994952_2048.jpg?v=1794166455",
+        "checkoutUrl": "https://armornglory.com/cart/50961638785279:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961638818047,
+        "title": "iPhone 16 / Glossy",
+        "price": 29.99,
+        "priceFormatted": "$29.99",
+        "available": true,
+        "sku": "84210076695969274748",
+        "option1": "iPhone 16",
+        "option2": "Glossy",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/11719525043576041845_2048.jpg?v=1794166449",
+        "checkoutUrl": "https://armornglory.com/cart/50961638818047:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961638850815,
+        "title": "iPhone 16 / Matte",
+        "price": 29.99,
+        "priceFormatted": "$29.99",
+        "available": true,
+        "sku": "23162754245046645045",
+        "option1": "iPhone 16",
+        "option2": "Matte",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/3665542484515317731_2048.jpg?v=1794166452",
+        "checkoutUrl": "https://armornglory.com/cart/50961638850815:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961638883583,
+        "title": "iPhone 15 Pro Max / Glossy",
+        "price": 29.99,
+        "priceFormatted": "$29.99",
+        "available": true,
+        "sku": "23742532347768989237",
+        "option1": "iPhone 15 Pro Max",
+        "option2": "Glossy",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/10030357932658029128_2048.jpg?v=1794166420",
+        "checkoutUrl": "https://armornglory.com/cart/50961638883583:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961638916351,
+        "title": "iPhone 15 Pro Max / Matte",
+        "price": 29.99,
+        "priceFormatted": "$29.99",
+        "available": true,
+        "sku": "22549677235192419618",
+        "option1": "iPhone 15 Pro Max",
+        "option2": "Matte",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/3766546018343704249_2048.jpg?v=1794166422",
+        "checkoutUrl": "https://armornglory.com/cart/50961638916351:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961638949119,
+        "title": "iPhone 15 Pro / Glossy",
+        "price": 29.99,
+        "priceFormatted": "$29.99",
+        "available": true,
+        "sku": "68155932609480511395",
+        "option1": "iPhone 15 Pro",
+        "option2": "Glossy",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/4574003569921019584_2048.jpg?v=1794166412",
+        "checkoutUrl": "https://armornglory.com/cart/50961638949119:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961638981887,
+        "title": "iPhone 15 Pro / Matte",
+        "price": 29.99,
+        "priceFormatted": "$29.99",
+        "available": true,
+        "sku": "17097298069012952397",
+        "option1": "iPhone 15 Pro",
+        "option2": "Matte",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/15898947388776200619_2048.jpg?v=1794166413",
+        "checkoutUrl": "https://armornglory.com/cart/50961638981887:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961639014655,
+        "title": "iPhone 15 Plus / Glossy",
+        "price": 29.99,
+        "priceFormatted": "$29.99",
+        "available": true,
+        "sku": "86861682560269385111",
+        "option1": "iPhone 15 Plus",
+        "option2": "Glossy",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/8826641972784209933_2048.jpg?v=1794166416",
+        "checkoutUrl": "https://armornglory.com/cart/50961639014655:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961639047423,
+        "title": "iPhone 15 Plus / Matte",
+        "price": 29.99,
+        "priceFormatted": "$29.99",
+        "available": true,
+        "sku": "11821783819949412341",
+        "option1": "iPhone 15 Plus",
+        "option2": "Matte",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/13678472165680971852_2048.jpg?v=1794166418",
+        "checkoutUrl": "https://armornglory.com/cart/50961639047423:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961639080191,
+        "title": "iPhone 15 / Glossy",
+        "price": 29.99,
+        "priceFormatted": "$29.99",
+        "available": true,
+        "sku": "21866200269616101277",
+        "option1": "iPhone 15",
+        "option2": "Glossy",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/17566200174396181699_2048.jpg?v=1794166408",
+        "checkoutUrl": "https://armornglory.com/cart/50961639080191:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961639112959,
+        "title": "iPhone 15 / Matte",
+        "price": 29.99,
+        "priceFormatted": "$29.99",
+        "available": true,
+        "sku": "28363282922974445466",
+        "option1": "iPhone 15",
+        "option2": "Matte",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/1497997545986163524_2048.jpg?v=1794166410",
+        "checkoutUrl": "https://armornglory.com/cart/50961639112959:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961639145727,
+        "title": "iPhone 14 Pro Max / Glossy",
+        "price": 29.99,
+        "priceFormatted": "$29.99",
+        "available": true,
+        "sku": "27306033197141755656",
+        "option1": "iPhone 14 Pro Max",
+        "option2": "Glossy",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/17111523618644191860_2048.jpg?v=1794166438",
+        "checkoutUrl": "https://armornglory.com/cart/50961639145727:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961639178495,
+        "title": "iPhone 14 Pro Max / Matte",
+        "price": 29.99,
+        "priceFormatted": "$29.99",
+        "available": true,
+        "sku": "80815668591913267053",
+        "option1": "iPhone 14 Pro Max",
+        "option2": "Matte",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/1621683927395525673_2048.jpg?v=1794166439",
+        "checkoutUrl": "https://armornglory.com/cart/50961639178495:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961639211263,
+        "title": "iPhone 14 Pro / Glossy",
+        "price": 29.99,
+        "priceFormatted": "$29.99",
+        "available": true,
+        "sku": "22876899994983041318",
+        "option1": "iPhone 14 Pro",
+        "option2": "Glossy",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/1310872861511485013_2048.jpg?v=1794166427",
+        "checkoutUrl": "https://armornglory.com/cart/50961639211263:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961639244031,
+        "title": "iPhone 14 Pro / Matte",
+        "price": 29.99,
+        "priceFormatted": "$29.99",
+        "available": true,
+        "sku": "16616558632377749779",
+        "option1": "iPhone 14 Pro",
+        "option2": "Matte",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/6418846507842671691_2048.jpg?v=1794166430",
+        "checkoutUrl": "https://armornglory.com/cart/50961639244031:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961639276799,
+        "title": "iPhone 14 Plus / Glossy",
+        "price": 29.99,
+        "priceFormatted": "$29.99",
+        "available": true,
+        "sku": "23128816016717464212",
+        "option1": "iPhone 14 Plus",
+        "option2": "Glossy",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/5837648744214865538_2048.jpg?v=1794166434",
+        "checkoutUrl": "https://armornglory.com/cart/50961639276799:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961639309567,
+        "title": "iPhone 14 Plus / Matte",
+        "price": 29.99,
+        "priceFormatted": "$29.99",
+        "available": true,
+        "sku": "59228794715768960713",
+        "option1": "iPhone 14 Plus",
+        "option2": "Matte",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/17466356395982907102_2048.jpg?v=1794166436",
+        "checkoutUrl": "https://armornglory.com/cart/50961639309567:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961639342335,
+        "title": "iPhone 14 / Glossy",
+        "price": 29.99,
+        "priceFormatted": "$29.99",
+        "available": true,
+        "sku": "18653518262871245146",
+        "option1": "iPhone 14",
+        "option2": "Glossy",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/2467421338184765568_2048.jpg?v=1794166424",
+        "checkoutUrl": "https://armornglory.com/cart/50961639342335:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961639375103,
+        "title": "iPhone 14 / Matte",
+        "price": 29.99,
+        "priceFormatted": "$29.99",
+        "available": true,
+        "sku": "15273206859294254138",
+        "option1": "iPhone 14",
+        "option2": "Matte",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/15034522093912463792_2048.jpg?v=1794166426",
+        "checkoutUrl": "https://armornglory.com/cart/50961639375103:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961639407871,
+        "title": "iPhone 13 Pro Max / Glossy",
+        "price": 29.99,
+        "priceFormatted": "$29.99",
+        "available": true,
+        "sku": "60084431594770794812",
+        "option1": "iPhone 13 Pro Max",
+        "option2": "Glossy",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/2533509786362221350_2048.jpg?v=1794166481",
+        "checkoutUrl": "https://armornglory.com/cart/50961639407871:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961639440639,
+        "title": "iPhone 13 Pro Max / Matte",
+        "price": 29.99,
+        "priceFormatted": "$29.99",
+        "available": true,
+        "sku": "72855409754806444218",
+        "option1": "iPhone 13 Pro Max",
+        "option2": "Matte",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/8584137279489683409_2048.jpg?v=1794166483",
+        "checkoutUrl": "https://armornglory.com/cart/50961639440639:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961639473407,
+        "title": "iPhone 13 Pro / Glossy",
+        "price": 29.99,
+        "priceFormatted": "$29.99",
+        "available": true,
+        "sku": "20019681670505585379",
+        "option1": "iPhone 13 Pro",
+        "option2": "Glossy",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/16773248787916536272_2048.jpg?v=1794166476",
+        "checkoutUrl": "https://armornglory.com/cart/50961639473407:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961639506175,
+        "title": "iPhone 13 Pro / Matte",
+        "price": 29.99,
+        "priceFormatted": "$29.99",
+        "available": true,
+        "sku": "29772198444150006956",
+        "option1": "iPhone 13 Pro",
+        "option2": "Matte",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/8298999685927970798_2048.jpg?v=1794166478",
+        "checkoutUrl": "https://armornglory.com/cart/50961639506175:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961639538943,
+        "title": "iPhone 13 / Glossy",
+        "price": 29.99,
+        "priceFormatted": "$29.99",
+        "available": true,
+        "sku": "27889822157484128214",
+        "option1": "iPhone 13",
+        "option2": "Glossy",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/1428185307100587689_2048.jpg?v=1794166473",
+        "checkoutUrl": "https://armornglory.com/cart/50961639538943:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      },
+      {
+        "id": 50961639571711,
+        "title": "iPhone 13 / Matte",
+        "price": 29.99,
+        "priceFormatted": "$29.99",
+        "available": true,
+        "sku": "14482437274707354405",
+        "option1": "iPhone 13",
+        "option2": "Matte",
+        "option3": null,
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/11285349181894920142_2048.jpg?v=1794166475",
+        "checkoutUrl": "https://armornglory.com/cart/50961639571711:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
+      }
+    ],
+    "story": {
+      "summary": "Built to Carry the Message ",
+      "meaningBehindDesign": "Do Justly, Love Mercy, Walk Humbly is designed as a daily reminder that faith and purpose belong in everyday life. The artwork keeps that meaning clear, modern, and easy to carry.\n\n A Meaningful Christian Gift \n\n • Christian gifts\n• Faith-based accessories\n• Everyday iPhone protection\n• Apple iPhone users",
+      "whyYouWillLoveIt": "• Original Armor & Glory artwork with a modern faith-centered point of view\n• Durable dual-layer construction for everyday protection\n• Built-in magnetic module compatible with MagSafe® accessories\n• Choice of glossy or matte finish\n• Wraparound dye-sublimation print with lasting color and detail",
+      "fitGuidance": null,
+      "specifications": "• Designed for select Apple iPhone models, including the iPhone 17 series\n• 100 percent polycarbonate outer shell\n• 100 percent TPU inner lining\n• Impact-resistant outer shell with a soft protective liner\n• Integrated magnetic module for MagSafe® compatible chargers, wallets, and accessories\n• Glossy and matte finish options\n• Clear, open ports and a precise camera cutout\n• Full-wrap exterior print\n• Blank product sourced from South Korea\n• Made to order",
+      "careInstructions": "Wipe gently with a soft, damp cotton or microfiber cloth. Avoid harsh cleaners, chemicals, and abrasive materials.",
+      "shippingInfo": null
+    },
+    "rawBody": "Built to Carry the Message \n\n A faith-centered phone case with the Micah 6:8 scripture message “Do Justly, Love Mercy, Walk Humbly,” drawn from the user-approved Armor & Glory case mockup.\n\n This Tough Magnetic iPhone Case pairs the artwork with durable dual-layer protection and a built-in magnetic module compatible with MagSafe® chargers, wallets, and accessories.\n\n Why You Will Love It \n\n • Original Armor & Glory artwork with a modern faith-centered point of view\n• Durable dual-layer construction for everyday protection\n• Built-in magnetic module compatible with MagSafe® accessories\n• Choice of glossy or matte finish\n• Wraparound dye-sublimation print with lasting color and detail\n\n Product Details \n\n • Designed for select Apple iPhone models, including the iPhone 17 series\n• 100 percent polycarbonate outer shell\n• 100 percent TPU inner lining\n• Impact-resistant outer shell with a soft protective liner\n• Integrated magnetic module for MagSafe® compatible chargers, wallets, and accessories\n• Glossy and matte finish options\n• Clear, open ports and a precise camera cutout\n• Full-wrap exterior print\n• Blank product sourced from South Korea\n• Made to order\n\n Meaning Behind the Design \n\n Do Justly, Love Mercy, Walk Humbly is designed as a daily reminder that faith and purpose belong in everyday life. The artwork keeps that meaning clear, modern, and easy to carry.\n\n A Meaningful Christian Gift \n\n • Christian gifts\n• Faith-based accessories\n• Everyday iPhone protection\n• Apple iPhone users\n\n Care Instructions \n\n Wipe gently with a soft, damp cotton or microfiber cloth. Avoid harsh cleaners, chemicals, and abrasive materials.\n\n Important Notes \n\n • Select your exact iPhone model before checkout. Similar model names can have different dimensions and camera openings.\n• This listing is for one iPhone case only. Phone, charger, wallet, and other accessories are not included.\n• Colors and print placement may vary slightly between devices because each model has a different shape and camera opening.\n• MagSafe® is a registered trademark of Apple Inc. This product is compatible with MagSafe® accessories but is not made by Apple.\n\n Frequently Asked Questions \n\n Is this case protective? \nYes. It combines a rigid polycarbonate outer shell with a shock-absorbing TPU inner liner for durable everyday protection.\n\n Is this a MagSafe case? \nYes. The case includes a built-in magnetic module compatible with MagSafe® chargers, wallets, and other MagSafe® compatible accessories.\n\n Does it support wireless charging? \nYes. The case is compatible with wireless charging and includes a built-in magnetic module for MagSafe® compatible accessories.\n\n Can I choose the finish? \nYes. Select either glossy or matte before adding the case to your cart.\n\n Will the artwork cover the sides? \nYes. The design uses a wraparound exterior print for a more complete, finished appearance.\n\n How do I select the correct size? \nChoose the exact iPhone model shown in your device settings. Similar model names may use different case dimensions and camera openings."
+  },
+  {
     "id": 10424261673215,
     "title": "My Help Comes from the Lord | Psalm 121:2 Tough Magnetic Phone Case",
     "handle": "my-help-comes-from-the-lord-psalm-121-2-tough-magnetic-phone-case",
@@ -9087,13 +10303,15 @@
     ],
     "publishedAt": "2026-10-24T07:27:10-07:00",
     "createdAt": "2026-10-24T07:27:05-07:00",
-    "featuredImage": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/8701499214055431392_2048.jpg?v=1792852032",
+    "featuredImage": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/8701499214055431392_2048.jpg?v=1794167041",
     "images": [
-      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/8701499214055431392_2048.jpg?v=1792852032",
-      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/16471636145186441524_2048.jpg?v=1792852032",
-      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/5815507015663720842_2048.jpg?v=1792852033",
-      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/11345079088433972847_2048.jpg?v=1792852034",
-      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/catalog_5c1cb1fa2be521_d53ebee6-bc8b-4f0d-9eb4-af9a1dec7f1b.png?v=1793494124"
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/8701499214055431392_2048.jpg?v=1794167041",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/16471636145186441524_2048.jpg?v=1794167042",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/5815507015663720842_2048.jpg?v=1794167043",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/11345079088433972847_2048.jpg?v=1794167044",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/9739028812837142232_2048.jpg?v=1794167045",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/8282394145714483801_2048.jpg?v=1794167046",
+      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/4557145799638101625_2048.jpg?v=1794167046"
     ],
     "options": [
       {
@@ -9138,7 +10356,7 @@
         "option1": "Blue Jean",
         "option2": "S",
         "option3": null,
-        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/8701499214055431392_2048.jpg?v=1792852032",
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/8701499214055431392_2048.jpg?v=1794167041",
         "checkoutUrl": "https://armornglory.com/cart/50772147962111:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
       },
       {
@@ -9151,7 +10369,7 @@
         "option1": "Blue Jean",
         "option2": "M",
         "option3": null,
-        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/8701499214055431392_2048.jpg?v=1792852032",
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/8701499214055431392_2048.jpg?v=1794167041",
         "checkoutUrl": "https://armornglory.com/cart/50772147994879:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
       },
       {
@@ -9164,7 +10382,7 @@
         "option1": "Blue Jean",
         "option2": "L",
         "option3": null,
-        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/8701499214055431392_2048.jpg?v=1792852032",
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/8701499214055431392_2048.jpg?v=1794167041",
         "checkoutUrl": "https://armornglory.com/cart/50772148027647:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
       },
       {
@@ -9177,7 +10395,7 @@
         "option1": "Blue Jean",
         "option2": "XL",
         "option3": null,
-        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/8701499214055431392_2048.jpg?v=1792852032",
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/8701499214055431392_2048.jpg?v=1794167041",
         "checkoutUrl": "https://armornglory.com/cart/50772148060415:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
       },
       {
@@ -9190,7 +10408,7 @@
         "option1": "Blue Jean",
         "option2": "2XL",
         "option3": null,
-        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/8701499214055431392_2048.jpg?v=1792852032",
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/8701499214055431392_2048.jpg?v=1794167041",
         "checkoutUrl": "https://armornglory.com/cart/50772148093183:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
       },
       {
@@ -9203,7 +10421,7 @@
         "option1": "Blue Jean",
         "option2": "3XL",
         "option3": null,
-        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/8701499214055431392_2048.jpg?v=1792852032",
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/8701499214055431392_2048.jpg?v=1794167041",
         "checkoutUrl": "https://armornglory.com/cart/50772148125951:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
       }
     ],
@@ -72863,448 +74081,6 @@
       "shippingInfo": null
     },
     "rawBody": "Morning Light OTTO Foam Trucker Hat \n\n Morning Light was made for the kind of faith that does not need to shout.\n\n A golden sunrise sits above the words MORNING LIGHT , creating a quiet reminder of renewal, mercy, and the promise of another day. Clean enough for everyday wear and meaningful enough to say something, this is faith carried with intention.\n\n Built on a classic OTTO foam trucker hat , it pairs a structured white foam front with breathable mesh and an adjustable snapback for an easy, relaxed fit. The gold design brings just enough contrast to stand out without overpowering the clean look of the hat.\n\n Wear it to the beach, on the road, after church, or anywhere the day takes you.\n\n Why You’ll Love It \n • Classic OTTO foam trucker silhouette\n• Gold Morning Light sunrise design\n• Structured foam front for a clean vintage inspired shape\n• Breathable mesh back\n• Adjustable snapback closure\n• Lightweight and comfortable for everyday wear\n• Unisex style\n• Subtle Christian design that is easy to wear\n\n The Meaning Behind Morning Light \n Morning Light represents the hope found in a new beginning.\n\n The rising sun is a reminder that darkness does not have the final word. Each morning brings new mercy, renewed purpose, and another opportunity to walk forward in faith.\n\n It is a simple message, worn quietly.\n\n Product Details \n • OTTO foam trucker hat\n• White foam front panel\n• White mesh back\n• Adjustable snapback closure\n• Structured front\n• Curved brim\n• One size\n• Unisex fit\n\n Made For \n Beach mornings. Road trips. Church days. Coffee runs. Long weekends. Everyday life.\n\n For anyone looking for a Christian trucker hat that feels less like merchandise and more like something you would actually want to wear.\n\n Frequently Asked Questions \n\n What is the fit? \nThis is a one-size trucker hat with a breathable mesh back and an adjustable snap closure.\n\n How should I care for it? \nSpot clean with warm water, dish soap, and a soft brush. Do not soak the entire hat.\n\n Is it made to order? \nYes. Your item is made to order, so production and delivery timing can vary by destination and order volume.\n\n Size and fit Printify supplier size guide: Hat size: 6¾–7½; Circumference: 24.02–25.98 in; Width: 8.58 in; Height: 5.98 in; Panel depth: 2.99 in. Product dimensions. Adjustable plastic snap closure. The attached size guide shows the selected 39-165 model."
-  },
-  {
-    "id": 9531625242879,
-    "title": "Founded in Faith Trucker Hat",
-    "handle": "founded-in-faith-trucker-hat-patriotic-christian-hat-under-god-hat-1776-cap-250-years-hat-fourth-of-july-snapback",
-    "url": "https://armornglory.com/products/founded-in-faith-trucker-hat-patriotic-christian-hat-under-god-hat-1776-cap-250-years-hat-fourth-of-july-snapback",
-    "productType": "Hats",
-    "category": "Hats & Headwear",
-    "aesthetics": [
-      "Streetwear",
-      "Minimalist Core",
-      "Vintage Americana"
-    ],
-    "occasions": [
-      "Everyday Wear",
-      "Church & Fellowship",
-      "Patriotic / 4th of July",
-      "Father's Day & Gifts for Men",
-      "Mother's Day & Gifts for Women"
-    ],
-    "scriptures": [],
-    "minPrice": 21.99,
-    "maxPrice": 21.99,
-    "priceFormatted": "$21.99",
-    "vendor": "Printify",
-    "tags": [
-      "1776 hat",
-      "250 years hat",
-      "america hat",
-      "christian hat",
-      "faith based hat",
-      "foam trucker hat",
-      "founded in faith",
-      "july 4th hat",
-      "mens womens hat",
-      "patriotic hat",
-      "snapback cap",
-      "trucker hat",
-      "under god hat"
-    ],
-    "publishedAt": "2026-06-10T07:58:18-07:00",
-    "createdAt": "2026-06-10T07:58:15-07:00",
-    "featuredImage": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/ChatGPT_Image_Jun_10_2026_01_14_50_AM_2.png?v=1781152803",
-    "images": [
-      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/ChatGPT_Image_Jun_10_2026_01_14_50_AM_2.png?v=1781152803",
-      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/ChatGPT_Image_Jun_10_2026_01_14_49_AM_1.png?v=1781152803",
-      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/ChatGPT_Image_Jun_10_2026_01_14_50_AM_3.png?v=1781152804",
-      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/ChatGPT_Image_Jun_10_2026_01_20_01_AM.png?v=1781152803",
-      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/16346205869375833325_2048.jpg?v=1781103519",
-      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/936652334753738364_2048.jpg?v=1781103525",
-      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/7043075515403562464_2048.jpg?v=1781103532",
-      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/1521369136631329697_2048.jpg?v=1781103541",
-      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/10410917096471245619_2048.jpg?v=1781103550",
-      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/3540376218164914353_2048.jpg?v=1781103559",
-      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/11667943173020877181_2048.jpg?v=1781103567",
-      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/17535709299292199787_2048.jpg?v=1781103575",
-      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/928510541946790766_2048.jpg?v=1781103584",
-      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/5182160202785545629_2048.jpg?v=1781103593",
-      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/9210010662638042233_2048.jpg?v=1781103601",
-      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/13733982097431259296_2048.jpg?v=1781103610",
-      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/otto_39_165_d0eb1d11-88c7-418a-bc57-963e65a6e37c.png?v=1791653349"
-    ],
-    "options": [
-      {
-        "name": "Color",
-        "position": 1,
-        "values": [
-          "Black",
-          "White",
-          "Dark Navy"
-        ]
-      },
-      {
-        "name": "Size",
-        "position": 2,
-        "values": [
-          "One size"
-        ]
-      }
-    ],
-    "availableColors": [
-      "Black",
-      "White",
-      "Dark Navy"
-    ],
-    "availableSizes": [
-      "One size"
-    ],
-    "variants": [
-      {
-        "id": 48652658868479,
-        "title": "Black / One size",
-        "price": 21.99,
-        "priceFormatted": "$21.99",
-        "available": true,
-        "sku": "16818017216845861671",
-        "option1": "Black",
-        "option2": "One size",
-        "option3": null,
-        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/16346205869375833325_2048.jpg?v=1781103519",
-        "checkoutUrl": "https://armornglory.com/cart/48652658868479:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
-      },
-      {
-        "id": 48652658901247,
-        "title": "White / One size",
-        "price": 21.99,
-        "priceFormatted": "$21.99",
-        "available": true,
-        "sku": "15453963159410652201",
-        "option1": "White",
-        "option2": "One size",
-        "option3": null,
-        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/7043075515403562464_2048.jpg?v=1781103532",
-        "checkoutUrl": "https://armornglory.com/cart/48652658901247:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
-      },
-      {
-        "id": 48652658934015,
-        "title": "Dark Navy / One size",
-        "price": 21.99,
-        "priceFormatted": "$21.99",
-        "available": true,
-        "sku": "26096819244516293137",
-        "option1": "Dark Navy",
-        "option2": "One size",
-        "option3": null,
-        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/936652334753738364_2048.jpg?v=1781103525",
-        "checkoutUrl": "https://armornglory.com/cart/48652658934015:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
-      }
-    ],
-    "story": {
-      "summary": "Founded in Faith Christian Trucker Hat ",
-      "meaningBehindDesign": null,
-      "whyYouWillLoveIt": null,
-      "fitGuidance": null,
-      "specifications": "• Foam trucker hat style • Structured front panel • Breathable mesh back • Adjustable snapback closure • Patriotic Christian graphic • Vintage Americana inspired design • Lightweight and easy to wear • Great for men or women • One size fits most • Designed for everyday wear, church, holidays, and casual outfits\n\n Perfect For \n\n • Fourth of July outfits • America 250 celebrations • Memorial Day events • Veterans Day outfits • Patriotic Christian apparel • Faith based accessories • Christian gifts for men • Christian gifts for women • God and country outfits • Summer events and cookouts • Church gatherings • Everyday casual wear",
-      "careInstructions": "• Spot clean when needed • Use a damp cloth with mild soap • Do not machine wash • Do not bleach • Air dry only • Do not iron the design\n\n Frequently Asked Questions \n\n Is this hat adjustable? Yes. This hat includes an adjustable snapback closure for an easy everyday fit.\n\n Is this hat for men or women? Yes. This is a unisex trucker hat designed to work well for both men and women.\n\n What kind of hat is this? This is a foam trucker hat with a structured front and mesh back.\n\n What holidays is this hat good for? This hat is great for the Fourth of July, Memorial Day, Veterans Day, America 250 events, church gatherings, and everyday patriotic wear.\n\n Is the design political? The design is focused on faith, freedom, gratitude, and honoring God and country. It has a bold patriotic look without feeling like campaign apparel.\n\n What makes this hat different? Founded in Faith combines Christian conviction with vintage Americana artwork, creating a hat that feels meaningful, strong, and easy to wear.\n\n Size and fit Printify supplier size guide: Hat size: 6¾–7½; Circumference: 24.02–25.98 in; Width: 8.58 in; Height: 5.98 in; Panel depth: 2.99 in. Product dimensions. Adjustable plastic snap closure. The attached size guide shows the selected 39-165 model.",
-      "shippingInfo": null
-    },
-    "rawBody": "Founded in Faith Christian Trucker Hat \n\n Celebrate faith and freedom with the Founded in Faith Christian trucker hat . This patriotic Christian hat features a bold vintage inspired emblem with an eagle, early American imagery, 1776 detail, and the phrase Under God .\n\n Designed with a strong Americana look, this foam trucker hat is made for believers who want something meaningful, wearable, and visually striking. The design blends patriotic style with a faith forward message, giving it a timeless look that works for Fourth of July outfits, summer events, church gatherings, patriotic holidays, and everyday wear.\n\n Whether you are celebrating America 250, Memorial Day, Veterans Day, the Fourth of July, or simply want a faith based accessory that honors God and country, this hat is an easy everyday staple with a message that matters.\n\n Design Meaning \n\n • Features the phrase Founded in Faith • Includes Under God as a bold faith centered statement • Vintage inspired Americana emblem with eagle and early American details • Designed to celebrate faith, freedom, and gratitude • A meaningful patriotic Christian hat without feeling overly loud • Created for believers who want faith based style with a timeless heritage look\n\n Product Details \n\n • Foam trucker hat style • Structured front panel • Breathable mesh back • Adjustable snapback closure • Patriotic Christian graphic • Vintage Americana inspired design • Lightweight and easy to wear • Great for men or women • One size fits most • Designed for everyday wear, church, holidays, and casual outfits\n\n Perfect For \n\n • Fourth of July outfits • America 250 celebrations • Memorial Day events • Veterans Day outfits • Patriotic Christian apparel • Faith based accessories • Christian gifts for men • Christian gifts for women • God and country outfits • Summer events and cookouts • Church gatherings • Everyday casual wear\n\n Care Instructions \n\n • Spot clean when needed • Use a damp cloth with mild soap • Do not machine wash • Do not bleach • Air dry only • Do not iron the design\n\n Frequently Asked Questions \n\n Is this hat adjustable? Yes. This hat includes an adjustable snapback closure for an easy everyday fit.\n\n Is this hat for men or women? Yes. This is a unisex trucker hat designed to work well for both men and women.\n\n What kind of hat is this? This is a foam trucker hat with a structured front and mesh back.\n\n What holidays is this hat good for? This hat is great for the Fourth of July, Memorial Day, Veterans Day, America 250 events, church gatherings, and everyday patriotic wear.\n\n Is the design political? The design is focused on faith, freedom, gratitude, and honoring God and country. It has a bold patriotic look without feeling like campaign apparel.\n\n What makes this hat different? Founded in Faith combines Christian conviction with vintage Americana artwork, creating a hat that feels meaningful, strong, and easy to wear.\n\n Size and fit Printify supplier size guide: Hat size: 6¾–7½; Circumference: 24.02–25.98 in; Width: 8.58 in; Height: 5.98 in; Panel depth: 2.99 in. Product dimensions. Adjustable plastic snap closure. The attached size guide shows the selected 39-165 model."
-  },
-  {
-    "id": 9531624751359,
-    "title": "Founded in Faith Christian Patriotic Shirt",
-    "handle": "unisex-garment-dyed-t-shirt",
-    "url": "https://armornglory.com/products/unisex-garment-dyed-t-shirt",
-    "productType": "T-Shirt",
-    "category": "T-Shirts & Tops",
-    "aesthetics": [
-      "Minimalist Core",
-      "Vintage Americana"
-    ],
-    "occasions": [
-      "Everyday Wear",
-      "Church & Fellowship",
-      "Patriotic / 4th of July"
-    ],
-    "scriptures": [],
-    "minPrice": 24.99,
-    "maxPrice": 24.99,
-    "priceFormatted": "$24.99",
-    "vendor": "Printify",
-    "tags": [],
-    "publishedAt": "2026-06-10T07:58:11-07:00",
-    "createdAt": "2026-06-10T07:58:06-07:00",
-    "featuredImage": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/ChatGPT_Image_Jun_10_2026_01_10_06_AM_1.png?v=1781152428",
-    "images": [
-      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/ChatGPT_Image_Jun_10_2026_01_10_06_AM_1.png?v=1781152428",
-      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/ChatGPT_Image_Jun_10_2026_01_10_06_AM_3.png?v=1781152428",
-      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/ChatGPT_Image_Jun_10_2026_01_10_13_AM_3.png?v=1781152428",
-      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/ChatGPT_Image_Jun_10_2026_01_10_13_AM_1.png?v=1781152428",
-      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/ChatGPT_Image_Jun_10_2026_01_10_13_AM_2.png?v=1781152428",
-      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/ChatGPT_Image_Jun_10_2026_01_10_06_AM_2.png?v=1781152428",
-      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/17977936147670087727_2048.jpg?v=1781103494",
-      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/12044426830589590276_2048.jpg?v=1781103497",
-      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/12226574136606110492_2048.jpg?v=1781103498",
-      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/15291456033332827024_2048.jpg?v=1781103500",
-      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/5602696640899062149_2048.jpg?v=1781103502",
-      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/13275803393258764126_2048.jpg?v=1781103503",
-      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/10077625308915799735_2048.jpg?v=1781103504",
-      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/4166130416154075767_2048.jpg?v=1781103506",
-      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/13991464386539442327_2048.jpg?v=1781103507",
-      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/1799332308355153868_2048.jpg?v=1781103508",
-      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/10294958513793243312_2048.jpg?v=1781103510",
-      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/18219935789099851327_2048.jpg?v=1781103512",
-      "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/catalog_5c1cb1fa2be521_32731ce3-3846-4950-b4da-5f662be2ada1.png?v=1791660074"
-    ],
-    "options": [
-      {
-        "name": "Color",
-        "position": 1,
-        "values": [
-          "Black",
-          "True Navy",
-          "White"
-        ]
-      },
-      {
-        "name": "Size",
-        "position": 2,
-        "values": [
-          "S",
-          "M",
-          "L",
-          "XL",
-          "2XL",
-          "3XL"
-        ]
-      }
-    ],
-    "availableColors": [
-      "Black",
-      "True Navy",
-      "White"
-    ],
-    "availableSizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "2XL",
-      "3XL"
-    ],
-    "variants": [
-      {
-        "id": 48652657656063,
-        "title": "Black / S",
-        "price": 24.99,
-        "priceFormatted": "$24.99",
-        "available": true,
-        "sku": "32585007114382069654",
-        "option1": "Black",
-        "option2": "S",
-        "option3": null,
-        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/12226574136606110492_2048.jpg?v=1781103498",
-        "checkoutUrl": "https://armornglory.com/cart/48652657656063:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
-      },
-      {
-        "id": 48652657688831,
-        "title": "True Navy / S",
-        "price": 24.99,
-        "priceFormatted": "$24.99",
-        "available": true,
-        "sku": "13667949725429827122",
-        "option1": "True Navy",
-        "option2": "S",
-        "option3": null,
-        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/12044426830589590276_2048.jpg?v=1781103497",
-        "checkoutUrl": "https://armornglory.com/cart/48652657688831:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
-      },
-      {
-        "id": 48652657721599,
-        "title": "Black / M",
-        "price": 24.99,
-        "priceFormatted": "$24.99",
-        "available": true,
-        "sku": "12148042242253487624",
-        "option1": "Black",
-        "option2": "M",
-        "option3": null,
-        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/12226574136606110492_2048.jpg?v=1781103498",
-        "checkoutUrl": "https://armornglory.com/cart/48652657721599:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
-      },
-      {
-        "id": 48652657754367,
-        "title": "White / M",
-        "price": 24.99,
-        "priceFormatted": "$24.99",
-        "available": true,
-        "sku": "10810637256559692502",
-        "option1": "White",
-        "option2": "M",
-        "option3": null,
-        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/17977936147670087727_2048.jpg?v=1781103494",
-        "checkoutUrl": "https://armornglory.com/cart/48652657754367:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
-      },
-      {
-        "id": 48652657787135,
-        "title": "True Navy / M",
-        "price": 24.99,
-        "priceFormatted": "$24.99",
-        "available": true,
-        "sku": "28238768295808180390",
-        "option1": "True Navy",
-        "option2": "M",
-        "option3": null,
-        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/12044426830589590276_2048.jpg?v=1781103497",
-        "checkoutUrl": "https://armornglory.com/cart/48652657787135:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
-      },
-      {
-        "id": 48652657819903,
-        "title": "Black / L",
-        "price": 24.99,
-        "priceFormatted": "$24.99",
-        "available": true,
-        "sku": "15414061208312298423",
-        "option1": "Black",
-        "option2": "L",
-        "option3": null,
-        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/12226574136606110492_2048.jpg?v=1781103498",
-        "checkoutUrl": "https://armornglory.com/cart/48652657819903:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
-      },
-      {
-        "id": 48652657852671,
-        "title": "White / L",
-        "price": 24.99,
-        "priceFormatted": "$24.99",
-        "available": true,
-        "sku": "64781308319762004425",
-        "option1": "White",
-        "option2": "L",
-        "option3": null,
-        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/17977936147670087727_2048.jpg?v=1781103494",
-        "checkoutUrl": "https://armornglory.com/cart/48652657852671:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
-      },
-      {
-        "id": 48652657885439,
-        "title": "True Navy / L",
-        "price": 24.99,
-        "priceFormatted": "$24.99",
-        "available": true,
-        "sku": "12488904327689702579",
-        "option1": "True Navy",
-        "option2": "L",
-        "option3": null,
-        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/12044426830589590276_2048.jpg?v=1781103497",
-        "checkoutUrl": "https://armornglory.com/cart/48652657885439:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
-      },
-      {
-        "id": 48652657918207,
-        "title": "Black / XL",
-        "price": 24.99,
-        "priceFormatted": "$24.99",
-        "available": true,
-        "sku": "13337147894882858112",
-        "option1": "Black",
-        "option2": "XL",
-        "option3": null,
-        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/12226574136606110492_2048.jpg?v=1781103498",
-        "checkoutUrl": "https://armornglory.com/cart/48652657918207:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
-      },
-      {
-        "id": 48652657950975,
-        "title": "White / XL",
-        "price": 24.99,
-        "priceFormatted": "$24.99",
-        "available": true,
-        "sku": "31548658892172086277",
-        "option1": "White",
-        "option2": "XL",
-        "option3": null,
-        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/17977936147670087727_2048.jpg?v=1781103494",
-        "checkoutUrl": "https://armornglory.com/cart/48652657950975:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
-      },
-      {
-        "id": 48652657983743,
-        "title": "True Navy / XL",
-        "price": 24.99,
-        "priceFormatted": "$24.99",
-        "available": true,
-        "sku": "20170680529728232759",
-        "option1": "True Navy",
-        "option2": "XL",
-        "option3": null,
-        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/12044426830589590276_2048.jpg?v=1781103497",
-        "checkoutUrl": "https://armornglory.com/cart/48652657983743:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
-      },
-      {
-        "id": 48652658016511,
-        "title": "Black / 2XL",
-        "price": 24.99,
-        "priceFormatted": "$24.99",
-        "available": true,
-        "sku": "20715702680436819876",
-        "option1": "Black",
-        "option2": "2XL",
-        "option3": null,
-        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/12226574136606110492_2048.jpg?v=1781103498",
-        "checkoutUrl": "https://armornglory.com/cart/48652658016511:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
-      },
-      {
-        "id": 48652658049279,
-        "title": "White / 2XL",
-        "price": 24.99,
-        "priceFormatted": "$24.99",
-        "available": true,
-        "sku": "12045859136018932542",
-        "option1": "White",
-        "option2": "2XL",
-        "option3": null,
-        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/17977936147670087727_2048.jpg?v=1781103494",
-        "checkoutUrl": "https://armornglory.com/cart/48652658049279:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
-      },
-      {
-        "id": 48652658082047,
-        "title": "True Navy / 2XL",
-        "price": 24.99,
-        "priceFormatted": "$24.99",
-        "available": true,
-        "sku": "24216768900411053962",
-        "option1": "True Navy",
-        "option2": "2XL",
-        "option3": null,
-        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/12044426830589590276_2048.jpg?v=1781103497",
-        "checkoutUrl": "https://armornglory.com/cart/48652658082047:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
-      },
-      {
-        "id": 48652658114815,
-        "title": "Black / 3XL",
-        "price": 24.99,
-        "priceFormatted": "$24.99",
-        "available": true,
-        "sku": "15588447793869573251",
-        "option1": "Black",
-        "option2": "3XL",
-        "option3": null,
-        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/12226574136606110492_2048.jpg?v=1781103498",
-        "checkoutUrl": "https://armornglory.com/cart/48652658114815:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
-      },
-      {
-        "id": 48652658147583,
-        "title": "White / 3XL",
-        "price": 24.99,
-        "priceFormatted": "$24.99",
-        "available": true,
-        "sku": "26719875841430014657",
-        "option1": "White",
-        "option2": "3XL",
-        "option3": null,
-        "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/files/17977936147670087727_2048.jpg?v=1781103494",
-        "checkoutUrl": "https://armornglory.com/cart/48652658147583:1?utm_source=ai_agent&utm_medium=mcp&utm_campaign=store_recommendation"
-      }
-    ],
-    "story": {
-      "summary": "Founded in Faith Christian Patriotic Shirt ",
-      "meaningBehindDesign": null,
-      "whyYouWillLoveIt": null,
-      "fitGuidance": null,
-      "specifications": "• Unisex garment dyed t shirt • Soft vintage washed feel • Relaxed everyday fit • Front graphic design • Christian patriotic artwork • Eagle, American flag, 1776, and Under God design details • Vintage red, white, blue, and antique gold color palette • Great for men or women • Easy to style with jeans, shorts, jackets, or casual layers • Designed for everyday wear, church, holidays, and patriotic events\n\n Perfect For \n\n • Fourth of July outfits • America 250 celebrations • Memorial Day gatherings • Veterans Day events • Christian patriotic apparel • Faith and freedom shirts • Church events and summer gatherings • Gifts for Christian men • Gifts for Christian women • Patriotic gifts with a faith based message • Everyday casual wear with meaning",
-      "careInstructions": "• Machine wash cold, inside out • Wash with similar colors • Do not bleach • Tumble dry low • Do not iron directly on the design • Do not dry clean\n\n Frequently Asked Questions \n\n Is this shirt unisex? Yes. This shirt has a relaxed unisex fit that works well for both men and women.\n\n Is the design printed on the front? Yes. This shirt features a front graphic design with a vintage Americana seal style.\n\n What holidays is this shirt good for? This shirt is great for the Fourth of July, Memorial Day, Veterans Day, America 250 events, church gatherings, and everyday patriotic wear.\n\n Is this shirt political? The design is focused on faith, freedom, gratitude, and honoring God and country. It has a patriotic look without feeling overly loud or campaign styled.\n\n What makes this design different? Founded in Faith combines Christian conviction with vintage Americana artwork, creating a shirt that feels bold, timeless, and wearable.",
-      "shippingInfo": null
-    },
-    "rawBody": "Founded in Faith Christian Patriotic Shirt \n\n Celebrate faith, freedom, and America’s 250 year milestone with the Founded in Faith Christian patriotic shirt . This design features a vintage inspired Americana seal with an eagle, American flag, 1776 detail, and the words Under God and Founded in Faith .\n\n Created for believers who want patriotic Christian apparel that feels meaningful, bold, and timeless without being overly loud, this tee blends scripture inspired conviction with a classic heritage look. The artwork uses worn red, white, blue, and antique gold tones for a vintage Americana feel that works for everyday wear, church events, summer gatherings, and patriotic holidays.\n\n Whether you are celebrating the Fourth of July, Memorial Day, Veterans Day, America 250, or simply want a faith based shirt that honors God and country, this tee is an easy staple with a message that matters.\n\n Design Meaning \n\n • Features the phrase Founded in Faith • Includes Under God as a bold faith centered statement • Vintage Americana seal design with eagle, flag, and 1776 detail • Created as a reminder that faith, freedom, and gratitude still matter • Patriotic Christian design with a worn heritage style • Meaningful without feeling overly political or loud\n\n Product Details \n\n • Unisex garment dyed t shirt • Soft vintage washed feel • Relaxed everyday fit • Front graphic design • Christian patriotic artwork • Eagle, American flag, 1776, and Under God design details • Vintage red, white, blue, and antique gold color palette • Great for men or women • Easy to style with jeans, shorts, jackets, or casual layers • Designed for everyday wear, church, holidays, and patriotic events\n\n Perfect For \n\n • Fourth of July outfits • America 250 celebrations • Memorial Day gatherings • Veterans Day events • Christian patriotic apparel • Faith and freedom shirts • Church events and summer gatherings • Gifts for Christian men • Gifts for Christian women • Patriotic gifts with a faith based message • Everyday casual wear with meaning\n\n Care Instructions \n\n • Machine wash cold, inside out • Wash with similar colors • Do not bleach • Tumble dry low • Do not iron directly on the design • Do not dry clean\n\n Frequently Asked Questions \n\n Is this shirt unisex? Yes. This shirt has a relaxed unisex fit that works well for both men and women.\n\n Is the design printed on the front? Yes. This shirt features a front graphic design with a vintage Americana seal style.\n\n What holidays is this shirt good for? This shirt is great for the Fourth of July, Memorial Day, Veterans Day, America 250 events, church gatherings, and everyday patriotic wear.\n\n Is this shirt political? The design is focused on faith, freedom, gratitude, and honoring God and country. It has a patriotic look without feeling overly loud or campaign styled.\n\n What makes this design different? Founded in Faith combines Christian conviction with vintage Americana artwork, creating a shirt that feels bold, timeless, and wearable."
   },
   {
     "id": 9529530876159,
