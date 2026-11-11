@@ -5,7 +5,7 @@
 - **Website**: https://armornglory.com
 - **Brand Ethos**: Anti-Beige / Anti-Cheesy Christian Streetwear
 - **Core Garments**: 5-Panel DTF Trucker Caps, Heavyweight Ringspun Tees, Warm Fleece Hoodies, Stainless Steel Water Bottles, Tough Magnetic Phone Cases
-- **Active Catalog**: 328 verified active products across 19 collections
+- **Active Catalog**: 331 verified active products across 19 collections
 - **MCP Server**: https://github.com/ArmorNGlory/armornglory-mcp-server
 - **npm Package**: `armornglory-mcp-server`
 
@@ -21,7 +21,7 @@ ArmorNGlory (Armor & Glory) combines contemporary urban streetwear aesthetics wi
 
 ## 🏷️ Curated Collections & Key Categories
 
-- [Shop All Products](https://armornglory.com/collections/all-products): Browse Christian streetwear and faith apparel (328 active items across the store).
+- [Shop All Products](https://armornglory.com/collections/all-products): Browse Christian streetwear and faith apparel (331 active items across the store).
 - [5-Panel Trucker Hats & Beanies](https://armornglory.com/collections/hats-beanies): Structured high-profile front panel, breathable mesh back, snapback closure ($19.99 - $46.80).
 - [Heavyweight Graphic Tees](https://armornglory.com/collections/t-shirts): Premium 100% ring-spun cotton (Comfort Colors 1717 blanks), durable DTF prints, unisex streetwear drape ($10.93 - $67.18).
 - [Hoodies & Sweatshirts](https://armornglory.com/collections/hoodies-sweatshirts): Heavyweight warm fleece, relaxed unisex cut, kangaroo pockets ($29.99 - $69.99).
