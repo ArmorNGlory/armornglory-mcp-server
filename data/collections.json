@@ -215,7 +215,7 @@
     ],
     "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/collections/9351716356340738344_2048.jpg?v=1770265655",
     "publishedAt": "2026-01-19T22:17:57-08:00",
-    "updatedAt": "2026-11-11T01:28:26-08:00"
+    "updatedAt": "2026-11-12T07:21:51-08:00"
   },
   {
     "id": 481355235583,
@@ -245,8 +245,26 @@
     "handle": "new-arrivals",
     "url": "https://armornglory.com/collections/new-arrivals",
     "description": "Fresh drops for everyday faith.\n\n Shop the latest from ArmorNGlory, including new tees, hoodies, hats, and elevated essentials designed to help you wear your faith with confidence. Every piece is made to feel current, meaningful, and easy to style, with clean graphics, scripture rooted inspiration, and premium comfort built in.\n\n Whether you are looking for a bold statement piece or a subtle everyday favorite, this is where you will find the newest designs first.\n\n • New Christian apparel and accessories • Modern faith based streetwear • Premium comfort and quality • Scripture inspired designs • Fresh releases added regularly",
-    "productsCount": 179,
+    "productsCount": 198,
     "productHandles": [
+      "known-loved-comfort-colors-1567-hoodie",
+      "no-fear-only-faith-comfort-colors-1567-hoodie",
+      "he-is-risen-comfort-colors-1567-hoodie",
+      "love-never-fails-comfort-colors-1567-hoodie",
+      "made-new-comfort-colors-1567-hoodie",
+      "be-still-comfort-colors-1567-hoodie",
+      "grace-upon-grace-comfort-colors-1567-hoodie",
+      "the-lord-is-near-comfort-colors-1567-hoodie",
+      "rejoice-always-1-thessalonians-5-16-tough-magnetic-phone-case",
+      "walk-by-faith-comfort-colors-1567-hoodie",
+      "rooted-in-christ-comfort-colors-1567-hoodie",
+      "train-with-purpose-christian-t-shirt",
+      "tl-dr-peace-christian-t-shirt",
+      "tl-dr-dwell-navy-christian-t-shirt",
+      "do-justly-love-mercy-walk-humbly-micah-6-8-tough-magnetic-phone-case",
+      "my-help-comes-from-the-lord-psalm-121-2-tough-magnetic-phone-case",
+      "cast-all-your-anxiety-on-him-1-peter-5-7-tough-magnetic-phone-case",
+      "sing-a-new-song-psalm-96-1-tough-magnetic-phone-case",
       "press-on-toward-the-goal-philippians-3-14-tough-magnetic-phone-case",
       "he-is-before-all-things-colossians-1-17-tough-magnetic-phone-case",
       "run-with-endurance-hebrews-12-1-tough-magnetic-phone-case",
@@ -262,6 +280,7 @@
       "tl-dr-grace-christian-t-shirt",
       "walk-it-out-christian-t-shirt",
       "you-are-not-alone-christian-t-shirt",
+      "strong-in-the-lord-christian-t-shirt",
       "press-on-christian-t-shirt",
       "grace-over-grind-christian-t-shirt",
       "better-together-christian-t-shirt",
@@ -429,7 +448,7 @@
     ],
     "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/collections/Send_Me_Mar1.jpg?v=1775347335",
     "publishedAt": "2026-04-04T17:02:16-07:00",
-    "updatedAt": "2026-11-08T11:43:57-08:00"
+    "updatedAt": "2026-11-12T07:24:38-08:00"
   },
   {
     "id": 467933135103,
@@ -451,8 +470,18 @@
     "handle": "hoodies-sweatshirts",
     "url": "https://armornglory.com/collections/hoodies-sweatshirts",
     "description": "Comfort meets conviction. Our Hoodies & Sweatshirts are designed for everyday wear with purpose — premium fabrics, relaxed fits, and faith forward designs that feel modern, not forced. From cozy hoodies to classic crewnecks, each piece is made to layer easily, wear often, and stand for something bigger.\n\n Perfect for cool mornings, late nights, church runs, or just living life — these are the go to staples you’ll reach for again and again.",
-    "productsCount": 25,
+    "productsCount": 35,
     "productHandles": [
+      "known-loved-comfort-colors-1567-hoodie",
+      "no-fear-only-faith-comfort-colors-1567-hoodie",
+      "he-is-risen-comfort-colors-1567-hoodie",
+      "love-never-fails-comfort-colors-1567-hoodie",
+      "made-new-comfort-colors-1567-hoodie",
+      "be-still-comfort-colors-1567-hoodie",
+      "grace-upon-grace-comfort-colors-1567-hoodie",
+      "the-lord-is-near-comfort-colors-1567-hoodie",
+      "walk-by-faith-comfort-colors-1567-hoodie",
+      "rooted-in-christ-comfort-colors-1567-hoodie",
       "chasing-his-purpose-hoodie-jeremiah-29-11-hoodie-christian-hoodie-faith-based-sweatshirt-christian-streetwear-religious-gift",
       "christian-hoodie-1-peter-5-7-hoodie-cast-your-cares-sweatshirt-heavyweight-faith-streetwear-hoodie-minimalist-christian-gift",
       "ephesians-3-20-hoodie-christian-hoodie-faith-based-sweatshirt-god-is-able-hoodie-christian-streetwear-bible-verse-hoodie-unisex",
@@ -481,7 +510,7 @@
     ],
     "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/collections/FaithHeartHoodieMar1.jpg?v=1766726727",
     "publishedAt": "2025-12-22T10:29:00-08:00",
-    "updatedAt": "2026-11-06T04:22:39-08:00"
+    "updatedAt": "2026-11-12T07:24:38-08:00"
   },
   {
     "id": 471565435135,
@@ -775,8 +804,11 @@
     "handle": "t-shirts",
     "url": "https://armornglory.com/collections/t-shirts",
     "description": "Faith, front and center. Our T Shirts are everyday statements, modern Christian streetwear made to be worn in real life. Clean graphics, intentional messaging, and premium feel come together to create tees that speak truth without feeling forced.\n\n Built for daily wear, layering, and conversation, these are the staples that define the brand: simple, bold, and grounded in faith.",
-    "productsCount": 96,
+    "productsCount": 100,
     "productHandles": [
+      "train-with-purpose-christian-t-shirt",
+      "tl-dr-peace-christian-t-shirt",
+      "tl-dr-dwell-navy-christian-t-shirt",
       "tl-dr-loved-moss-christian-t-shirt",
       "made-for-good-work-christian-t-shirt",
       "tl-dr-won-christian-t-shirt",
@@ -787,6 +819,7 @@
       "tl-dr-grace-christian-t-shirt",
       "walk-it-out-christian-t-shirt",
       "you-are-not-alone-christian-t-shirt",
+      "strong-in-the-lord-christian-t-shirt",
       "press-on-christian-t-shirt",
       "grace-over-grind-christian-t-shirt",
       "better-together-christian-t-shirt",
@@ -876,7 +909,7 @@
     ],
     "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/collections/TheChosenMarketing.png?v=1766726335",
     "publishedAt": "2025-12-22T10:33:53-08:00",
-    "updatedAt": "2026-11-08T11:43:57-08:00"
+    "updatedAt": "2026-11-12T07:24:08-08:00"
   },
   {
     "id": 470059745535,
@@ -915,7 +948,7 @@
     "handle": "heavyweight-essentials",
     "url": "https://armornglory.com/collections/heavyweight-essentials",
     "description": "The Minimalist Core \n\n Clean faith apparel made for everyday wear. The Minimalist Core brings together simple, modern Christian pieces designed to feel calm, wearable, and easy to style. This collection is built around understated faith details, neutral colors, quiet graphics, and versatile staples that fit naturally into your daily wardrobe.\n\n These are the pieces you reach for when you want your faith to be present without being loud. Easy to wear to church, coffee runs, Bible study, travel days, casual workdays, or slow weekends, The Minimalist Core is all about subtle reminders, clean design, and timeless comfort.\n\n Shop faith based essentials with a modern look, including neutral tees, cozy sweatshirts, minimalist hoodies, and simple Christian apparel made for everyday life.",
-    "productsCount": 26,
+    "productsCount": 34,
     "productHandles": [
       "beauty-for-ashes-phoenix-rise-hoodie-inspirational-scripture-sweatshirt",
       "pure-joy-circle-logo-hoodie-psalm-16-11-faith-scripture-sweatshirt",
@@ -942,11 +975,19 @@
       "christian-hoodie-1-peter-5-7-hoodie-cast-your-cares-sweatshirt-heavyweight-faith-streetwear-hoodie-minimalist-christian-gift",
       "chasing-his-purpose-hoodie-jeremiah-29-11-hoodie-christian-hoodie-faith-based-sweatshirt-christian-streetwear-religious-gift",
       "rooted-in-christ-comfort-colors-1567-hoodie",
-      "walk-by-faith-comfort-colors-1567-hoodie"
+      "walk-by-faith-comfort-colors-1567-hoodie",
+      "the-lord-is-near-comfort-colors-1567-hoodie",
+      "grace-upon-grace-comfort-colors-1567-hoodie",
+      "be-still-comfort-colors-1567-hoodie",
+      "made-new-comfort-colors-1567-hoodie",
+      "love-never-fails-comfort-colors-1567-hoodie",
+      "he-is-risen-comfort-colors-1567-hoodie",
+      "no-fear-only-faith-comfort-colors-1567-hoodie",
+      "known-loved-comfort-colors-1567-hoodie"
     ],
     "imageUrl": "https://cdn.shopify.com/s/files/1/0786/6256/6143/collections/Pure_Joy_Mar4.jpg?v=1775962527",
     "publishedAt": "2026-04-11T19:52:54-07:00",
-    "updatedAt": "2026-11-11T01:05:16-08:00"
+    "updatedAt": "2026-11-12T08:24:46-08:00"
   },
   {
     "id": 473931743487,

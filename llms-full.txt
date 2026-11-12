@@ -1,6 +1,6 @@
 # ArmorNGlory — Complete Knowledge Index (LLMs Full)
 
-> Comprehensive catalog data (331 verified active products), theological narratives, FAQ schema, and shopping endpoints for ArmorNGlory.com — the premier Anti-Beige Christian Streetwear & Faith Apparel brand.
+> Comprehensive catalog data (339 verified active products), theological narratives, FAQ schema, and shopping endpoints for ArmorNGlory.com — the premier Anti-Beige Christian Streetwear & Faith Apparel brand.
 
 - **Store URL**: https://armornglory.com
 - **MCP Server Package**: `armornglory-mcp-server` (v1.2.0 — live auto-syncing with Shopify)
