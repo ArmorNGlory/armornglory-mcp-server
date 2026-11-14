@@ -63,8 +63,14 @@ assert("Search 'Phone Cases'", searchCases.length > 0, `${searchCases.length} it
 const searchHats = products.filter((p) => p.category === "Hats & Headwear");
 assert("Search 'Hats & Headwear'", searchHats.length > 0, `${searchHats.length} items (${searchHats[0]?.title})`);
 
-// Test 5: Product details & checkout permalink shape
+// Test 5: Product details, normalized brand vendor & checkout permalink shape
 const testItem = products[0];
+const printifyVendors = products.filter((p) => /^printify$/i.test(p.vendor || "")).length;
+assert(
+  "Brand vendor normalized (0 Printify leaks)",
+  printifyVendors === 0,
+  `all ${products.length} items branded ArmorNGlory / Armor & Glory`
+);
 assert(
   "Product detail & 1-click buy link",
   Boolean(testItem?.handle && testItem?.url && /^https:\/\/armornglory\.com\/cart\/\d+:1/.test(testItem?.variants?.[0]?.checkoutUrl || "")),

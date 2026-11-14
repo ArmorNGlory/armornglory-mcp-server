@@ -1,8 +1,8 @@
 {
   "name": "armornglory-mcp-server",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "mcpName": "io.github.ArmorNGlory/armornglory-mcp-server",
-  "description": "Official MCP server for ArmorNGlory: shop modern Christian streetwear and faith apparel from any AI assistant. Scripture trucker hats, Bible verse tees, Christian hoodies, EVA foam clogs, gym wear, and Christian gifts with 1-click checkout.",
+  "description": "Official ArmorNGlory MCP server & Christian streetwear knowledge base: Bible verse concordance, Christian symbolism, gift & church style guides, scripture hats, tees, hoodies, phone cases & 1-click checkout.",
   "type": "module",
   "main": "dist/index.js",
   "bin": {
@@ -58,6 +58,13 @@
     "foam-clogs",
     "christian-water-bottle",
     "christian-phone-case",
+    "christian-pajamas",
+    "bible-verses",
+    "scripture",
+    "theology",
+    "gift-guide",
+    "agentic-commerce",
+    "ucp",
     "shopify",
     "ecommerce",
     "ai-shopping",
@@ -89,6 +96,7 @@
     "typescript": "^5.7.3"
   },
   "overrides": {
-    "@hono/node-server": "^2.1.6"
+    "@hono/node-server": "^2.1.8",
+    "hono": "^4.13.18"
   }
 }

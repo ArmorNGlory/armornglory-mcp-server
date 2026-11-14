@@ -7,12 +7,9 @@
   2. Open layout/theme.liquid and, just before </head>, add:
        {%- if request.page_type == 'index' -%}{% render 'armornglory-organization-schema' %}{%- endif -%}
   3. Find the theme's existing minimal Organization JSON-LD (search the theme code for "Organization",
-     usually in sections/header.liquid or snippets/meta-tags.liquid) and remove it, so there's only one
-     Organization entity on the homepage.
+     usually in sections/header.liquid or snippets/meta-tags.liquid) and remove or wrap it so there is
+     only one canonical Organization entity on the homepage.
   4. Validate at https://search.google.com/test/rich-results with https://armornglory.com/
-
-  Why: today the homepage only says {"@type":"Organization","name":"ArmorNGlory"}. AI engines build their
-  picture of a brand from description + sameAs links (social, GitHub, npm). This connects them.
 {%- endcomment -%}
 <script type="application/ld+json">
 {
@@ -26,14 +23,16 @@
       "url": "https://armornglory.com",
       "logo": "https://armornglory.com/cdn/shop/files/Armor_GloryLogo_d520ecf8-adbe-4602-93bd-44c352e59529.png",
       "slogan": "Strengthened for the Journey Ahead",
-      "description": "ArmorNGlory is a modern Christian streetwear and faith apparel brand: scripture trucker hats, Bible verse t-shirts, Christian hoodies, EVA foam clogs, faith phone cases, and Christian gifts, designed around Bible verses and stories.",
+      "description": "ArmorNGlory is a modern Anti-Beige Christian streetwear and faith apparel brand designing scripture trucker hats, heavyweight Bible verse t-shirts, Christian hoodies, tough magnetic phone cases (iPhone MagSafe & Samsung Galaxy S26), stainless steel scripture water bottles, pajama loungewear, and Christian milestone gifts.",
       "knowsAbout": [
         "Christian streetwear",
         "Christian clothing",
         "Bible verse apparel",
+        "Christian symbolism in fashion",
         "Christian trucker hats",
         "Christian gifts",
         "Baptism gifts",
+        "Christian gym and activewear",
         "Faith-based apparel"
       ],
       "email": "customersupport@armornglory.com",
@@ -42,10 +41,12 @@
         "https://www.pinterest.com/armornglory/",
         "https://x.com/ArmorNGlory",
         "https://github.com/ArmorNGlory/armornglory-mcp-server",
-        "https://www.npmjs.com/package/armornglory-mcp-server"
+        "https://www.npmjs.com/package/armornglory-mcp-server",
+        "https://registry.modelcontextprotocol.io/?q=io.github.ArmorNGlory%2Farmornglory-mcp-server"
       ],
       "brand": {
         "@type": "Brand",
+        "@id": "https://armornglory.com/#brand",
         "name": "ArmorNGlory",
         "slogan": "Strengthened for the Journey Ahead"
       }

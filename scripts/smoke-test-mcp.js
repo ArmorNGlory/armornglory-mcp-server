@@ -28,9 +28,28 @@ check("server instructions present", (client.getInstructions() || "").includes("
 
 const { tools } = await client.listTools();
 const names = tools.map((t) => t.name);
-check("tool count", tools.length === 11, names.join(", "));
+check("tool count", tools.length === 13, names.join(", "));
 check("all tools annotated read-only", tools.every((t) => t.annotations?.readOnlyHint === true));
 check("connector tools present", names.includes("search") && names.includes("fetch"));
+check("authority tools present", names.includes("explore_scripture_and_symbolism") && names.includes("get_christian_style_and_gift_guide"));
+
+const { resources } = await client.listResources();
+check("scripture concordance resource present", resources.some((r) => r.uri === "armornglory://knowledge/scripture-concordance"));
+
+const concordance = await client.callTool({ name: "explore_scripture_and_symbolism", arguments: { query: "Romans 8:37" } });
+check("scripture concordance lookup", /Hypernikomen/i.test(textOf(concordance)) && /Romans 8:37/i.test(textOf(concordance)));
+
+const styleGuide = await client.callTool({ name: "get_christian_style_and_gift_guide", arguments: { topic: "what-to-wear-to-church" } });
+check("editorial style guide lookup", /What to Wear to a Modern Church Service/i.test(textOf(styleGuide)));
+
+const guideSearch = await client.callTool({ name: "search", arguments: { query: "what to wear to church" } });
+const guideParsed = JSON.parse(textOf(guideSearch));
+const guideId = guideParsed.results.find((r) => String(r.id).startsWith("guide:"))?.id;
+check("connector searches authority guides", Boolean(guideId), guideId || "missing");
+if (guideId) {
+  const guideDoc = JSON.parse(textOf(await client.callTool({ name: "fetch", arguments: { id: guideId } })));
+  check("connector fetches authority guide", guideDoc.metadata?.type === "authority_guide", guideDoc.title);
+}
 
 const nl = await client.callTool({ name: "search_armornglory_products", arguments: { query: "a christian trucker hat for my dad" } });
 check("natural-language search returns hats", /Hats & Headwear/.test(textOf(nl)));

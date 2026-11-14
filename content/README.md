@@ -1,6 +1,6 @@
 # ArmorNGlory GEO Content Kit
 
-Generated 2026-10-24 from `data/products.json` (347 products). Regenerate any time with:
+Generated 2026-11-14 from `data/products.json` (339 products). Regenerate any time with:
 
 ```bash
 npm run sync-data && npm run content
@@ -12,11 +12,13 @@ These articles target the questions shoppers ask AI assistants. Today those answ
 |---|---|
 | `articles/modern-christian-streetwear-guide.html` | Modern Christian Streetwear That Isn't Cheesy: A 2026 Buyer's Guide |
 | `articles/christian-trucker-hats-scripture-caps.html` | Christian Trucker Hats & Scripture Caps: The Meaning Behind Each Design |
-| `articles/christian-eva-foam-clogs-faith-slip-ons.html` | Christian EVA Foam Clogs: Faith-Inspired Slip-Ons (and How They Fit) |
 | `articles/meaningful-baptism-gifts.html` | Meaningful Baptism Gifts for Men, Women & Teens (That They'll Actually Use) |
 | `articles/bible-verse-clothing-by-scripture.html` | Bible Verse Clothing by Scripture: Shirts, Hoodies & Hats for Your Favorite Verse |
 | `articles/christian-christmas-gifts-guide.html` | Meaningful Christian Christmas Gifts (That Aren't Cheesy): A 2026 Gift Guide |
 | `articles/christian-water-bottles-gym-training-gear.html` | Christian Water Bottles & Faith Gym Gear: Scripture Drinkware & Workout Apparel |
+| `articles/christian-phone-cases-magsafe-galaxy-s26.html` | Tough Magnetic Christian Phone Cases: Scripture Designs for iPhone (MagSafe) & Samsung Galaxy S26 |
+| `articles/christian-pajama-pants-faith-loungewear.html` | Christian Pajama Pants & Faith Loungewear: Cozy Scripture Prints (Sizes XS–4XL) |
+| `articles/what-to-wear-to-church-modern-casual-style-guide.html` | What to Wear to a Modern Church Service: Casual Christian Streetwear & Outfit Formulas |
 
 ## How to publish (about 5 minutes per article)
 1. Shopify Admin → **Online Store → Blog posts → Create blog post**. Create a new blog called **"Style Guides"** (handle `style-guides`) the first time.

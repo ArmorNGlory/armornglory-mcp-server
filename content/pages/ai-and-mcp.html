@@ -1,0 +1,39 @@
+<!--
+  SHOPIFY PAGE — Create a new page in Shopify Admin → Online Store → Pages → Add page
+  Title:            AI Stylist, Scripture Concordance & Official MCP Server
+  URL handle:       ai-and-mcp
+  SEO description:  Connect Claude, ChatGPT, Cursor, Gemini, or VS Code to ArmorNGlory's official MCP server for Christian streetwear, Bible verse apparel lookups, and 1-click checkout.
+  Footer menu:      Add link "AI & MCP" -> /pages/ai-and-mcp so search & AI crawlers verify bidirectional ownership.
+-->
+<p><strong>ArmorNGlory</strong> publishes an official, open-source <strong>Model Context Protocol (MCP)</strong> server and Scripture-to-Apparel knowledge base so AI assistants (Claude Desktop, ChatGPT, Gemini, Cursor, VS Code, Windsurf, and Antigravity) can search verified live products, explain the biblical context behind each design, check garment sizing, and build 1-click checkout links without hallucinating.</p>
+
+<h2>1. Quick Install (Claude Desktop, Cursor, VS Code, Windsurf, Antigravity)</h2>
+<p>Add the official <a href="https://www.npmjs.com/package/armornglory-mcp-server" rel="noopener" target="_blank"><code>armornglory-mcp-server</code></a> package from npm (no API key required, 100% free):</p>
+<pre><code>{
+  "mcpServers": {
+    "armornglory": {
+      "command": "npx",
+      "args": ["-y", "armornglory-mcp-server@latest"]
+    }
+  }
+}</code></pre>
+<p>Or with Claude Code CLI:</p>
+<pre><code>claude mcp add armornglory -- npx -y armornglory-mcp-server@latest</code></pre>
+
+<h2>2. What AI Agents Can Do With the ArmorNGlory MCP</h2>
+<ul>
+  <li><strong>Scripture &amp; Christian Symbolism Concordance:</strong> Look up passages and marks (<em>Romans 8:37 More Than Conquerors</em>, <em>Exodus 3:5 Holy Ground</em>, <em>Ephesians 6 Armor of God</em>, <em>Isaiah 40:31 Second Wind</em>, <em>1 Corinthians 10:31 Every Rep His Glory</em>, <em>Est. 33 AD</em>) or search by life season (courage, anxiety, baptism, grief, gym training).</li>
+  <li><strong>Live Catalog Search:</strong> Filter 330+ active Christian streetwear pieces—5-panel trucker hats, Comfort Colors 1717 heavyweight tees, fleece hoodies, tough magnetic phone cases (iPhone MagSafe &amp; Samsung Galaxy S26 series), stainless steel water bottles, pajama loungewear, and wall art—by verse, color, size, occasion, or budget.</li>
+  <li><strong>Faith Milestone Gift Curation:</strong> Personalized recommendations for baptisms, confirmations, Father's Day, Mother's Day, pastor appreciation, Christmas, and Easter.</li>
+  <li><strong>Editorial Style &amp; Fit Guides:</strong> Sizing charts, garment GSM &amp; care instructions, and casual church outfit guides.</li>
+  <li><strong>1-Click Checkout Permalinks &amp; Native UCP:</strong> Instant Shopify cart links, complementing our native Universal Commerce Protocol (UCP) endpoint at <code>https://armornglory.com/api/ucp/mcp</code>.</li>
+</ul>
+
+<h2>3. Official Verified Links</h2>
+<ul>
+  <li><strong>Canonical Storefront:</strong> <a href="https://armornglory.com">https://armornglory.com</a></li>
+  <li><strong>Official MCP Registry:</strong> <code>io.github.ArmorNGlory/armornglory-mcp-server</code></li>
+  <li><strong>npm Package:</strong> <a href="https://www.npmjs.com/package/armornglory-mcp-server" rel="noopener" target="_blank">https://www.npmjs.com/package/armornglory-mcp-server</a></li>
+  <li><strong>Open-Source GitHub Repository:</strong> <a href="https://github.com/ArmorNGlory/armornglory-mcp-server" rel="noopener" target="_blank">https://github.com/ArmorNGlory/armornglory-mcp-server</a></li>
+  <li><strong>Shopify UCP Discovery:</strong> <a href="https://armornglory.com/.well-known/ucp">https://armornglory.com/.well-known/ucp</a></li>
+</ul>

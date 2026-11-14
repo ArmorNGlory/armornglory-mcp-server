@@ -139,25 +139,45 @@ export async function safeJsonFetch<T = unknown>(urlStr: string): Promise<T> {
     throw new Error(`Zero-cost host lock: outbound requests are strictly restricted to armornglory.com (rejected ${host})`);
   }
 
-  const res = await fetch(secureUrl, {
-    signal: AbortSignal.timeout(5000),
-    redirect: "error",
-    headers: {
-      "User-Agent": "Mozilla/5.0 (compatible; ArmorNGloryMCPSync/1.2; +https://armornglory.com)",
-      "Accept": "application/json"
+  let lastErr: unknown;
+  for (let attempt = 1; attempt <= 2; attempt++) {
+    try {
+      const res = await fetch(secureUrl, {
+        signal: AbortSignal.timeout(5000),
+        redirect: "error",
+        headers: {
+          "User-Agent": "Mozilla/5.0 (compatible; ArmorNGloryMCPSync/1.2; +https://armornglory.com)",
+          "Accept": "application/json"
+        }
+      });
+
+      if (!res.ok) {
+        if (res.status >= 500 && attempt < 2) {
+          await new Promise((r) => setTimeout(r, 400));
+          continue;
+        }
+        throw new Error(`HTTP error ${res.status} (${res.statusText}) fetching ${secureUrl}`);
+      }
+
+      const contentType = res.headers.get("content-type") || "";
+      if (!contentType.includes("application/json")) {
+        throw new Error(`Unsafe Content-Type: expected application/json, got ${contentType}`);
+      }
+
+      return (await res.json()) as T;
+    } catch (err) {
+      lastErr = err;
+      const isTransient =
+        err instanceof Error &&
+        (err.name === "TimeoutError" || err.name === "AbortError" || /fetch failed|timeout|socket/i.test(err.message));
+      if (isTransient && attempt < 2) {
+        await new Promise((r) => setTimeout(r, 400));
+        continue;
+      }
+      throw err;
     }
-  });
-
-  if (!res.ok) {
-    throw new Error(`HTTP error ${res.status} (${res.statusText}) fetching ${secureUrl}`);
   }
-
-  const contentType = res.headers.get("content-type") || "";
-  if (!contentType.includes("application/json")) {
-    throw new Error(`Unsafe Content-Type: expected application/json, got ${contentType}`);
-  }
-
-  return (await res.json()) as T;
+  throw lastErr;
 }
 
 // ---------------------------------------------------------------------------
@@ -215,15 +235,40 @@ const SCRIPTURE_PATTERNS = [
   { ref: "1 Corinthians 9:24-27", keywords: ["1 corinthians 9:24", "run your race"] },
   { ref: "1 Corinthians 10:31", keywords: ["1 corinthians 10:31", "every rep, his glory", "every rep his glory"] },
   { ref: "2 Corinthians 5:7", keywords: ["2 corinthians 5:7", "walk by faith"] },
-  { ref: "Philippians 3:14", keywords: ["philippians 3:14", "press toward the mark", "press on toward the goal"] },
+  { ref: "Philippians 3:14", keywords: ["philippians 3:14", "press toward the mark", "press on toward the goal", "press on"] },
+  { ref: "Philippians 4:5", keywords: ["philippians 4:5", "the lord is near"] },
+  { ref: "Colossians 2:7", keywords: ["colossians 2:7", "rooted in christ", "rooted and built up"] },
   { ref: "Colossians 3:23", keywords: ["colossians 3:23", "work from the heart"] },
   { ref: "Proverbs 4:23", keywords: ["proverbs 4:23", "guard the heart", "guard your heart"] },
   { ref: "Romans 12:2", keywords: ["romans 12:2"] },
   { ref: "Psalm 42:1-2", keywords: ["psalm 42:1", "psalm 42:2", "thirst for the living god"] },
-  { ref: "Psalm 46:10", keywords: ["psalm 46:10", "be still and know", "be still, i'm trying", "be still i'm trying"] },
+  { ref: "Psalm 46:10", keywords: ["psalm 46:10", "be still and know", "be still —", "be still,", "be still i'm trying"] },
   { ref: "Psalm 62:6", keywords: ["psalm 62:6"] },
   { ref: "Psalm 90:17", keywords: ["psalm 90:17", "establish the work"] },
+  { ref: "Psalm 46:1", keywords: ["psalm 46:1", "mighty fortress"] },
+  { ref: "Psalm 139:14", keywords: ["psalm 139:14", "fearfully and wonderfully made", "known & loved", "known and loved"] },
   { ref: "Mark 12:31", keywords: ["mark 12:31", "love your neighbor"] },
+  { ref: "Matthew 28:6", keywords: ["matthew 28:6", "he is risen"] },
+  { ref: "John 1:16", keywords: ["john 1:16", "grace upon grace"] },
+  { ref: "John 4:14", keywords: ["john 4:14", "living water"] },
+  { ref: "John 6:9-13", keywords: ["john 6:9", "loaves and fishes"] },
+  { ref: "John 15:5", keywords: ["john 15:5", "true vine", "i am the vine"] },
+  { ref: "John 19:30", keywords: ["john 19:30", "tetelestai", "it is finished"] },
+  { ref: "Matthew 17:20", keywords: ["matthew 17:20", "mustard seed"] },
+  { ref: "1 Corinthians 13:8", keywords: ["1 corinthians 13:8", "love never fails"] },
+  { ref: "1 Corinthians 13:13", keywords: ["1 corinthians 13:13", "faith hope love", "faith, hope, love"] },
+  { ref: "2 Corinthians 5:17", keywords: ["2 corinthians 5:17", "new creation", "made new"] },
+  { ref: "Ephesians 2:10", keywords: ["ephesians 2:10", "made for good work", "created in christ jesus for good works"] },
+  { ref: "Ephesians 3:20", keywords: ["ephesians 3:20", "god is able", "immeasurably more"] },
+  { ref: "1 Thessalonians 5:16", keywords: ["1 thessalonians 5:16", "rejoice always"] },
+  { ref: "1 Peter 2:9", keywords: ["1 peter 2:9", "royal priesthood", "chosen people", "set apart"] },
+  { ref: "1 Peter 5:7", keywords: ["1 peter 5:7", "cast all your anxiety", "he cares for you"] },
+  { ref: "1 Peter 5:10", keywords: ["1 peter 5:10", "restore confirm strengthen"] },
+  { ref: "Joshua 6:20", keywords: ["joshua 6:20", "jericho soundwave", "walls of jericho"] },
+  { ref: "Judges 16:28", keywords: ["judges 16:28", "samson breaking pillars", "breaking pillars"] },
+  { ref: "Genesis 2:15", keywords: ["genesis 2:15", "tended and kept"] },
+  { ref: "Revelation 19:16", keywords: ["revelation 19:16", "king of kings"] },
+  { ref: "Revelation 22:13", keywords: ["revelation 22:13", "alpha and omega"] },
   { ref: "Est 33 AD", keywords: ["33 ad", "est 33 ad", "resurrection"] }
 ];
 
@@ -240,6 +285,7 @@ const REF_RE = new RegExp(`\\b(${BOOK_ALT})\\s(\\d{1,3})(?:[:\\s](\\d{1,3})(?:\\
 
 function canonicalBook(raw: string): string {
   const lower = raw.toLowerCase().replace(/\s+/g, " ");
+  if (lower === "psalms") return "Psalm";
   return BOOKS.find((b) => b.toLowerCase() === lower) || raw;
 }
 
@@ -253,8 +299,9 @@ function normalizeRefs(text: string): string[] {
   return out;
 }
 
-export function extractScriptures(title: string, bodyText: string, tags: string[]): string[] {
-  const combined = `${title} ${bodyText} ${tags.join(" ")}`.toLowerCase();
+export function extractScriptures(title: string, bodyText: string, tags: string[], handle = ""): string[] {
+  const handleWords = (handle || "").replace(/-/g, " ");
+  const combined = `${title} ${handleWords} ${bodyText} ${tags.join(" ")}`.toLowerCase();
   const matched = new Set<string>();
 
   for (const item of SCRIPTURE_PATTERNS) {
@@ -264,6 +311,7 @@ export function extractScriptures(title: string, bodyText: string, tags: string[
   }
 
   for (const ref of normalizeRefs(`${tags.join(" | ")} | ${title}`)) matched.add(ref);
+  for (const ref of normalizeRefs(handleWords)) if (ref.includes(":")) matched.add(ref);
   for (const ref of normalizeRefs(bodyText)) if (ref.includes(":")) matched.add(ref);
 
   const list = Array.from(matched);
@@ -446,9 +494,10 @@ export function enrichRawProduct(p: RawShopifyProduct, storeUrl = "https://armor
   const shippingInfo = extractSection(bodyClean, "Shipping Information");
 
   const category = categorizeProduct(p.product_type, p.title, tags);
-  const scriptures = extractScriptures(p.title, bodyClean, tags);
+  const scriptures = extractScriptures(p.title, bodyClean, tags, p.handle);
   const aesthetics = determineAesthetic(p.title, bodyClean, tags);
   const occasions = mapOccasions(category, p.title, bodyClean, tags);
+  const normalizedVendor = !p.vendor || /^printify$/i.test(p.vendor.trim()) ? "ArmorNGlory" : p.vendor.trim();
 
   const variants: ProductVariant[] = (p.variants || []).map((v) => ({
     id: v.id,
@@ -480,7 +529,7 @@ export function enrichRawProduct(p: RawShopifyProduct, storeUrl = "https://armor
     minPrice,
     maxPrice,
     priceFormatted,
-    vendor: p.vendor,
+    vendor: normalizedVendor,
     tags,
     publishedAt: p.published_at || undefined,
     createdAt: p.created_at,

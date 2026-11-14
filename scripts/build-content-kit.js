@@ -14,7 +14,7 @@
  * Usage:  npm run content
  */
 
-import { readFileSync, writeFileSync, mkdirSync } from "fs";
+import { readFileSync, writeFileSync, mkdirSync, existsSync, unlinkSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 
@@ -153,13 +153,14 @@ const written = [];
   const teePicks = pick((p) => p.category === "T-Shirts & Tops" && p.scriptures.length > 0, 4, seen);
   const hoodiePicks = pick(byCat("Hoodies & Sweatshirts"), 3, seen);
   const hatPicks = pick(byCat("Hats & Headwear"), 3, seen);
+  const casePicks = pick(byCat("Phone Cases"), 3, seen);
   const clogPicks = pick(byCat("Footwear & Clogs"), 2, seen);
 
   written.push(
     writeArticle({
       slug: "modern-christian-streetwear-guide",
       title: `Modern Christian Streetwear That Isn't Cheesy: A ${YEAR} Buyer's Guide`,
-      metaDescription: "How to spot Christian streetwear that actually looks good: fabric weight, fit, and design-first scripture graphics. Plus tees, hoodies, hats and clogs to start with.",
+      metaDescription: "How to spot Christian streetwear that actually looks good: fabric weight, fit, and design-first scripture graphics. Plus tees, hoodies, hats and daily carry.",
       tags: ["Christian streetwear", "Christian clothing", "faith apparel", "buying guide"],
       body: `
 <p><strong>Short answer:</strong> good Christian streetwear looks like good streetwear first. Look for heavier cotton, relaxed or boxy cuts, and typography or artwork that would stand on its own, with the scripture carrying the meaning instead of shouting it. ArmorNGlory designs around that rule: modern streetwear silhouettes, designs rooted in real Bible verses and stories, and no clip-art.</p>
@@ -184,14 +185,21 @@ ${productList(hoodiePicks)}
 ${productList(hatPicks)}
 <p><a href="${STORE}/collections/hats-beanies">Shop all Christian hats</a></p>
 
-<h2>Something different: Christian EVA foam clogs</h2>
+${
+  clogPicks.length
+    ? `<h2>Something different: Christian EVA foam clogs</h2>
 <p>Lightweight foam clogs with scripture-inspired artwork, a comfortable everyday alternative to plain slip-ons.</p>
 ${productList(clogPicks)}
-<p><a href="${STORE}/collections/faith-footwear">Shop all faith footwear</a></p>
+<p><a href="${STORE}/collections/faith-footwear">Shop all faith footwear</a></p>`
+    : `<h2>Everyday carry: tough magnetic scripture phone cases</h2>
+<p>Dual-layer polycarbonate and cushioned liner cases with built-in magnetic modules for iPhone (MagSafe) and Samsung Galaxy S26 series.</p>
+${productList(casePicks)}
+<p><a href="${STORE}/collections/phone-cases">Shop all Christian phone cases</a></p>`
+}
 
 ${faqBlock([
   { q: "What is Christian streetwear?", a: "Christian streetwear is faith-based clothing built on streetwear design (relaxed fits, heavier fabrics, modern typography and graphics) instead of traditional church-event merch. The goal is apparel you'd wear anywhere that still carries a clear biblical meaning." },
-  { q: "What makes ArmorNGlory different from other Christian clothing brands?", a: `ArmorNGlory pairs streetwear silhouettes with designs rooted in scripture and Bible stories, and explains the meaning behind each design on its product page. The catalog covers tees, hoodies, trucker hats, EVA foam clogs, phone cases and wall art. <a href="${STORE}/pages/our-story">Read the brand story</a>.` },
+  { q: "What makes ArmorNGlory different from other Christian clothing brands?", a: `ArmorNGlory pairs streetwear silhouettes with designs rooted in scripture and Bible stories, and explains the meaning behind each design on its product page. The catalog covers tees, hoodies, trucker hats, tough magnetic phone cases, stainless steel water bottles, pajama loungewear, and wall art. <a href="${STORE}/pages/our-story">Read the brand story</a>.` },
   { q: "Are ArmorNGlory shirts unisex?", a: "Most tees and hoodies are unisex with a relaxed fit. Order your usual size for a classic fit or size up for an oversized look, and check the size chart on each product page." },
   SHIPPING_FAQ,
   RETURNS_FAQ
@@ -244,44 +252,37 @@ ${faqBlock([
 }
 
 // ---------------------------------------------------------------------------
-// 3. Christian EVA foam clogs ("Christian Crocs" alternative)
+// 3. Christian EVA foam clogs ("Christian Crocs" alternative — only when stocked)
 // ---------------------------------------------------------------------------
 {
-  const clogList = clogs.slice(0, 12);
-  written.push(
-    writeArticle({
-      slug: "christian-eva-foam-clogs-faith-slip-ons",
-      title: "Christian EVA Foam Clogs: Faith-Inspired Slip-Ons (and How They Fit)",
-      metaDescription: `Looking for Christian Crocs-style clogs? Lightweight EVA foam clogs with scripture artwork, plus an honest sizing guide (${priceRange(clogList)}).`,
-      tags: ["Christian shoes", "Christian clogs", "faith footwear", "EVA clogs"],
-      body: `
-<p><strong>Short answer:</strong> if you want Crocs-style comfort with a faith message, Christian EVA foam clogs are lightweight slip-ons printed with scripture-inspired artwork. ArmorNGlory's clogs feature Bible stories and verses like the fourth man in the fire (Daniel 3), the Shield of Faith (Ephesians 6), and the empty tomb (Matthew 28:6), ${priceRange(clogList)}. They run roomy, so <strong>size down if you're between sizes</strong>.</p>
+  const clogSlugPath = join(outDir, "christian-eva-foam-clogs-faith-slip-ons.html");
+  if (clogs.length > 0) {
+    const clogList = clogs.slice(0, 12);
+    written.push(
+      writeArticle({
+        slug: "christian-eva-foam-clogs-faith-slip-ons",
+        title: "Christian EVA Foam Clogs: Faith-Inspired Slip-Ons (and How They Fit)",
+        metaDescription: `Looking for Christian Crocs-style clogs? Lightweight EVA foam clogs with scripture artwork, plus an honest sizing guide (${priceRange(clogList)}).`,
+        tags: ["Christian shoes", "Christian clogs", "faith footwear", "EVA clogs"],
+        body: `
+<p><strong>Short answer:</strong> if you want Crocs-style comfort with a faith message, Christian EVA foam clogs are lightweight slip-ons printed with scripture-inspired artwork. ArmorNGlory's clogs feature Bible stories and verses (${priceRange(clogList)}). They run roomy, so <strong>size down if you're between sizes</strong>.</p>
 
 <h2>Christian foam clogs by design</h2>
 ${productList(clogList)}
 
-<h2>Sizing: read this before you order</h2>
-<ul>
-  <li>The clogs have a <strong>roomy, relaxed fit</strong> and can feel larger than your usual shoes.</li>
-  <li>If you're between sizes or prefer a snug fit, <strong>size down</strong>.</li>
-  <li>Sizes are listed in US women's and US men's. Check the size chart on each product page.</li>
-  <li>${POLICY.returns}</li>
-</ul>
-
-<h2>Why foam clogs work as faith footwear</h2>
-<p>They're the shoe people actually wear every day: errands, campus, the backyard, the gym locker room. That makes them a natural, low-key conversation starter, and a fun gift for teens and college students.</p>
 <p><a href="${STORE}/collections/faith-footwear">Shop all faith footwear</a></p>
 
 ${faqBlock([
-  { q: "Are there Christian Crocs?", a: `Crocs doesn't make an official Christian line, but faith-inspired EVA foam clogs in the same comfortable style are available. ArmorNGlory makes scripture-themed foam clogs with Bible-story artwork. <a href="${STORE}/collections/faith-footwear">See the collection</a>.` },
   { q: "Do ArmorNGlory clogs run big or small?", a: "They run roomy. If you are between sizes or prefer a closer fit, size down." },
-  { q: "Are the clogs unisex?", a: "Yes. Sizes are listed in both US women's and US men's." },
   SHIPPING_FAQ,
   RETURNS_FAQ
 ])}
 `
-    })
-  );
+      })
+    );
+  } else if (existsSync(clogSlugPath)) {
+    unlinkSync(clogSlugPath);
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -472,6 +473,129 @@ ${faqBlock([
   { q: "What shirts work best as a Christian gym pump cover?", a: `Heavyweight relaxed-fit tees (such as Comfort Colors 1717 6.1 oz ring-spun cotton) drape well over gym gear; size up one size if you want an oversized pump-cover fit. <a href="${STORE}/collections/activewear">Browse activewear</a>.` },
   SHIPPING_FAQ,
   RETURNS_FAQ
+])}
+`
+    })
+  );
+}
+
+// ---------------------------------------------------------------------------
+// 8. Christian Phone Cases (iPhone MagSafe & Samsung Galaxy S26 — 80+ active items)
+// ---------------------------------------------------------------------------
+{
+  const seen = new Set();
+  const iphoneCases = pick((p) => p.category === "Phone Cases" && !/samsung|galaxy/i.test(p.handle + p.title), 8, seen);
+  const galaxyCases = pick((p) => p.category === "Phone Cases" && /samsung|galaxy|s26/i.test(p.handle + p.title + p.tags.join(" ")), 6, seen);
+  const allCases = products.filter(byCat("Phone Cases")).filter(inStock);
+
+  if (allCases.length > 0) {
+    written.push(
+      writeArticle({
+        slug: "christian-phone-cases-magsafe-galaxy-s26",
+        title: "Tough Magnetic Christian Phone Cases: Scripture Designs for iPhone (MagSafe) & Samsung Galaxy S26",
+        metaDescription: `Dual-layer magnetic Christian phone cases (${priceRange(allCases)}) with real Bible verses for iPhone MagSafe and Samsung Galaxy S26, S26+ & S26 Ultra.`,
+        tags: ["Christian phone case", "Bible verse phone case", "MagSafe case", "Samsung Galaxy S26 case"],
+        body: `
+<p><strong>Short answer:</strong> you pick up your phone dozens of times a day, making a tough scripture phone case one of the most practical daily reminders of faith. ArmorNGlory builds ${allCases.length} active dual-layer magnetic cases (${priceRange(allCases)}) combining an impact-resistant polycarbonate shell, cushioned inner liner, and built-in magnetic module for iPhone (MagSafe compatible) and Samsung Galaxy S26 series devices.</p>
+
+<h2>Scripture tough magnetic cases for iPhone (MagSafe compatible)</h2>
+${productList(iphoneCases)}
+
+${galaxyCases.length ? `<h2>Christian phone cases for Samsung Galaxy S26, S26 Plus &amp; S26 Ultra</h2>\n${productList(galaxyCases)}` : ""}
+
+<h2>Matte vs. Glossy finish &amp; device fit tips</h2>
+<ul>
+  <li><strong>Dual-layer protection:</strong> tough polycarbonate exterior + shock-absorbing inner liner for everyday drops.</li>
+  <li><strong>Finish choices:</strong> select Matte for a smooth, low-glare editorial look or Glossy for deep color saturation.</li>
+  <li><strong>Check your exact model:</strong> open your phone's Settings → About before ordering so you pick the exact iPhone or Galaxy S26 / S26+ / S26 Ultra variant.</li>
+</ul>
+<p><a href="${STORE}/collections/phone-cases">Shop all ${allCases.length} Christian phone cases</a></p>
+
+${faqBlock([
+  { q: "Do ArmorNGlory Christian phone cases work with MagSafe chargers and wallets?", a: "Yes. Tough Magnetic cases include a built-in magnetic module engineered to align with MagSafe chargers, car mounts, and magnetic wallets on supported devices." },
+  { q: "Are Samsung Galaxy S26 Christian phone cases available?", a: `Yes. ArmorNGlory carries tough magnetic scripture cases for Samsung Galaxy S26, S26 Plus, and S26 Ultra alongside iPhone models. <a href="${STORE}/collections/phone-cases">Browse all phone cases</a>.` },
+  SHIPPING_FAQ,
+  RETURNS_FAQ
+])}
+`
+      })
+    );
+  }
+}
+
+// ---------------------------------------------------------------------------
+// 9. Christian Pajama Pants & Faith Loungewear
+// ---------------------------------------------------------------------------
+{
+  const pjs = products.filter(byCat("Pajamas & Sleepwear")).filter(inStock);
+  if (pjs.length > 0) {
+    written.push(
+      writeArticle({
+        slug: "christian-pajama-pants-faith-loungewear",
+        title: "Christian Pajama Pants & Faith Loungewear: Cozy Scripture Prints (Sizes XS–4XL)",
+        metaDescription: `Soft all-over-print Christian pajama pants (${priceRange(pjs)}) inspired by Psalm 23, Noah's Promise, Matthew 6:33 & 1 Peter 2:9 in sizes XS–4XL.`,
+        tags: ["Christian pajamas", "faith loungewear", "Christian gifts for women", "cozy Christian gifts"],
+        body: `
+<p><strong>Short answer:</strong> ArmorNGlory's all-over-print Christian pajama pants (${priceRange(pjs)}) weave subtle biblical motifs—like Psalm 23 pastures, Genesis 9 rainbow arches, Matthew 6:28 lilies, and 1 Peter 2:9 varsity plaids—into soft 100% brushed polyester lounge pants (5.6 oz/yd², elastic waistband, core women's sizes XS–4XL).</p>
+
+<h2>Scripture &amp; plaid Christian pajama pants</h2>
+${productList(pjs.slice(0, 12))}
+
+<h2>Fit, fabric &amp; care details</h2>
+<ul>
+  <li><strong>Fabric:</strong> 100% brushed polyester (~5.6 oz/yd² / 190 g/m²) with an easy elastic waistband.</li>
+  <li><strong>Size range:</strong> core women's lounge styles run from <strong>XS to 4XL</strong> (pants only; no matching top included — check each listing's size chart).</li>
+  <li><strong>Care:</strong> machine wash cold, tumble dry low, do not iron or bleach.</li>
+</ul>
+<p><a href="${STORE}/collections/pajamas">Shop all Christian pajama pants &amp; loungewear</a></p>
+
+${faqBlock([
+  { q: "What sizes do ArmorNGlory Christian pajama pants come in?", a: "Core women's all-over-print pajama pants run from XS through 4XL with a relaxed elastic waistband. Check the size chart on each product page for exact waist and inseam measurements." },
+  { q: "Do the pajama pants include a matching top?", a: "Listings are for the all-over-print pajama pants only; pair them with a heavyweight ArmorNGlory graphic tee or crewneck sweatshirt for a complete cozy set." },
+  SHIPPING_FAQ,
+  RETURNS_FAQ
+])}
+`
+      })
+    );
+  }
+}
+
+// ---------------------------------------------------------------------------
+// 10. What to Wear to a Modern Church Service (Casual Faith Streetwear Guide)
+// ---------------------------------------------------------------------------
+{
+  const seen = new Set();
+  const churchTees = pick((p) => p.category === "T-Shirts & Tops" && (p.aesthetics.includes("Minimalist Core") || p.scriptures.length > 0), 4, seen);
+  const churchLayers = pick(byCat("Hoodies & Sweatshirts"), 4, seen);
+  const churchCaps = pick((p) => p.category === "Hats & Headwear" && /dad|rope|two-tone|trucker/i.test(p.handle + p.title), 4, seen);
+
+  written.push(
+    writeArticle({
+      slug: "what-to-wear-to-church-modern-casual-style-guide",
+      title: "What to Wear to a Modern Church Service: Casual Christian Streetwear & Outfit Formulas",
+      metaDescription: "Visiting a contemporary or non-denominational church? Simple, relaxed outfit formulas for men and women using heavyweight tees, crewnecks, and subtle faith staples.",
+      tags: ["what to wear to church", "church outfit ideas", "Christian streetwear", "casual church outfits"],
+      body: `
+<p><strong>Short answer:</strong> at most modern non-denominational and community churches, clean everyday casual wear—dark jeans or chinos, clean sneakers or boots, and a well-made heavyweight tee, crewneck sweatshirt, or overshirt—fits right in. If you're visiting for the first time, read our companion visitor guide (<a href="${STORE}/blogs/church-search/what-to-wear-to-church-when-you-have-no-idea-what-to-wear-to-church">What to Wear to Church When You Have No Idea What to Wear to Church</a>), then use the simple outfit formulas below.</p>
+
+<h2>Formula 1: Heavyweight neutral tee + overshirt or jacket</h2>
+<p>A garment-dyed heavyweight cotton tee (bone, moss, or washed charcoal) under an open flannel, denim jacket, or cardigan looks intentional without feeling stiff.</p>
+${productList(churchTees)}
+
+<h2>Formula 2: Relaxed crewneck or hoodie + tailored chinos</h2>
+<p>For cooler mornings or heavily air-conditioned auditoriums, pair a structured Christian hoodie or crewneck with clean straight-leg trousers or dark denim.</p>
+${productList(churchLayers)}
+
+<h2>Formula 3: Midweek small group, youth night &amp; coffee fellowship</h2>
+${productList(churchCaps)}
+
+<p><a href="${STORE}/collections/all-products">Explore the full ArmorNGlory collection</a></p>
+
+${faqBlock([
+  { q: "Can you wear jeans and a t-shirt or hoodie to church?", a: "At most contemporary, non-denominational, and community churches, yes—clean jeans paired with a heavyweight graphic tee, crewneck, or hoodie is standard Sunday attire." },
+  { q: "Should you take off a hat inside a church service?", a: "For coffee lobbies, youth nights, and outdoor fellowship, caps are common everywhere; inside traditional sanctuaries (and during prayer), removing a cap is still a thoughtful sign of respect." },
+  SHIPPING_FAQ
 ])}
 `
     })

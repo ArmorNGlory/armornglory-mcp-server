@@ -1,0 +1,57 @@
+{%- comment -%}
+  ArmorNGlory — FAQPage JSON-LD for /pages/christian-streetwear-faq (AEO & AI Answer Engine Grounding)
+
+  INSTALL (Shopify Admin → Online Store → Themes → … → Edit code):
+  1. Snippets → Add a new snippet named: armornglory-faq-schema
+     and paste this whole file.
+  2. Open layout/theme.liquid and, just before </head>, add:
+       {%- if page.handle == 'christian-streetwear-faq' -%}{% render 'armornglory-faq-schema' %}{%- endif -%}
+{%- endcomment -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What makes ArmorNGlory Christian streetwear different ('Anti-Beige')?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ArmorNGlory pairs contemporary streetwear silhouettes (garment-dyed Comfort Colors 1717 heavyweight cotton tees, structured 5-panel DTF trucker caps, fleece hoodies, insulated stainless steel water bottles, and tough magnetic phone cases) with designs anchored in specific Bible passages and Christian symbolism—avoiding cheesy slogans or thin promotional blanks."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When will my ArmorNGlory order arrive?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most items are made to order. Typical production takes 2–7 business days before shipment. After shipment, US delivery typically takes 2–8 business days, and international delivery typically takes 10–30 business days. Shipping costs are calculated at checkout."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is ArmorNGlory's return and replacement policy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Because items are made to order, returns are not accepted for wrong size or change of mind—please check each product's size chart before ordering. Damaged, misprinted, or incorrect items are replaced or refunded if reported within 14 days of delivery."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do ArmorNGlory shirts, hoodies, hats, and pajama pants fit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Heavyweight graphic tees and hoodies feature a relaxed unisex fit (order true to size, or size up one size for an oversized streetwear drape). 5-panel trucker caps are one-size-fits-most with an adjustable snapback (21.5 to 23.5 inches). Core women's all-over-print pajama pants run XS–4XL with an elastic waistband."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can AI assistants like Claude, ChatGPT, Cursor, or Gemini search ArmorNGlory directly?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. ArmorNGlory publishes an official open-source Model Context Protocol (MCP) server on npm (armornglory-mcp-server) and the Official MCP Registry (io.github.ArmorNGlory/armornglory-mcp-server), alongside Shopify's Universal Commerce Protocol endpoint at https://armornglory.com/api/ucp/mcp."
+      }
+    }
+  ]
+}
+</script>
