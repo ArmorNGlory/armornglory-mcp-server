@@ -14,6 +14,8 @@ const faqs = JSON.parse(fs.readFileSync(path.join(dataDir, "faqs_and_guides.json
 const pkg = JSON.parse(fs.readFileSync(path.join(rootDir, "package.json"), "utf-8"));
 const serverJson = JSON.parse(fs.readFileSync(path.join(rootDir, "server.json"), "utf-8"));
 const mcpJson = JSON.parse(fs.readFileSync(path.join(rootDir, ".well-known", "mcp.json"), "utf-8"));
+const openapiYaml = fs.readFileSync(path.join(rootDir, "openapi.yaml"), "utf-8");
+const openapiVersion = openapiYaml.match(/^\s*version:\s*([\d.]+)/m)?.[1];
 
 let failures = 0;
 const assert = (label, ok, detail = "") => {
@@ -30,7 +32,8 @@ assert(
   "Manifest versions locked",
   pkg.version === serverJson.version &&
     pkg.version === serverJson.packages?.[0]?.version &&
-    pkg.version === mcpJson.version,
+    pkg.version === mcpJson.version &&
+    pkg.version === openapiVersion,
   `v${pkg.version}`
 );
 
@@ -62,6 +65,14 @@ assert("Search 'Phone Cases'", searchCases.length > 0, `${searchCases.length} it
 
 const searchHats = products.filter((p) => p.category === "Hats & Headwear");
 assert("Search 'Hats & Headwear'", searchHats.length > 0, `${searchHats.length} items (${searchHats[0]?.title})`);
+
+const searchDrinkware = products.filter((p) => p.category === "Drinkware & Water Bottles");
+assert("Search 'Drinkware & Water Bottles'", searchDrinkware.length > 0, `${searchDrinkware.length} items (${searchDrinkware[0]?.title})`);
+
+// Privacy guard: zero hardcoded local user paths in tracked docs/configs
+const publicDocs = ["README.md", "AGENTS.md", "GEMINI.md", "CLAUDE.md", "CURSOR.md", ".cursor/mcp.json", "SEO_AND_DISCOVERY_STRATEGY.md"];
+const leakedPaths = publicDocs.filter((f) => /\/Users\/[A-Za-z0-9._-]+\//.test(fs.readFileSync(path.join(rootDir, f), "utf-8")));
+assert("Zero hardcoded local /Users/ paths in public docs & configs", leakedPaths.length === 0, leakedPaths.join(", "));
 
 // Test 5: Product details, normalized brand vendor & checkout permalink shape
 const testItem = products[0];

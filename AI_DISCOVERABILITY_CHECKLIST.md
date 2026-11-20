@@ -54,7 +54,7 @@ Run `npm run audit:catalog` → open `reports/catalog-ai-audit.md` and `reports/
 
 ### 2.1 Publish the article kit (`content/articles/`)
 armornglory.com has **no apparel articles yet**: the blogs cover home decor and church visits. AI answers for "Christian streetwear" currently cite listicles from other sites.
-- [ ] Publish the 5 generated articles (see `content/README.md`) in a new **Style Guides** blog, and link it from the header or footer.
+- [ ] Publish the 9 generated articles (see `content/README.md`) in a new **Style Guides** blog, and link it from the header or footer.
 - [ ] Cross-link: add a line to the existing *"What to wear to church when you have no idea what to wear to church"* article pointing to the streetwear guide.
 
 ### 2.2 Indexing
@@ -81,23 +81,23 @@ Ask each engine (logged out) and note whether ArmorNGlory appears:
 
 ## Path 3: MCP distribution (this repo)
 
-Done in v1.1.0:
+Done through v1.3.0:
 - [x] Server `instructions`, title, icon and website, so assistants know *when* to use it
-- [x] Buyer-language tool descriptions and read-only `annotations` on all tools
+- [x] Buyer-language tool descriptions and read-only `annotations` on all 13 tools
+- [x] Scripture & Symbolism Concordance (`explore_scripture_and_symbolism`) and Editorial Style Guides (`get_christian_style_and_gift_guide`)
 - [x] ChatGPT connector-compatible `search` + `fetch` tools
-- [x] Removed the dead `mcp.armornglory.com` endpoint and `armornglory.com/openapi.yaml` references; now pointing to Shopify's real UCP endpoint and the GitHub-hosted OpenAPI spec
-- [x] Catalog sync fixes: normalized verse references; occasions no longer tag every product as "Father's Day"; category word boundaries
-- [x] `server.json` + `mcpName` for the official MCP Registry
-- [x] Protocol smoke test + dead-link test (`npm test`), auto-generated server card (`npm run card`)
+- [x] Live background Shopify catalog auto-sync + local LaunchAgent daily sync (`npm run sync:all`)
+- [x] Published to npm (`armornglory-mcp-server@1.3.0`) and Official MCP Registry (`io.github.ArmorNGlory/armornglory-mcp-server@1.3.0`) via GitHub Actions OIDC
+- [x] Protocol smoke test + dead-link test (`npm test`), auto-generated server card (`npm run card`), production vulnerability audit (`npm run audit:deps`)
 
 To do:
-- [ ] Push to GitHub, `npm publish` (1.1.0), `mcp-publisher publish`. See `DIRECTORY_SUBMISSIONS.md` section 0.
-- [ ] Directory submissions: Smithery, awesome-mcp-servers PR, mcp.so, Cline marketplace; claim Glama.
+- [ ] Set GitHub repo `homepage` (`https://armornglory.com`), `topics`, and publish a GitHub Release.
+- [ ] Directory submissions: Smithery, `awesome-mcp-servers` PR, mcp.so, Cline marketplace; claim Glama (see `DIRECTORY_SUBMISSIONS.md`).
 
 ---
 
 ## Keep it fresh (whenever products change)
 ```bash
-npm run audit:deps && npm run sync-data && npm run build && npm test && npm run card && npm run audit:catalog && npm run content
-npm version patch && npm publish && mcp-publisher publish
+npm run sync:all && npm run audit:catalog && npm run content
+npm run release   # bumps version, publishes to npm (Touch ID), tags & triggers MCP Registry workflow
 ```

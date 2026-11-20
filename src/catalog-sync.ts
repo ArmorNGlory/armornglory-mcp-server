@@ -146,7 +146,7 @@ export async function safeJsonFetch<T = unknown>(urlStr: string): Promise<T> {
         signal: AbortSignal.timeout(5000),
         redirect: "error",
         headers: {
-          "User-Agent": "Mozilla/5.0 (compatible; ArmorNGloryMCPSync/1.2; +https://armornglory.com)",
+          "User-Agent": "Mozilla/5.0 (compatible; ArmorNGloryMCPSync/1.3; +https://armornglory.com)",
           "Accept": "application/json"
         }
       });
@@ -269,6 +269,25 @@ const SCRIPTURE_PATTERNS = [
   { ref: "Genesis 2:15", keywords: ["genesis 2:15", "tended and kept"] },
   { ref: "Revelation 19:16", keywords: ["revelation 19:16", "king of kings"] },
   { ref: "Revelation 22:13", keywords: ["revelation 22:13", "alpha and omega"] },
+  { ref: "Isaiah 54:17", keywords: ["isaiah 54:17", "no weapon formed"] },
+  { ref: "Isaiah 41:10", keywords: ["isaiah 41:10", "fear not"] },
+  { ref: "1 Peter 1:3", keywords: ["1 peter 1:3", "living hope"] },
+  { ref: "Lamentations 3:22-23", keywords: ["lamentations 3:22", "lamentations 3:23", "new every morning"] },
+  { ref: "James 1:22", keywords: ["james 1:22", "be a doer"] },
+  { ref: "Matthew 7:14", keywords: ["matthew 7:14", "narrow way"] },
+  { ref: "Micah 6:8", keywords: ["micah 6:8", "walk humbly"] },
+  { ref: "Colossians 4:6", keywords: ["colossians 4:6", "speak with grace"] },
+  { ref: "Matthew 28:19", keywords: ["matthew 28:19", "make disciples"] },
+  { ref: "Luke 2:14", keywords: ["luke 2:14", "peace on earth"] },
+  { ref: "2 Corinthians 12:9", keywords: ["2 corinthians 12:9", "my grace is sufficient"] },
+  { ref: "John 14:6", keywords: ["john 14:6", "way, truth, and the life", "way truth life"] },
+  { ref: "Romans 8:28", keywords: ["romans 8:28", "all things work together"] },
+  { ref: "Jeremiah 29:11", keywords: ["jeremiah 29:11", "plans to prosper"] },
+  { ref: "1 Timothy 6:12", keywords: ["1 timothy 6:12", "good fight"] },
+  { ref: "Proverbs 31:25", keywords: ["proverbs 31:25", "strength and dignity"] },
+  { ref: "Genesis 6-9", keywords: ["built before the rain", "noah's ark", "the ark collection"] },
+  { ref: "Matthew 4:19", keywords: ["matthew 4:19", "fishers of men"] },
+  { ref: "Acts 2:3-4", keywords: ["acts 2:3", "holy spirit fire"] },
   { ref: "Est 33 AD", keywords: ["33 ad", "est 33 ad", "resurrection"] }
 ];
 
@@ -355,14 +374,19 @@ export function categorizeProduct(type: string | undefined, title: string, tags:
     return "Kids & Youth";
   }
   if (
-    t.includes("accessory") ||
-    t.includes("accessories") ||
-    t.includes("bag") ||
     t.includes("mug") ||
     t.includes("bottle") ||
     t.includes("tumbler") ||
     t.includes("drinkware") ||
-    has(/\b(totes?|mugs?|tumblers?|water bottles?|bottles?|drinkware|bags?|blankets?|gaiters?|scarf|bandana|pickleball)\b/)
+    has(/\b(mugs?|tumblers?|water bottles?|bottles?|drinkware|flasks?)\b/)
+  ) {
+    return "Drinkware & Water Bottles";
+  }
+  if (
+    t.includes("accessory") ||
+    t.includes("accessories") ||
+    t.includes("bag") ||
+    has(/\b(totes?|bags?|blankets?|gaiters?|scarf|bandana|pickleball)\b/)
   ) {
     return "Accessories";
   }
@@ -575,9 +599,12 @@ export function buildBrandInfo(storeUrl = "https://armornglory.com"): BrandInfo 
     },
     sizingGuides: {
       truckerCaps: "Structured 5-panel mesh back with adjustable snap closure (One Size Fits Most, ~21.5-23.5 in circumference).",
-      evaFoamClogs: "Roomy comfort fit with flexible anti-slip sole and heel strap. Refer to clog millimeter / inch charts. If between sizes or prefer a snug fit, size down.",
-      heavyweightTees: "Unisex relaxed / streetwear fit. 100% ring-spun cotton. True to size for standard fit; size up for oversized streetwear look.",
-      hoodies: "Comfort meets conviction. Relaxed unisex fit with fleece lining and kangaroo pocket."
+      heavyweightTees: "Unisex relaxed / streetwear fit. 100% ring-spun cotton (e.g., Comfort Colors 1717). True to size for standard fit; size up for oversized streetwear look.",
+      hoodies: "Comfort meets conviction. Relaxed unisex fit with fleece lining and kangaroo pocket.",
+      pajamaPants: "Relaxed all-over-print pajama pants in soft brushed polyester with elastic waistband (women's core styles run XS-4XL; check individual size chart).",
+      phoneCases: "Model-specific dual-layer magnetic cases for iPhone (MagSafe compatible) and Samsung Galaxy S26 / S26 Plus / S26 Ultra. Verify exact device model before ordering.",
+      drinkware: "Double-wall 100% stainless steel water bottles with BPA-free polypropylene lids (cold up to 24h, warm up to 12h), plus ceramic mugs and insulated tumblers.",
+      evaFoamClogsReference: "Reference fit for footwear drops: roomy comfort fit with flexible anti-slip sole and pivoting heel strap. If between sizes or prefer a snug fit, size down."
     }
   };
 }

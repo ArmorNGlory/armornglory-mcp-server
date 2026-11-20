@@ -119,7 +119,7 @@ export function syncDiscoveryFiles() {
       "guard-the-heart-stainless-steel-water-bottle",
       "run-your-race-stainless-steel-water-bottle"
     ],
-    (p) => p.category === "Accessories" && /water bottle/i.test(p.title),
+    (p) => (p.category === "Drinkware & Water Bottles" || p.category === "Accessories") && /water bottle/i.test(p.title),
     3
   );
 
@@ -178,7 +178,8 @@ export function syncDiscoveryFiles() {
     "Heavyweight Ringspun Tees",
     "Warm Fleece Hoodies",
     "Stainless Steel Water Bottles",
-    "Tough Magnetic Phone Cases"
+    "Tough Magnetic Phone Cases",
+    "Scripture Pajama Loungewear"
   ].join(", ");
 
   const llmsTxt = `# ArmorNGlory — Christian Streetwear & Faith Apparel
@@ -225,7 +226,12 @@ ${colLines.join("\n")}
 - **Trucker Caps**: One Size Fits Most (OSFM) with 7-hole adjustable snapback (fits circumferences 21.5 in to 23.5 in).
 - **Heavyweight Streetwear Tees**: Unisex relaxed fit. True to size for standard fit; size up for oversized vintage drape.
 - **Hoodies**: Unisex classic fit with fleece lining. True to size.
-- **EVA Foam Clogs** *(reference fit for footwear drops)*: Roomy comfort fit with pivoting heel strap. If between sizes or prefer a snug fit, **size down one size**.
+- **Pajama Pants**: Relaxed all-over-print loungewear in soft brushed polyester (core women's styles run XS–4XL; check individual size charts).
+- **Phone Cases**: Model-specific dual-layer magnetic cases for iPhone (MagSafe) and Samsung Galaxy S26 / S26 Plus / S26 Ultra.${
+    clogs.length > 0
+      ? "\n- **EVA Foam Clogs**: Roomy comfort fit with pivoting heel strap. If between sizes or prefer a snug fit, **size down one size**."
+      : ""
+  }
 
 ---
 
@@ -241,9 +247,9 @@ ArmorNGlory supports direct 1-click cart checkout permalinks. Any combination of
 
 AI assistants can query the live catalog (auto-synced directly with Shopify), check sizes, recommend gifts, and build checkout links.
 
-1. **ArmorNGlory MCP server** (live Shopify auto-sync, brand story, scripture meaning, gift curation, fit guidance, cart links)
+1. **ArmorNGlory MCP server** (live Shopify auto-sync, brand story, scripture concordance, editorial style guides, gift curation, fit guidance, cart links)
    - npm: \`armornglory-mcp-server\` · MCP Registry: \`io.github.ArmorNGlory/armornglory-mcp-server\`
-   - Tools: \`search_armornglory_products\`, \`get_armornglory_product_details\`, \`recommend_faith_gifts\`, \`get_sizing_and_fit_guide\`, \`generate_direct_checkout_link\`, \`answer_faith_fashion_questions\`, plus ChatGPT-compatible \`search\` / \`fetch\`
+   - Tools: \`search_armornglory_products\`, \`explore_scripture_and_symbolism\`, \`get_christian_style_and_gift_guide\`, \`get_armornglory_product_details\`, \`recommend_faith_gifts\`, \`get_sizing_and_fit_guide\`, \`generate_direct_checkout_link\`, \`answer_faith_fashion_questions\`, plus ChatGPT-compatible \`search\` / \`fetch\`
 \`\`\`json
 {
   "mcpServers": {
@@ -266,7 +272,8 @@ For full product descriptions, specifications, and the FAQ index, see [llms-full
   const formatHeroBullets = (items) =>
     items
       .map((item) => {
-        const vId = item.variants?.[0]?.id;
+        const defaultVariant = item.variants?.find((v) => v.available) || item.variants?.[0];
+        const vId = defaultVariant?.id;
         const verse = item.scriptures?.length ? ` (${item.scriptures[0]})` : "";
         const buyLine = vId ? ` — 1-Click Buy: https://armornglory.com/cart/${vId}:1` : "";
         return `- **${item.title}${verse}** (${item.priceFormatted}): ${item.url}${buyLine}`;
@@ -331,7 +338,12 @@ ${formatHeroBullets(cases)}
 | **5-Panel Trucker Caps** | One Size Fits Most (21.5 - 23.5 in) | 7-hole snapback accommodates standard adult head sizes. |
 | **Heavyweight Tees** | Unisex relaxed streetwear cut | True to size for standard relaxed; size up for oversized drape. |
 | **Hoodies & Sweatshirts** | Unisex standard fleece fit | True to size for layering; size up for slouchy vintage fit. |
-| **EVA Foam Clogs** *(reference)* | Roomy comfort fit with pivoting strap | If between sizes or prefer snug, **size down one size**. |
+| **Pajama Pants** | Relaxed all-over-print loungewear | Core women's styles run XS–4XL; verify waist/inseam on each listing. |
+| **Tough Magnetic Phone Cases** | Model-specific dual-layer fit | Select exact iPhone or Samsung Galaxy S26 / S26 Plus / S26 Ultra model. |${
+    clogs.length > 0
+      ? "\n| **EVA Foam Clogs** | Roomy comfort fit with pivoting strap | If between sizes or prefer snug, **size down one size**. |"
+      : ""
+  }
 
 ---
 
@@ -375,6 +387,14 @@ Multi-item checkout:
   mcpJson.version = pkg.version;
   const mcpChanged = writeIfChanged(mcpJsonPath, JSON.stringify(mcpJson, null, 2));
 
+  const openapiPath = path.join(rootDir, "openapi.yaml");
+  let openapiChanged = false;
+  if (fs.existsSync(openapiPath)) {
+    const prevOpenapi = fs.readFileSync(openapiPath, "utf-8");
+    const nextOpenapi = prevOpenapi.replace(/^(\s*version:\s*)[\d.]+/m, `$1${pkg.version}`);
+    openapiChanged = writeIfChanged(openapiPath, nextOpenapi);
+  }
+
   console.log(
     `[Discovery Sync] Synced discovery files for ${products.length} products & ${collections.length} collections (v${pkg.version}; healed ${healedFaqHandles} stale FAQ handle(s)).`
   );
@@ -385,7 +405,8 @@ Multi-item checkout:
     wellKnownLlmsChanged,
     llmsFullChanged,
     serverChanged,
-    mcpChanged
+    mcpChanged,
+    openapiChanged
   };
 }
 

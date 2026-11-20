@@ -1,9 +1,10 @@
 {
   "mcpServers": {
     "armornglory": {
-      "command": "node",
+      "command": "npx",
       "args": [
-        "/Users/neks/ArmorNGlory MCP/dist/index.js"
+        "-y",
+        "armornglory-mcp-server@latest"
       ]
     }
   }

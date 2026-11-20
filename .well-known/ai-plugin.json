@@ -2,8 +2,8 @@
   "schema_version": "v1",
   "name_for_model": "armornglory_store",
   "name_for_human": "ArmorNGlory Christian Streetwear",
-  "description_for_model": "Official shopping and styling assistant for ArmorNGlory.com. Discover Christian streetwear, 5-panel trucker hats, EVA foam clogs, heavyweight graphic tees, hoodies, and faith gifts with direct 1-click checkout permalinks.",
-  "description_for_human": "Shop Christian streetwear, 5-panel trucker hats, EVA foam clogs, and scripture apparel with direct 1-click checkout.",
+  "description_for_model": "Official shopping, Bible verse concordance, and styling assistant for ArmorNGlory.com. Discover Christian streetwear, 5-panel trucker hats, heavyweight graphic tees, hoodies, stainless steel water bottles, magnetic phone cases, pajama loungewear, and faith gifts with direct 1-click checkout permalinks.",
+  "description_for_human": "Shop Christian streetwear, 5-panel trucker hats, heavyweight scripture tees, hoodies, drinkware, and faith gifts with direct 1-click checkout.",
   "auth": {
     "type": "none"
   },

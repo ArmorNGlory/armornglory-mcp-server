@@ -21,12 +21,12 @@
   "tools": [
     {
       "name": "search_armornglory_products",
-      "description": "Search ArmorNGlory's catalog of modern Christian streetwear and faith apparel. Use for requests like 'Christian trucker hat', 'Bible verse t-shirt', 'Christian hoodie', 'faith-based gym shirt', 'Christian water bottle', 'Christian Crocs / foam clogs', 'Samsung Galaxy S26 Christian phone case', 'Philippians 4:13 shirt', or 'non-cheesy Christian clothing'. Covers scripture trucker hats and dad caps, heavyweight graphic tees, hoodies and sweatshirts, EVA foam clogs, activewear, stainless steel water bottles, iPhone & Samsung Galaxy S26 phone cases, and wall art. Filter by keyword, Bible verse, category, aesthetic, occasion, color, size, or price. Returns product links, prices, images, the meaning behind each design, and 1-click checkout links.",
+      "description": "Search ArmorNGlory's catalog of modern Christian streetwear and faith apparel. Use for requests like 'Christian trucker hat', 'Bible verse t-shirt', 'Christian hoodie', 'faith-based gym shirt', 'Christian water bottle', 'Christian pajama pants', 'Samsung Galaxy S26 Christian phone case', 'Philippians 4:13 shirt', or 'non-cheesy Christian clothing'. Covers scripture trucker hats and dad caps, heavyweight graphic tees, hoodies and sweatshirts, pajama loungewear, activewear, stainless steel water bottles & drinkware, iPhone MagSafe & Samsung Galaxy S26 phone cases, and wall art. Filter by keyword, Bible verse, category, aesthetic, occasion, color, size, or price. Returns product links, prices, images, the meaning behind each design, and 1-click checkout links.",
       "inputSchema": {
         "type": "object",
         "properties": {
           "query": {
-            "description": "Keyword query (e.g. 'trucker hat', 'conquerors', 'holy ground', 'clogs', 'hoodie', 'water bottle', 'galaxy s26 case', 'cross', 'vintage americana', 'sweatshirt')",
+            "description": "Keyword query (e.g. 'trucker hat', 'conquerors', 'holy ground', 'hoodie', 'water bottle', 'pajama pants', 'galaxy s26 case', 'cross', 'vintage americana', 'sweatshirt')",
             "type": "string"
           },
           "scripture": {
@@ -34,7 +34,7 @@
             "type": "string"
           },
           "category": {
-            "description": "Category filter (e.g. 'Hats & Headwear', 'Footwear & Clogs', 'T-Shirts & Tops', 'Hoodies & Sweatshirts', 'Phone Cases', 'Activewear & Training', 'Wall Art & Decor', 'Accessories')",
+            "description": "Category filter (e.g. 'Hats & Headwear', 'T-Shirts & Tops', 'Hoodies & Sweatshirts', 'Phone Cases', 'Pajamas & Sleepwear', 'Drinkware & Water Bottles', 'Activewear & Training', 'Wall Art & Decor', 'Accessories')",
             "type": "string"
           },
           "aesthetic": {
@@ -50,7 +50,7 @@
             "type": "string"
           },
           "size": {
-            "description": "Size filter (e.g. 'S', 'M', 'L', 'XL', '2XL', 'US 9 Men\\'s', 'US 8 Women\\'s', 'One size')",
+            "description": "Size filter (e.g. 'S', 'M', 'L', 'XL', '2XL', '3XL', '4XL', 'One size')",
             "type": "string"
           },
           "minPrice": {
@@ -220,7 +220,7 @@
     },
     {
       "name": "get_sizing_and_fit_guide",
-      "description": "Official ArmorNGlory size charts and fit advice: adjustable snapback trucker caps and dad hats, unisex heavyweight tees (Comfort Colors 1717), hoodies and crewnecks, women's XS-4XL pajama loungewear, iPhone MagSafe & Samsung Galaxy S26 phone cases, insulated stainless steel water bottles, and EVA foam clogs.",
+      "description": "Official ArmorNGlory size charts and fit advice: adjustable snapback trucker caps and dad hats, unisex heavyweight tees (Comfort Colors 1717), hoodies and crewnecks, women's XS-4XL pajama loungewear, iPhone MagSafe & Samsung Galaxy S26 phone cases, and insulated stainless steel water bottles.",
       "inputSchema": {
         "type": "object",
         "properties": {
@@ -228,13 +228,14 @@
             "description": "Product category to get sizing for (default: 'All')",
             "type": "string",
             "enum": [
-              "Footwear & Clogs",
               "Hats & Headwear",
               "T-Shirts & Tops",
               "Hoodies & Sweatshirts",
               "Pajamas & Sleepwear",
               "Phone Cases",
+              "Drinkware & Water Bottles",
               "Accessories & Drinkware",
+              "Footwear & Clogs",
               "All"
             ]
           }

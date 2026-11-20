@@ -291,17 +291,17 @@ ${faqBlock([
 {
   const seen = new Set();
   const milestone = pick((p) => p.occasions.includes("Baptism & Milestones"), 6, seen);
-  const under40 = pick((p) => p.minPrice <= 40 && p.scriptures.length > 0 && ["Hats & Headwear", "Footwear & Clogs", "T-Shirts & Tops"].includes(p.category), 6, seen);
+  const under40 = pick((p) => p.minPrice <= 40 && p.scriptures.length > 0 && ["Hats & Headwear", "T-Shirts & Tops", "Drinkware & Water Bottles", "Phone Cases", "Footwear & Clogs"].includes(p.category), 6, seen);
   const forMen = pick((p) => p.occasions.includes("Father's Day & Gifts for Men") && p.category !== "Phone Cases", 4, seen);
   const forWomen = pick((p) => p.occasions.includes("Mother's Day & Gifts for Women"), 4, seen);
   written.push(
     writeArticle({
       slug: "meaningful-baptism-gifts",
       title: "Meaningful Baptism Gifts for Men, Women & Teens (That They'll Actually Use)",
-      metaDescription: "Baptism and new-believer gift ideas with real meaning: scripture apparel, hats and clogs, many under $40. How to pick the right verse, plus sizing tips.",
+      metaDescription: `Baptism and new-believer gift ideas with real meaning: scripture apparel, hats, water bottles${clogs.length ? " and clogs" : " and phone cases"}, many under $40. How to pick the right verse, plus sizing tips.`,
       tags: ["baptism gifts", "Christian gifts", "new believer gifts", "confirmation gifts"],
       body: `
-<p><strong>Short answer:</strong> the best baptism gifts are things the person will use every week and that point back to the moment they made the decision. Wearable scripture works well because it's personal, practical, and visible. Choose a verse about new life (2 Corinthians 5:17), identity (1 Peter 2:9), or courage (Joshua 1:9, Romans 8:37), then pick the piece they're most likely to wear: a hat, a tee, a hoodie, or clogs.</p>
+<p><strong>Short answer:</strong> the best baptism gifts are things the person will use every week and that point back to the moment they made the decision. Wearable scripture works well because it's personal, practical, and visible. Choose a verse about new life (2 Corinthians 5:17), identity (1 Peter 2:9), or courage (Joshua 1:9, Romans 8:37), then pick the piece they're most likely to wear: a hat, a tee, a hoodie, a stainless steel water bottle, or a magnetic phone case${clogs.length ? ", or clogs" : ""}.</p>
 
 ${milestone.length ? `<h2>Gifts made for new beginnings</h2>\n${productList(milestone)}` : ""}
 
@@ -324,7 +324,7 @@ ${productList(forWomen)}
 ${faqBlock([
   { q: "What is a good baptism gift for an adult man?", a: `A scripture trucker hat or heavyweight graphic tee is practical and personal. Hats are one-size, so there's no sizing guesswork. <a href="${STORE}/collections/hats-beanies">See Christian hats</a>.` },
   { q: "What is a good gift for a new believer?", a: "Something they'll use daily that carries a verse about new life or identity, such as 2 Corinthians 5:17 (\"new creation\") or 1 Peter 2:9 (\"chosen\"). Pair it with a handwritten note explaining why you chose that verse." },
-  { q: "Are there Christian gifts under $40?", a: `Yes. Many ArmorNGlory hats, clogs and tees are under $40. <a href="${STORE}/collections/all-products">Browse the full catalog</a>.` },
+  { q: "Are there Christian gifts under $40?", a: `Yes. Many ArmorNGlory hats, tees, phone cases${clogs.length ? ", clogs," : ""} and water bottles are under $40. <a href="${STORE}/collections/all-products">Browse the full catalog</a>.` },
   SHIPPING_FAQ
 ])}
 `
@@ -352,7 +352,7 @@ ${faqBlock([
     writeArticle({
       slug: "bible-verse-clothing-by-scripture",
       title: "Bible Verse Clothing by Scripture: Shirts, Hoodies & Hats for Your Favorite Verse",
-      metaDescription: "Find Christian apparel for a specific Bible verse: Romans 8:37, Philippians 4:13, Isaiah 40:31, 1 Peter 5:7, Psalm 23 and more, with tees, hoodies, hats and clogs.",
+      metaDescription: `Find Christian apparel for a specific Bible verse: Romans 8:37, Philippians 4:13, Isaiah 40:31, 1 Peter 5:7, Psalm 23 and more, with tees, hoodies, hats, water bottles and phone cases.`,
       tags: ["Bible verse shirts", "scripture apparel", "Christian clothing", "verse gifts"],
       body: `
 <p><strong>Short answer:</strong> this is an index of ArmorNGlory apparel organized by Bible verse. Find the passage that means the most to you (or to the person you're shopping for) and choose the piece. Each product page explains the meaning behind the design.</p>
@@ -382,16 +382,16 @@ ${faqBlock([
   const menPicks = pick((p) => p.category === "Hats & Headwear" && p.scriptures.length > 0, 4, seen);
   const cozyPicks = pick(byCat("Hoodies & Sweatshirts"), 4, seen);
   const bottleGiftPicks = pick((p) => p.handle.includes("stainless-steel-water-bottle"), 4, seen);
-  const stockingUnder35 = pick((p) => p.minPrice <= 35 && ["Footwear & Clogs", "Phone Cases"].includes(p.category), 5, seen);
+  const stockingUnder35 = pick((p) => p.minPrice <= 35 && ["Phone Cases", "Hats & Headwear", "Drinkware & Water Bottles", "Footwear & Clogs"].includes(p.category), 5, seen);
 
   written.push(
     writeArticle({
       slug: "christian-christmas-gifts-guide",
       title: `Meaningful Christian Christmas Gifts (That Aren't Cheesy): A ${YEAR} Gift Guide`,
-      metaDescription: "Thoughtful Christian Christmas gifts for men, women, teens and small groups: scripture trucker hats, hoodies, stainless steel water bottles and clogs.",
+      metaDescription: `Thoughtful Christian Christmas gifts for men, women, teens and small groups: scripture trucker hats, hoodies, stainless steel water bottles, pajama pants and magnetic phone cases.`,
       tags: ["Christian Christmas gifts", "Christian gifts", "faith gifts", "holiday gift guide"],
       body: `
-<p><strong>Short answer:</strong> the best Christian Christmas gifts combine daily utility with a specific scripture that fits the person's season of life. One-size pieces like adjustable scripture trucker hats, double-wall stainless steel water bottles, and tough magnetic phone cases eliminate sizing guesswork, while heavyweight hoodies and EVA foam clogs cover cozy winter wear.</p>
+<p><strong>Short answer:</strong> the best Christian Christmas gifts combine daily utility with a specific scripture that fits the person's season of life. One-size pieces like adjustable scripture trucker hats, double-wall stainless steel water bottles, and tough magnetic phone cases eliminate sizing guesswork, while heavyweight hoodies and scripture pajama pants cover cozy winter wear.</p>
 
 ${holidayPicks.length ? `<h2>Holiday, Friendsmas &amp; cozy seasonal picks</h2>\n${productList(holidayPicks)}` : ""}
 
@@ -415,12 +415,12 @@ ${productList(stockingUnder35)}
 <h2>Christmas shipping &amp; ordering tips</h2>
 <ul>
   <li><strong>Order early for December delivery:</strong> ${POLICY.madeToOrder.toLowerCase()} ${POLICY.processing}, and ${POLICY.usShipping}, so place holiday orders at least 2–3 weeks ahead of your gift exchange.</li>
-  <li><strong>Double-check phone models &amp; clog sizes:</strong> phone cases are model-specific (including iPhone MagSafe and Samsung Galaxy S26 / S26 Plus / S26 Ultra), and EVA foam clogs run roomy (size down if between sizes).</li>
+  <li><strong>Double-check phone models &amp; apparel sizes:</strong> phone cases are model-specific (including iPhone MagSafe and Samsung Galaxy S26 / S26 Plus / S26 Ultra), and pajama pants run XS–4XL—check each listing's size chart before ordering.</li>
 </ul>
 
 ${faqBlock([
   { q: "What is a good Christian Christmas gift for a man who has everything?", a: `A one-size scripture trucker hat (such as Romans 8:37 or Exodus 3:5) or an insulated stainless steel water bottle built around a passage like Proverbs 4:23 or 1 Corinthians 10:31 is practical every day and doesn't require guessing clothing sizes. <a href="${STORE}/collections/hats-beanies">Browse hats</a> or <a href="${STORE}/collections/misc-amp-accessories">drinkware</a>.` },
-  { q: "What are good Christian gifts for teens and college students?", a: `EVA foam clogs, tough magnetic phone cases (for iPhone and Samsung Galaxy S26 series), and relaxed streetwear hoodies are popular daily staples for students. <a href="${STORE}/collections/phone-cases">See phone cases</a> and <a href="${STORE}/collections/faith-footwear">faith footwear</a>.` },
+  { q: "What are good Christian gifts for teens and college students?", a: `Tough magnetic phone cases (for iPhone and Samsung Galaxy S26 series), scripture trucker hats, cozy plaid pajama pants, and relaxed streetwear hoodies are popular daily staples for students. <a href="${STORE}/collections/phone-cases">See phone cases</a> and <a href="${STORE}/collections/hoodies-sweatshirts">hoodies</a>.` },
   { q: "When should I order for Christmas delivery?", a: `${POLICY.madeToOrder} ${POLICY.processing}, and ${POLICY.usShipping}. Order at least 2 to 3 weeks before Christmas for US addresses (and earlier for international orders).` },
   SHIPPING_FAQ,
   RETURNS_FAQ
@@ -464,7 +464,7 @@ ${productList(bottles)}
 ${productList(workoutApparel)}
 <p><a href="${STORE}/collections/activewear">Shop all Christian activewear</a></p>
 
-<h2>Gym duffels &amp; post-workout recovery slip-ons</h2>
+<h2>${clogs.length > 0 ? "Gym duffels &amp; post-workout recovery slip-ons" : "Gym duffels &amp; training bags"}</h2>
 ${productList(gymExtras)}
 
 ${faqBlock([

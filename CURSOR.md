@@ -7,24 +7,24 @@ This file defines Cursor rules and code context when developing or using the Arm
 ## 1. Project Context
 
 - **Repository**: `armornglory-mcp-server`
-- **Protocol**: Model Context Protocol (MCP) by Anthropic over `stdio` transport.
+- **Protocol**: Model Context Protocol (MCP) over `stdio` (default) or Streamable HTTP / SSE (`--http`).
 - **Tech Stack**: TypeScript, Node.js (`ES2022`, `NodeNext`), `@modelcontextprotocol/sdk`, `zod`.
 - **E-Commerce Target**: [ArmorNGlory.com](https://armornglory.com) (Shopify Storefront).
-- **Data Bundle**: 300+ enriched products (synced via `npm run sync-data`) in `data/products.json`, 21 collections in `data/collections.json`, and brand identity in `data/brand_info.json`.
+- **Data Bundle**: 345+ enriched products (synced via `npm run sync:all` and live background sync) in `data/products.json`, 19+ active collections in `data/collections.json`, and brand identity in `data/brand_info.json`.
 
 ---
 
 ## 2. Cursor Workflow Rules
 
 1. **Keep Schemas in Sync**:
-   - When modifying tools in `src/index.ts`, run `npm run build` immediately to refresh `dist/index.js`.
+   - When modifying tools in `src/index.ts`, run `npm run build && npm run card && npm test` to refresh `dist/index.js` and `.well-known/mcp/server-card.json`.
 2. **Strict Type Safety**:
    - Ensure all input arguments are typed with `zod` schemas.
-   - Use `z.describe(...)` on every property to give LLMs clear guidance on argument expectations.
+   - Use `.describe(...)` on every property to give LLMs clear guidance on argument expectations.
 3. **Never Strip Direct Links**:
    - Maintain full product URLs and variant checkout links in all tool responses.
 4. **Data Sync Protocol**:
-   - Run `npm run sync-data` to pull fresh catalog updates from `armornglory.com`.
+   - Run `npm run sync:all` to pull fresh catalog updates from `armornglory.com`, regenerate discovery files, and run verification checks.
 
 ---
 
@@ -34,8 +34,8 @@ This file defines Cursor rules and code context when developing or using the Arm
 {
   "mcpServers": {
     "armornglory": {
-      "command": "node",
-      "args": ["/Users/neks/ArmorNGlory MCP/dist/index.js"]
+      "command": "npx",
+      "args": ["-y", "armornglory-mcp-server@latest"]
     }
   }
 }

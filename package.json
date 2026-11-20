@@ -54,8 +54,8 @@
     "christian-hoodie",
     "christian-gifts",
     "baptism-gifts",
-    "christian-shoes",
-    "foam-clogs",
+    "christian-drinkware",
+    "christian-loungewear",
     "christian-water-bottle",
     "christian-phone-case",
     "christian-pajamas",
@@ -96,7 +96,7 @@
     "typescript": "^5.7.3"
   },
   "overrides": {
-    "@hono/node-server": "^2.1.8",
-    "hono": "^4.13.18"
+    "@hono/node-server": "^2.1.9",
+    "hono": "^4.13.19"
   }
 }

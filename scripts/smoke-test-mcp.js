@@ -60,6 +60,12 @@ check("scripture filter", /Romans 8:37/i.test(textOf(verse)));
 const bottle = await client.callTool({ name: "search_armornglory_products", arguments: { query: "stainless steel water bottle" } });
 check("water bottle search returns drinkware", /Stainless Steel Water Bottle/i.test(textOf(bottle)));
 
+const drinkwareCat = await client.callTool({ name: "search_armornglory_products", arguments: { category: "Drinkware & Water Bottles", limit: 3 } });
+check("Drinkware & Water Bottles category filter", /Drinkware & Water Bottles/i.test(textOf(drinkwareCat)));
+
+const pjCat = await client.callTool({ name: "search_armornglory_products", arguments: { category: "Pajamas & Sleepwear", limit: 3 } });
+check("Pajamas & Sleepwear category filter", /Pajamas & Sleepwear/i.test(textOf(pjCat)));
+
 const s26 = await client.callTool({ name: "search_armornglory_products", arguments: { query: "Samsung Galaxy S26 phone case" } });
 check("Samsung Galaxy S26 case search", /Samsung Galaxy S26/i.test(textOf(s26)));
 

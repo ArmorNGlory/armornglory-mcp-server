@@ -6,8 +6,9 @@
  * Official Model Context Protocol server for ArmorNGlory.com —
  * allowing external AI assistants (Claude Desktop, Cursor, Antigravity, ChatGPT, Gemini, Windsurf)
  * to natively discover, recommend, style, answer FAQs, and generate instant checkout links
- * for 300+ Christian streetwear apparel, hats, EVA foam clogs, and accessories.
- * 
+ * for 345+ Christian streetwear tees, scripture hats, hoodies, insulated drinkware, phone cases,
+ * pajama loungewear, and wall art.
+ *
  * Transport: stdio (default) or Streamable HTTP / SSE (--http)
  * Tools:
  *  - search_armornglory_products
@@ -19,6 +20,8 @@
  *  - get_sizing_and_fit_guide
  *  - generate_direct_checkout_link
  *  - answer_faith_fashion_questions
+ *  - explore_scripture_and_symbolism
+ *  - get_christian_style_and_gift_guide
  *  - search / fetch (ChatGPT connector & deep-research compatible)
  *
  * Note: Shopify also hosts a native Universal Commerce Protocol (UCP) MCP endpoint for
@@ -273,14 +276,22 @@ function searchProducts(filters: ProductSearchFilters): Product[] {
 
   let pool = products;
 
-  // Category filter
+  // Category filter (supports 'Drinkware & Water Bottles' and preserves 'Accessories' umbrella queries)
   if (category) {
     const catLower = category.toLowerCase().trim();
-    pool = pool.filter(
-      (p) =>
-        p.category.toLowerCase().includes(catLower) ||
-        (p.productType && p.productType.toLowerCase().includes(catLower))
-    );
+    pool = pool.filter((p) => {
+      const pCat = p.category.toLowerCase();
+      if (pCat.includes(catLower) || (p.productType && p.productType.toLowerCase().includes(catLower))) {
+        return true;
+      }
+      if (catLower === "accessories" && p.category === "Drinkware & Water Bottles") {
+        return true;
+      }
+      if (/drinkware|bottle|mug|tumbler/.test(catLower) && p.category === "Drinkware & Water Bottles") {
+        return true;
+      }
+      return false;
+    });
   }
 
   // Scripture filter
@@ -369,7 +380,7 @@ function searchProducts(filters: ProductSearchFilters): Product[] {
         if ((term === "hoodie" || term === "hoodies" || term === "sweatshirt" || term === "sweatshirts" || term === "fleece") && product.category === "Hoodies & Sweatshirts") score += 18;
         if ((term === "case" || term === "cases" || term === "iphone" || term === "magsafe" || term === "samsung" || term === "galaxy" || term === "s26" || term === "android") && product.category === "Phone Cases") score += 18;
         if ((term === "android" || term === "samsung" || term === "galaxy" || term === "s26") && (titleLower.includes("samsung") || tagsBlob.includes("samsung") || product.handle.includes("samsung"))) score += 22;
-        if ((term === "bottle" || term === "bottles" || term === "water" || term === "tumbler" || term === "tumblers" || term === "mug" || term === "mugs" || term === "drinkware" || term === "hydration" || term === "insulated" || term === "flask") && product.category === "Accessories" && /\b(bottle|mug|tumbler|drinkware)\b/i.test(`${product.title} ${product.productType || ""}`)) score += 22;
+        if ((term === "bottle" || term === "bottles" || term === "water" || term === "tumbler" || term === "tumblers" || term === "mug" || term === "mugs" || term === "drinkware" || term === "hydration" || term === "insulated" || term === "flask") && (product.category === "Drinkware & Water Bottles" || (product.category === "Accessories" && /\b(bottle|mug|tumbler|drinkware)\b/i.test(`${product.title} ${product.productType || ""}`)))) score += 22;
         if ((term === "pajama" || term === "pajamas" || term === "sleepwear" || term === "loungewear" || term === "pjs") && product.category === "Pajamas & Sleepwear") score += 22;
         if ((term === "gym" || term === "workout" || term === "fitness" || term === "lifting" || term === "training" || term === "running") && (product.category === "Activewear & Training" || product.aesthetics.includes("Athletic / Performance"))) score += 18;
         if ((term === "conqueror" || term === "conquerors") && product.scriptures.some((s) => s.includes("Romans 8:37"))) score += 20;
@@ -426,11 +437,16 @@ function attachUtm(url: string, campaign = "store_recommendation"): string {
   return `${url}${separator}utm_source=ai_agent&utm_medium=mcp&utm_campaign=${campaign}`;
 }
 
+function pickDefaultVariant(p: Product): ProductVariant | undefined {
+  return p.variants.find((v) => v.available) || p.variants[0];
+}
+
 function formatProductSummary(p: Product): string {
   const scriptText = p.scriptures.length > 0 ? `\n- **Scripture / Theme**: ${p.scriptures.join(", ")}` : "";
   const aestheticText = p.aesthetics.length > 0 ? `\n- **Style / Aesthetic**: ${p.aesthetics.join(", ")}` : "";
   const meaningSnippet = p.story.meaningBehindDesign ? `\n- **Design Meaning**: ${p.story.meaningBehindDesign}` : "";
-  const buyUrl = attachUtm(p.variants[0]?.checkoutUrl || p.url, "product_search");
+  const defaultVariant = pickDefaultVariant(p);
+  const buyUrl = attachUtm(defaultVariant?.checkoutUrl || p.url, "product_search");
   const imgMarkdown = p.featuredImage ? `[![${p.title}](${p.featuredImage})](${p.url})\n` : "";
 
   return `### [${p.title}](${p.url})
@@ -474,24 +490,28 @@ function formatProductDetail(p: Product): string {
     storySections += `\n\n#### 🧼 Care Instructions\n${p.story.careInstructions}`;
   }
 
-  // Cross-sell companion product for AOV boost (always selects an active in-stock category)
+  // Cross-sell companion product for AOV boost (always selects an active in-stock category & available variant)
   let companionSection = "";
   const candidateCategories =
     p.category === "Hats & Headwear"
-      ? ["Footwear & Clogs", "T-Shirts & Tops", "Hoodies & Sweatshirts", "Phone Cases"]
-      : p.category === "Footwear & Clogs"
-        ? ["Hats & Headwear", "T-Shirts & Tops"]
-        : p.category.includes("T-Shirts") || p.category.includes("Hoodies")
-          ? ["Hats & Headwear", "Phone Cases", "Accessories"]
-          : ["Hats & Headwear", "T-Shirts & Tops"];
+      ? ["T-Shirts & Tops", "Hoodies & Sweatshirts", "Drinkware & Water Bottles", "Phone Cases"]
+      : p.category === "Pajamas & Sleepwear"
+        ? ["Hoodies & Sweatshirts", "Hats & Headwear", "Drinkware & Water Bottles"]
+        : p.category === "Drinkware & Water Bottles"
+          ? ["Hats & Headwear", "T-Shirts & Tops", "Activewear & Training"]
+          : p.category.includes("T-Shirts") || p.category.includes("Hoodies")
+            ? ["Hats & Headwear", "Drinkware & Water Bottles", "Phone Cases", "Accessories"]
+            : ["Hats & Headwear", "T-Shirts & Tops", "Drinkware & Water Bottles"];
 
   const companion = candidateCategories
     .map((cat) => products.find((c) => c.category === cat && c.id !== p.id && c.variants.some((v) => v.available)))
     .find(Boolean);
 
-  if (companion && companion.variants[0] && p.variants[0]) {
+  const primaryVariant = pickDefaultVariant(p);
+  const companionVariant = companion ? pickDefaultVariant(companion) : undefined;
+  if (companion && primaryVariant && companionVariant) {
     const bundleUrl = attachUtm(
-      `https://armornglory.com/cart/${p.variants[0].id}:1,${companion.variants[0].id}:1`,
+      `https://armornglory.com/cart/${primaryVariant.id}:1,${companionVariant.id}:1`,
       "complete_the_look_bundle"
     );
     companionSection = `\n\n### 🔥 Complete The Streetwear Look (Bundle & Save)\nPair this with **[${companion.title}](${companion.url})** (${companion.priceFormatted}) for a head-to-toe faith streetwear fit.\n👉 **[1-Click Bundle Both Items to Checkout](${bundleUrl})**`;
@@ -550,14 +570,16 @@ export function createArmorNGloryServer(): McpServer {
 // 5. Tool 1: search_armornglory_products
 // ---------------------------------------------------------------------------
 
+const hasClogsActive = hasActiveCategory("Footwear & Clogs");
+
 server.tool(
   "search_armornglory_products",
-  "Search ArmorNGlory's catalog of modern Christian streetwear and faith apparel. Use for requests like 'Christian trucker hat', 'Bible verse t-shirt', 'Christian hoodie', 'faith-based gym shirt', 'Christian water bottle', 'Christian Crocs / foam clogs', 'Samsung Galaxy S26 Christian phone case', 'Philippians 4:13 shirt', or 'non-cheesy Christian clothing'. Covers scripture trucker hats and dad caps, heavyweight graphic tees, hoodies and sweatshirts, EVA foam clogs, activewear, stainless steel water bottles, iPhone & Samsung Galaxy S26 phone cases, and wall art. Filter by keyword, Bible verse, category, aesthetic, occasion, color, size, or price. Returns product links, prices, images, the meaning behind each design, and 1-click checkout links.",
+  `Search ArmorNGlory's catalog of modern Christian streetwear and faith apparel. Use for requests like 'Christian trucker hat', 'Bible verse t-shirt', 'Christian hoodie', 'faith-based gym shirt', 'Christian water bottle', 'Christian pajama pants', ${hasClogsActive ? "'Christian Crocs / foam clogs', " : ""}'Samsung Galaxy S26 Christian phone case', 'Philippians 4:13 shirt', or 'non-cheesy Christian clothing'. Covers scripture trucker hats and dad caps, heavyweight graphic tees, hoodies and sweatshirts, ${hasClogsActive ? "EVA foam clogs, " : ""}pajama loungewear, activewear, stainless steel water bottles & drinkware, iPhone MagSafe & Samsung Galaxy S26 phone cases, and wall art. Filter by keyword, Bible verse, category, aesthetic, occasion, color, size, or price. Returns product links, prices, images, the meaning behind each design, and 1-click checkout links.`,
   {
     query: z
       .string()
       .optional()
-      .describe("Keyword query (e.g. 'trucker hat', 'conquerors', 'holy ground', 'clogs', 'hoodie', 'water bottle', 'galaxy s26 case', 'cross', 'vintage americana', 'sweatshirt')"),
+      .describe("Keyword query (e.g. 'trucker hat', 'conquerors', 'holy ground', 'hoodie', 'water bottle', 'pajama pants', 'galaxy s26 case', 'cross', 'vintage americana', 'sweatshirt')"),
     scripture: z
       .string()
       .optional()
@@ -565,7 +587,7 @@ server.tool(
     category: z
       .string()
       .optional()
-      .describe("Category filter (e.g. 'Hats & Headwear', 'Footwear & Clogs', 'T-Shirts & Tops', 'Hoodies & Sweatshirts', 'Phone Cases', 'Activewear & Training', 'Wall Art & Decor', 'Accessories')"),
+      .describe(`Category filter (e.g. 'Hats & Headwear', 'T-Shirts & Tops', 'Hoodies & Sweatshirts', 'Phone Cases', 'Pajamas & Sleepwear', 'Drinkware & Water Bottles', 'Activewear & Training', 'Wall Art & Decor', 'Accessories'${hasClogsActive ? ", 'Footwear & Clogs'" : ""})`),
     aesthetic: z
       .string()
       .optional()
@@ -581,7 +603,7 @@ server.tool(
     size: z
       .string()
       .optional()
-      .describe("Size filter (e.g. 'S', 'M', 'L', 'XL', '2XL', 'US 9 Men\\'s', 'US 8 Women\\'s', 'One size')"),
+      .describe("Size filter (e.g. 'S', 'M', 'L', 'XL', '2XL', '3XL', '4XL', 'One size')"),
     minPrice: z
       .number()
       .optional()
@@ -611,7 +633,7 @@ server.tool(
         content: [
           {
             type: "text",
-            text: `No ArmorNGlory products matched your search criteria. Try broadening your query (e.g. searching for 'hats', 'hoodies', 'cross', or 'clogs') or browse all items at https://armornglory.com/collections/all-products.`
+            text: `No ArmorNGlory products matched your search criteria. Try broadening your query (e.g. searching for 'hats', 'hoodies', 'water bottles', 'phone cases', or 'pajama pants') or browse all items at https://armornglory.com/collections/all-products.`
           }
         ]
       };
@@ -757,7 +779,7 @@ server.tool(
         } else if (handleSlug === "phone-cases") {
           matched = products.filter((p) => p.category === "Phone Cases");
         } else if (handleSlug === "misc-amp-accessories") {
-          matched = products.filter((p) => p.category === "Accessories");
+          matched = products.filter((p) => p.category === "Accessories" || p.category === "Drinkware & Water Bottles");
         } else if (handleSlug === "posters") {
           matched = products.filter((p) => p.category === "Wall Art & Decor");
         } else if (handleSlug === "pajamas") {
@@ -869,21 +891,25 @@ server.tool(
         if (rLower.includes("gym") || rLower.includes("fitness") || rLower.includes("runner") || rLower.includes("athlete")) {
           if (
             product.aesthetics.includes("Athletic / Performance") ||
+            product.category === "Drinkware & Water Bottles" ||
             product.title.toLowerCase().includes("training") ||
             product.tags.some((t) => t.toLowerCase().includes("faith training gear"))
           ) {
             score += 25;
           }
         }
-        if (rLower.includes("dad") || rLower.includes("father") || rLower.includes("men")) {
-          if (product.category === "Hats & Headwear" || product.occasions.includes("Father's Day & Gifts for Men")) score += 15;
+        if (rLower.includes("dad") || rLower.includes("father") || rLower.includes("men") || rLower.includes("husband")) {
+          if (product.category === "Hats & Headwear" || product.category === "Drinkware & Water Bottles" || product.occasions.includes("Father's Day & Gifts for Men")) score += 15;
+        }
+        if (rLower.includes("mom") || rLower.includes("mother") || rLower.includes("women") || rLower.includes("wife")) {
+          if (product.category === "Pajamas & Sleepwear" || product.occasions.includes("Mother's Day & Gifts for Women")) score += 15;
         }
         if (rLower.includes("teen") || rLower.includes("youth") || rLower.includes("college")) {
-          if (product.category === "Footwear & Clogs" || product.category === "Phone Cases" || product.category === "Hats & Headwear") score += 15;
+          if (product.category === "Phone Cases" || product.category === "Hats & Headwear" || product.category === "Pajamas & Sleepwear" || product.category === "Drinkware & Water Bottles") score += 15;
         }
       }
 
-      if (product.category === "Hats & Headwear" || product.category === "Footwear & Clogs") {
+      if (product.category === "Hats & Headwear" || product.category === "Drinkware & Water Bottles") {
         score += 5;
       }
 
@@ -904,7 +930,8 @@ server.tool(
 
     const productList = topRecs.map((p, idx) => {
       const rationale = p.story.meaningBehindDesign || p.story.summary || "A meaningful, high-utility Christian staple designed for daily wear.";
-      const buyUrl = attachUtm(p.variants[0]?.checkoutUrl || p.url, "gift_advisor");
+      const defaultVariant = pickDefaultVariant(p);
+      const buyUrl = attachUtm(defaultVariant?.checkoutUrl || p.url, "gift_advisor");
       const imgMarkdown = p.featuredImage ? `[![${p.title}](${p.featuredImage})](${p.url})\n` : "";
       return `### Option ${idx + 1}: [${p.title}](${p.url}) — **${p.priceFormatted}**
 ${imgMarkdown}- **Why It Makes A Great Gift**: ${rationale}
@@ -978,17 +1005,18 @@ ${brandInfo.designEthos.principles.map((p) => `- ${p}`).join("\n")}
 
 server.tool(
   "get_sizing_and_fit_guide",
-  "Official ArmorNGlory size charts and fit advice: adjustable snapback trucker caps and dad hats, unisex heavyweight tees (Comfort Colors 1717), hoodies and crewnecks, women's XS-4XL pajama loungewear, iPhone MagSafe & Samsung Galaxy S26 phone cases, insulated stainless steel water bottles, and EVA foam clogs.",
+  `Official ArmorNGlory size charts and fit advice: adjustable snapback trucker caps and dad hats, unisex heavyweight tees (Comfort Colors 1717), hoodies and crewnecks, women's XS-4XL pajama loungewear, iPhone MagSafe & Samsung Galaxy S26 phone cases, and insulated stainless steel water bottles${hasClogsActive ? ", plus EVA foam clogs" : ""}.`,
   {
     category: z
       .enum([
-        "Footwear & Clogs",
         "Hats & Headwear",
         "T-Shirts & Tops",
         "Hoodies & Sweatshirts",
         "Pajamas & Sleepwear",
         "Phone Cases",
+        "Drinkware & Water Bottles",
         "Accessories & Drinkware",
+        "Footwear & Clogs",
         "All"
       ])
       .optional()
@@ -1031,12 +1059,12 @@ server.tool(
 - **Supported Devices**: Major iPhone series plus **Samsung Galaxy S26, S26 Plus, and S26 Ultra** listings — double-check your exact device model in Phone Settings before selecting a variant.\n\n`;
     }
 
-    if (category === "Accessories & Drinkware" || category === "All") {
+    if (category === "Drinkware & Water Bottles" || category === "Accessories & Drinkware" || category === "All") {
       guide += `### 🥤 Insulated Stainless Steel Water Bottles & Accessories
 - **Construction**: Double-wall 100% stainless steel body with BPA-free polypropylene lid (helps keep drinks cold up to 24h or warm up to 12h). One universal carry size; check individual listing for capacity.\n\n`;
     }
 
-    if (category === "Footwear & Clogs" || category === "All") {
+    if (category === "Footwear & Clogs" || (category === "All" && hasActiveCategory("Footwear & Clogs"))) {
       const stockNote = hasActiveCategory("Footwear & Clogs")
         ? ""
         : "\n- **Availability Note**: EVA foam clogs are not currently stocked in the active catalog; reference measurements below for existing pairs or upcoming drops.";

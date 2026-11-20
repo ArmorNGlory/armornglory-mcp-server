@@ -4,7 +4,7 @@
 
 - **Website**: https://armornglory.com
 - **Brand Ethos**: Anti-Beige / Anti-Cheesy Christian Streetwear
-- **Core Garments**: 5-Panel DTF Trucker Caps, Heavyweight Ringspun Tees, Warm Fleece Hoodies, Stainless Steel Water Bottles, Tough Magnetic Phone Cases
+- **Core Garments**: 5-Panel DTF Trucker Caps, Heavyweight Ringspun Tees, Warm Fleece Hoodies, Stainless Steel Water Bottles, Tough Magnetic Phone Cases, Scripture Pajama Loungewear
 - **Active Catalog**: 345 verified active products across 19 collections
 - **MCP Server**: https://github.com/ArmorNGlory/armornglory-mcp-server
 - **npm Package**: `armornglory-mcp-server`
@@ -51,7 +51,8 @@ ArmorNGlory (Armor & Glory) combines contemporary urban streetwear aesthetics wi
 - **Trucker Caps**: One Size Fits Most (OSFM) with 7-hole adjustable snapback (fits circumferences 21.5 in to 23.5 in).
 - **Heavyweight Streetwear Tees**: Unisex relaxed fit. True to size for standard fit; size up for oversized vintage drape.
 - **Hoodies**: Unisex classic fit with fleece lining. True to size.
-- **EVA Foam Clogs** *(reference fit for footwear drops)*: Roomy comfort fit with pivoting heel strap. If between sizes or prefer a snug fit, **size down one size**.
+- **Pajama Pants**: Relaxed all-over-print loungewear in soft brushed polyester (core women's styles run XS–4XL; check individual size charts).
+- **Phone Cases**: Model-specific dual-layer magnetic cases for iPhone (MagSafe) and Samsung Galaxy S26 / S26 Plus / S26 Ultra.
 
 ---
 
@@ -67,9 +68,9 @@ ArmorNGlory supports direct 1-click cart checkout permalinks. Any combination of
 
 AI assistants can query the live catalog (auto-synced directly with Shopify), check sizes, recommend gifts, and build checkout links.
 
-1. **ArmorNGlory MCP server** (live Shopify auto-sync, brand story, scripture meaning, gift curation, fit guidance, cart links)
+1. **ArmorNGlory MCP server** (live Shopify auto-sync, brand story, scripture concordance, editorial style guides, gift curation, fit guidance, cart links)
    - npm: `armornglory-mcp-server` · MCP Registry: `io.github.ArmorNGlory/armornglory-mcp-server`
-   - Tools: `search_armornglory_products`, `get_armornglory_product_details`, `recommend_faith_gifts`, `get_sizing_and_fit_guide`, `generate_direct_checkout_link`, `answer_faith_fashion_questions`, plus ChatGPT-compatible `search` / `fetch`
+   - Tools: `search_armornglory_products`, `explore_scripture_and_symbolism`, `get_christian_style_and_gift_guide`, `get_armornglory_product_details`, `recommend_faith_gifts`, `get_sizing_and_fit_guide`, `generate_direct_checkout_link`, `answer_faith_fashion_questions`, plus ChatGPT-compatible `search` / `fetch`
 ```json
 {
   "mcpServers": {

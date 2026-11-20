@@ -7,7 +7,7 @@
 [![Glama Score](https://glama.ai/mcp/servers/ArmorNGlory/armornglory-mcp-server/badges/score.svg)](https://glama.ai/mcp/servers/ArmorNGlory/armornglory-mcp-server)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-The official **Christian streetwear, Bible verse apparel & faith symbolism MCP server** from [ArmorNGlory.com](https://armornglory.com) for Claude, ChatGPT, Gemini, Cursor, Windsurf, VS Code, and Antigravity. Search **330+ live-synced products** (scripture 5-panel trucker hats, Comfort Colors heavyweight tees, fleece hoodies, tough magnetic iPhone MagSafe & Samsung Galaxy S26 phone cases, stainless steel water bottles, pajama loungewear, and wall art), explore the **Scripture & Christian Symbolism Concordance**, read **editorial church-style & milestone gift guides**, and generate **1-click Shopify checkout links**.
+The official **Christian streetwear, Bible verse apparel & faith symbolism MCP server** from [ArmorNGlory.com](https://armornglory.com) for Claude, ChatGPT, Gemini, Cursor, Windsurf, VS Code, and Antigravity. Search **345+ live-synced products** (scripture 5-panel trucker hats, Comfort Colors heavyweight tees, fleece hoodies, tough magnetic iPhone MagSafe & Samsung Galaxy S26 phone cases, stainless steel water bottles, pajama loungewear, and wall art), explore the **Scripture & Christian Symbolism Concordance**, read **editorial church-style & milestone gift guides**, and generate **1-click Shopify checkout links**.
 
 No API key. Runs locally. Free.
 
@@ -18,7 +18,7 @@ No API key. Runs locally. Free.
 - *"Find me Christian streetwear that doesn't look cheesy."*
 - *"Show me a Christian trucker hat with Romans 8:37."*
 - *"Baptism gift for my husband under $40."*
-- *"Are there Christian Crocs? How do they fit?"*
+- *"Show me insulated Christian water bottles for the gym or scripture pajama pants."*
 - *"I want a Philippians 4:13 hoodie in black, size L."*
 
 ---
@@ -67,14 +67,14 @@ All tools are read-only (annotated `readOnlyHint: true`).
 
 | Tool | What it does |
 |---|---|
-| `search_armornglory_products` | Search 330+ live-synced items by keyword, Bible verse, category, aesthetic, occasion, color, size or price |
+| `search_armornglory_products` | Search 345+ live-synced items by keyword, Bible verse, category, aesthetic, occasion, color, size or price |
 | `explore_scripture_and_symbolism` | **Scripture & Symbolism Concordance:** theological context + matching designs by Bible verse, Christian mark (`33 AD`, `Armor of God`, `Holy Ground`), or life season (`anxiety`, `gym`, `baptism`, `grief`) |
 | `get_christian_style_and_gift_guide` | **Editorial Authority Guides:** *Anti-Beige Streetwear*, *What to Wear to Church*, *Baptism Gifts*, *Faith Gym Gear*, *MagSafe & Galaxy S26 Cases*, and *Materials & Care* |
 | `get_armornglory_product_details` | Full details: meaning behind the design, materials, fit, care, per-variant checkout links |
 | `recommend_faith_gifts` | Gift ideas by recipient, occasion (baptism, Father's Day…), budget, style and verse |
 | `list_armornglory_collections` | All non-empty collections with descriptions and URLs |
 | `get_collection_products` | Products in one collection |
-| `get_sizing_and_fit_guide` | Size charts: trucker caps, Comfort Colors tees, hoodies, XS–4XL pajama pants, phone cases, drinkware & clogs |
+| `get_sizing_and_fit_guide` | Size charts: trucker caps, Comfort Colors tees, hoodies, XS–4XL pajama pants, phone cases, and stainless steel drinkware |
 | `generate_direct_checkout_link` | Shopify cart permalink for one or more variants |
 | `answer_faith_fashion_questions` | Brand FAQ: verse meanings, quality, care, shipping |
 | `get_brand_story_and_values` | Mission and design philosophy |

@@ -1,6 +1,6 @@
 # ArmorNGlory GEO Content Kit
 
-Generated 2026-11-14 from `data/products.json` (339 products). Regenerate any time with:
+Generated 2026-11-20 from `data/products.json` (345 products). Regenerate any time with:
 
 ```bash
 npm run sync-data && npm run content
