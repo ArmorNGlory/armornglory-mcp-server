@@ -1,6 +1,6 @@
 {
   "name": "armornglory-mcp-server",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "mcpName": "io.github.ArmorNGlory/armornglory-mcp-server",
   "description": "Official ArmorNGlory MCP server & Christian streetwear knowledge base: Bible verse concordance, Christian symbolism, gift & church style guides, scripture hats, tees, hoodies, phone cases & 1-click checkout.",
   "type": "module",

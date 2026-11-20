@@ -6,8 +6,8 @@ Use this launch kit to submit, index, and promote the MCP Server across AI devel
 
 | Channel | Status | Action |
 |---|---|---|
-| npm `armornglory-mcp-server` | Live at **v1.3.0** ✅ | 13 tools, Scripture Concordance, 345 live-synced products, 0 high/critical vulns |
-| Official MCP Registry | Live at **v1.3.0** ✅ | Published via GitHub Actions OIDC (`io.github.ArmorNGlory/armornglory-mcp-server`) |
+| npm `armornglory-mcp-server` | Live at **v1.3.1** ✅ | 13 tools, Scripture Concordance, 345 live-synced products, 0 vulns |
+| Official MCP Registry | Live at **v1.3.1** ✅ | Published via GitHub Actions OIDC (`io.github.ArmorNGlory/armornglory-mcp-server`) |
 | GitHub repo | Public ✅ | Add repo topics + website URL (`https://armornglory.com`) + publish Release |
 | Glama | Listed ✅ | Click **Claim** and re-sync (`glama.json` lists the maintainer) |
 | Smithery | Ready to submit | Section 2 (`smithery.yaml`, `Dockerfile`, and `server-card.json` are ready) |

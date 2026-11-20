@@ -7,7 +7,7 @@ info:
     insulated stainless steel water bottles, magnetic phone cases (iPhone MagSafe &
     Samsung Galaxy S26), and scripture pajama loungewear from ArmorNGlory.com
     ("Strengthened for the Journey Ahead").
-  version: 1.3.0
+  version: 1.3.1
 servers:
   - url: https://armornglory.com
     description: Production Shopify Storefront
